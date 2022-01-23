@@ -1,0 +1,204 @@
+/* Balise générale */
+@font-face
+{
+    font-family:"Roboto"; 	
+    src: url('polices/Roboto-Black.ttf');
+    src: url('polices/Roboto-Regular.ttf');
+    src: url('polices/Roboto-light.ttf');
+}
+
+.wrapper
+{
+    width:940px;
+    margin:0 auto;
+    padding: 0 10px;
+}
+
+h3 
+{
+    color:#fff;
+}
+
+a:link
+{
+    text-decoration:none; 
+}
+
+a:hover
+{
+    color:#000;
+    background-color:#fff;
+    border:solid 10px #fff;
+}
+
+body
+{
+    background-color: rgb(51, 49, 49);
+}
+
+h1
+{
+    color:#fff;
+    font-family:'Roboto', sans-serif;
+    font-weight:bold;
+}
+
+ul
+{
+    list-style:none;
+}
+/* Balise header */
+header
+{
+    background-color: (51, 49, 49);
+    height:80px;
+}
+
+header h1
+{
+    float:left;
+    margin-top:20px;  
+    color:#fff;
+}
+
+
+header nav
+{
+    float:right;
+    margin-top:35px;
+    font-family:"Roboto", sans-serif; 
+}
+
+header nav ul li
+{
+    display:block;
+    float:left;
+    
+}
+
+header nav ul li a
+{
+    color:#fff;
+    text-transform:uppercase;
+    font-weight:bold;
+    margin-right:20px;
+    background-color: #000;
+    border:solid 10px #000;
+    border-radius: 5px;
+}
+
+
+#logo_nsi
+{
+    display:inline-block;
+    border:solid 2px #000;
+    background-color:#000;
+    color:#fff;
+    border-radius: 5px;
+}
+
+/* Balise main-page */
+
+.main-page
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:100px;
+    padding:10px;
+    background-color: #fff;
+    border:solid 10px #fff;
+    border-radius: 10px;
+    width:1000px;
+    height: 200px;
+    text-align: center;
+    font-family:'Roboto', sans-serif;
+}
+
+#button1
+{
+    background-color: #000;
+    border:solid 2px #000;
+    color:#fff;
+    padding:10px;
+    border-radius: 100px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.main-page h2
+{
+    text-transform: uppercase;
+}
+
+#button1:hover
+{
+    color:#000;
+    background-color: #fff;
+    border:solid 2px #000;
+    border-radius: 100px;
+}
+
+/* Footer */
+footer
+{
+    background-color: rgba(90, 87, 87, 0.253);
+    margin-top:300px;
+    padding:100px;
+    text-align:center;
+    font-family:"Roboto", sans-serif;
+}
+
+footer p
+{
+    font-weight: lighter;
+    color:rgba(255, 255, 255, 0.747);
+}
+
+footer #button1
+{
+   font-size:10px;
+}
+
+/* Cour */
+#cour
+{
+    margin: 40px;
+}
+
+#cour h2
+{
+    font-size: 20px;
+}
+#cour-div
+{
+    margin:10px;
+    font-family:'Roboto', sans-serif;
+    background-color: #fff;
+    border-radius:5px;
+    width:375px;
+    height:180px;
+    margin-top:100px;
+    margin:10px;
+    padding:10px;
+    text-align:center;
+    display: inline-block;
+}
+
+#button_cour1
+{
+    background-color: #fff;
+    border:solid 2px #000;
+    color:#000;
+    padding:10px;
+    margin:10px;
+    border-radius: 10px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+#button_cour1:hover
+{
+    background-color: #000;
+    border:solid 2px #000;
+    color:#fff;
+}

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Tuples et tableaux</title>
+		<link rel="stylesheet" href="Tuples%20et%20tableaux_files/style_TP_NSI1.css">
+		<link rel="stylesheet" href="Tuples%20et%20tableaux_files/tomorrow-night.css">
+		<script src="Tuples%20et%20tableaux_files/highlight.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>                
+               <!-- Voir le site https://highlightjs.org/usage/-->
+<!--		
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+-->
+<!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+<!--	
+    <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+-->
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+	<div class="head_foot_note_right">
+                <img src="Tuples%20et%20tableaux_files/by-nc-sa.png"> Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>
+        </div>
+        <div class="navbar-header">
+                <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                <br><h1>Tuples et tableaux (en langage Python)</h1>
+        </div>
+
+      </div>
+    </nav>
+    
+    <div class="container act">
+		<h2 class="h2counter">Les séquences en Python</h2>
+		<p>
+			Il est possible de «stocker» plusieurs grandeurs dans une même 
+structure, ce type de structure est appelé une séquence. De façon plus 
+précise, nous définirons une séquence comme un ensemble fini et ordonné 
+d'éléments indicés de 0 à n-1 (si cette séquence comporte n éléments). 
+Rassurez-vous,
+			nous reviendrons plus tard sur cette définition. Nous allons étudier 
+plus particulièrement deux types de séquences : 
+			les <strong>tuples</strong> (ou <strong>n-uplets</strong> ou <strong>p-uplets</strong>) et les <strong>tableaux</strong> (il en existe d'autres que nous n'évoquerons pas ici).
+		</p>
+		<br><h2 class="h2counter">Les tuples en Python</h2>
+		<p>
+			Un tuple est donc une séquence. Voici un exemple très simple :
+		</p>
+		<pre><code class="python hljs">
+mon_tuple = (<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>)
+		</code></pre>
+		<p>
+			Dans le code ci-dessus, la variable <code>mon_tuple</code> référence un tuple, ce tuple est constitué des entiers <code>5</code>, <code>8</code>, <code>6</code> et <code>9</code>. Comme indiqué dans la définition, chaque élément du tuple est indicé (il possède un indice):
+		</p>
+		<ul>
+			<li>
+				le premier élément du tuple (l'entier <code>5</code>) possède l'indice <code>0</code>
+			</li>
+			<li>
+				le deuxième élément du tuple (l'entier <code>8</code>) possède l'indice <code>1</code>
+			</li>
+			<li>
+					le troisième élément du tuple (l'entier <code>6</code>) possède l'indice <code>2</code>
+			</li>
+			<li>
+				le quatrième élément du tuple (l'entier <code>9</code>) possède l'indice <code>3</code>
+			</li>
+		</ul>
+		<p>
+			Comment accéder à l'élément d'indice <code>i</code> dans un tuple ?
+		</p>
+		<p>
+			Simplement en utilisant la «notation entre crochets»...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Tester le code suivant :</p>
+		<pre><code class="python hljs">
+mon_tuple = (<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>)
+a = mon_tuple[<span class="hljs-number">2</span>]
+		</code></pre>
+		<p>
+			Quelle est la valeur référencée par la variable <code>a</code> (utiliser la console pour répondre à cette question)?
+		</p>
+		<!-- <p>
+			La variable "mon_tuple" référence le tuple (5, 8, 6, 9), la variable "a" référence l'entier 6 car cet entier 6 est bien le troisième élément du tuple, il possède donc l'indice 2.
+		</p>-->
+		<hr>
+		<p>
+			ATTENTION : dans les séquences les indices commencent toujours à <code>0</code> (le premier élément de la séquence a pour indice <code>0</code>), oublier cette particularité est une source d'erreur «classique».
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Compléter le code ci-dessous (en remplaçant les ..) afin qu'après l'exécution de ce programme la variable <code>a</code> référence l'entier <code>8</code>.</p>
+		<pre><code class="python hljs">
+mon_tuple = (<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>)
+a = mon_tuple[..]
+		</code></pre>
+		<hr>
+		<p>
+			Un tuple ne contient pas forcément des nombres entiers, il peut aussi
+ contenir des nombres décimaux, des chaînes de caractères, des 
+booléens...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Quel est le résultat attendu après l'exécution de ce programme ?</p>
+		<p>Vérifier votre hypothèse en testant ce programme</p>
+		<pre><code class="python hljs">
+mon_tuple = (<span class="hljs-string">"le"</span>, <span class="hljs-string">"monde"</span>, <span class="hljs-string">"bonjour"</span>)
+print(mon_tuple[<span class="hljs-number">2</span>] + <span class="hljs-string">" "</span> + mon_tuple[<span class="hljs-number">0</span>] + <span class="hljs-string">" "</span> + mon_tuple[<span class="hljs-number">1</span>] + <span class="hljs-string">"!"</span>)
+		</code></pre>
+		<hr>
+		<p>
+                    Grâce au tuple, une fonction peut renvoyer plusieurs valeurs...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Analyser puis tester le code suivant :</p>
+		<pre><code class="python hljs">
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add</span><span class="hljs-params">(a, b)</span>:</span>
+    c = a + b
+    <span class="hljs-keyword">return</span> (a, b, c)
+mon_tuple = add(<span class="hljs-number">5</span>, <span class="hljs-number">8</span>)
+print(mon_tuple[<span class="hljs-number">0</span>],<span class="hljs-string">" + "</span>,mon_tuple[<span class="hljs-number">1</span>],<span class="hljs-string">" = "</span>,mon_tuple[<span class="hljs-number">2</span>])
+		</code></pre>
+		<p>
+                    Il faut bien comprendre dans l'exemple ci-dessus que la variable <code>mon_tuple</code> référence un tuple (puisque la fonction <code>add</code> renvoie un tuple), d'où la «notation entre crochets» utilisée avec <code>mon_tuple</code> (<code>mon_tuple[1]</code>...)
+		</p>
+		<hr>
+		<p>
+			La console permet d'afficher les éléments présents dans un tuple simplement en tapant son nom...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Après avoir exécuté le programme ci-dessous, saisir <code>mon_tuple</code> dans la console.</p>
+		<pre><code class="python hljs">
+mon_tuple = (<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>)
+		</code></pre>
+		<hr>
+		
+		<p>
+		Il n'est pas possible de modifier un tuple après sa création (on parle d'objet <strong>immutable</strong>), si vous essayez de modifier un tuple existant, l'interpréteur Python vous renverra une erreur.
+		<br><br>
+		Remarque pour ceux qui souhaitent approfondir : cependant on peut réaliser l’opération suivante (à tester et analyser).
+		
+		</p><pre><code class="python hljs">
+t=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>)
+t=(<span class="hljs-number">7</span>,)+t[<span class="hljs-number">1</span>:]
+print(t)
+		</code></pre>
+		
+                On remarquera que pour définir un tuple, il faut au moins une virgule .
+
+		<p></p>
+		
+		<br><h2 class="h2counter">Les tableaux en Python</h2>
+		<p>
+		Les tableaux en Python diffèrent des tableaux que l'on trouve dans les
+ autres langages de programmation par plusieurs aspects. Ils sont 
+appelés <strong>listes</strong>
+		dans la documentation Python. Cette appellation est malheureuse puisque une liste désigne en général une structure de données 
+		qui sera notamment étudiée en terminale, différente du tableau. 
+		Cependant, nous allons utiliser la terminologie Python puisque c'est par ce langage que nous allons manipuler 
+		ce type de structure.
+		</p>
+		<p>
+		Les listes sont, comme les tuples, des séquences, mais à la différence
+ des tuples, elles sont modifiables (on parle d'objets «mutables»).
+		</p>
+		<p>
+			Pour créer une liste, il existe différentes manières ; l'une d'elles ressemble beaucoup à la création d'un tuple :
+		</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+		</code></pre>
+		<p>
+			Noter la présence des crochets à la place des parenthèses.
+		</p>
+		<p>
+			Une liste est une séquence, il est donc possible de «récupérer» un 
+élément d'une liste à l'aide de son indice (de la même manière que pour 
+un tuple)...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Quelle est la valeur référencée par la variable <code>ma_variable</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+ma_variable = ma_liste[<span class="hljs-number">2</span>]
+		</code></pre>
+		<p>
+			N.B. Il est possible de saisir directement <code>ma_liste[2]</code> dans la console sans passer par l'intermédiaire de la variable <code>ma_variable</code>
+		</p>
+		<hr>
+		<p>
+			Il est possible de modifier une liste à l'aide de la «notation entre crochets»...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Quel est le contenu de la liste référencée par la variable <code>ma_liste</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+ma_liste[<span class="hljs-number">2</span>] = <span class="hljs-number">15</span>
+		</code></pre>
+		<p>
+			Comme vous pouvez le constater avec l'exemple ci-dessus, l'élément d'indice <code>2</code> (le nombre entier <code>6</code>) a bien été remplacé par le nombre entier <code>15</code>.
+		</p>
+		<hr>
+		<p>
+			Il est aussi possible d'ajouter un élément en fin de liste à l'aide de la méthode <code>append()</code>...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Quel est le contenu de la liste référencée par la variable <code>ma_liste</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+ma_liste.append(<span class="hljs-number">15</span>)
+		</code></pre>
+		<hr>
+		<p>
+			L'instruction <code>del</code> permet de supprimer un élément d'une liste en utilisant son index...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Quel est le contenu de la liste référencée par la variable <code>ma_liste</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+<span class="hljs-keyword">del</span> ma_liste[<span class="hljs-number">1</span>]
+		</code></pre>
+		<hr>
+		<p>
+			L'instruction <code>len</code> permet de connaitre le nombre d'éléments présent dans une liste (l'instruction <code>len</code> peut aussi être utilisée avec un tuple)...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Quelle est la valeur référencée par la variable <code>nb_ele</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+nb_ele = len(ma_liste)
+		</code></pre>
+		<hr>
+		
+		<br><h4 class="exo"></h4>
+		<p>Une petite astuce à découvrir sur les listes : tester le code suivant...</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+print(ma_liste[<span class="hljs-number">-1</span>])
+print(ma_liste[<span class="hljs-number">-2</span>])
+		</code></pre>
+		<p>Quelle que soit la taille d'une liste, son dernier élément peut être appelé avec l'indice <code>-1</code>.</p>
+		<hr>
+		<p>
+			Une petite parenthèse : on pourrait s'interroger sur l'intérêt 
+d'utiliser un tuple puisque la liste permet plus de choses ! La réponse 
+est simple : les opérations
+			sur les tuples sont plus «rapides». Quand vous savez que votre liste 
+ne sera pas modifiée, il est préférable d'utiliser un tuple à la place 
+d'une liste.
+		</p>
+		<br><h2 class="h2counter">La boucle <code>for</code> : parcourir les éléments d'une liste</h2>
+		<p>
+			La boucle <code>for ... in</code> permet de parcourir les éléments d'une liste (ou d'un tuple)...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Analyser puis tester le code suivant :</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+<span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> ma_liste:
+    print(element)
+		</code></pre>
+		<p>
+			Quelques explications : comme son nom l'indique, la boucle <code>for</code> est une boucle ! L'exécution de la boucle se termine une fois que tous les éléments de la liste <code>ma_liste</code> ont été parcourus. La variable <code>element</code> référence :
+		</p>
+		<ul>
+			<li>
+				au premier tour de boucle, le premier élément de la liste (l'entier <code>5</code>) ;
+			</li>
+			<li>
+				au deuxième tour de boucle, le deuxième élément de la liste (l'entier <code>8</code>) ;
+			</li>
+			<li>
+				au troisième tour de boucle, le troisième élément de la liste (l'entier <code>6</code>) ;
+			</li>
+			<li>
+				au quatrième tour de boucle, le quatrième élément de la liste (l'entier <code>9</code>).
+			</li>
+		</ul>
+		<p>
+			Le nom de la variable <code>element</code> qui référence les éléments de la liste les uns après les autres est totalement arbitraire,
+			il est possible de choisir un autre nom, par exemple le code suivant aurait donné le même résultat :
+		</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+<span class="hljs-keyword">for</span> toto <span class="hljs-keyword">in</span> ma_liste:
+    <span class="hljs-keyword">print</span> (toto)
+		</code></pre>
+		<hr>
+		<p>
+			Dans la boucle <code>for .. in</code> il est possible d'utiliser la méthode <code>range()</code> à la place d'une liste...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Analyser puis tester le code suivant :</p>
+		<pre><code class="python hljs">
+<span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>):
+    <span class="hljs-keyword">print</span> (element)
+		</code></pre>
+		<p>
+			Comme vous pouvez le constater, <code>range(0,5)</code> est, au niveau de la boucle <code>for .. in</code>, équivalent à la liste <code>[0,1,2,3,4]</code>, le code ci-dessous donnerait le même résultat :
+		</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+<span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> ma_liste:
+    <span class="hljs-keyword">print</span> (element)
+		</code></pre>
+		<p>
+		</p><hr>
+		
+			ATTENTION : dans <code>range(a,b)</code>, <code>a</code> est la borne inférieure et <code>b</code> la borne supérieure mais la borne inférieure est incluse, alors que la borne supérieure est exclue.
+		<p></p>
+		<p>
+			Il est possible d'utiliser la méthode <code>range()</code> pour «remplir» une liste...
+		</p>
+		
+		<br><h4 class="exo"></h4>
+		<p>Quel est le contenu de la liste référencée par la variable <code>ma_liste</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p>
+		<pre><code class="python hljs">
+ma_liste = []
+<span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>):
+    ma_liste.append(element)
+		</code></pre>
+		<hr>
+		
+		On a parfois besoin d'accéder dans la liste à la fois aux éléments et 
+aux indices qui les référencent, Python offre pour cela une fonction 
+pratique.
+		
+		<br><h4 class="exo"></h4>
+		<p>Analyser les effets du code suivant.</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]
+<span class="hljs-keyword">for</span> indice, element <span class="hljs-keyword">in</span> enumerate(ma_liste):
+    print(<span class="hljs-string">'indice = '</span>, indice)
+    print(<span class="hljs-string">'element = '</span>, element)
+		</code></pre>
+		<hr>
+		
+		<br><h2 class="h2counter">Les listes en compréhension</h2>
+		<p>
+			Nous avons vu qu'il est possible de «remplir» une liste en renseignant les éléments de la liste les uns après les autres :
+		</p>
+		<pre><code class="python hljs">
+ma_liste = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]
+		</code></pre>
+		<p>
+			ou encore à l'aide de la méthode <code>append()</code> (voir l'exercice 14).
+		</p>
+		<p>
+			Il est aussi possible d'obtenir exactement le même résultat qu'à 
+l'Exercice 14 en une seule ligne grâce à la compréhension de liste...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Quel est le contenu de la liste référencée par la variable <code>ma_liste</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p>
+		<pre><code class="python hljs">
+ma_liste = [p <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>)]
+		</code></pre>
+		<hr>
+		<p>
+			Les compréhensions de liste permettent de rajouter une condition (<code>if</code>)...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Quel est le contenu de la liste référencée par la variable <code>ma_liste</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p>
+		<pre><code class="python hljs">
+l = [<span class="hljs-number">1</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">15</span>, <span class="hljs-number">5</span>, <span class="hljs-number">20</span>, <span class="hljs-number">10</span>, <span class="hljs-number">8</span>]
+ma_liste = [p <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> l <span class="hljs-keyword">if</span> p &gt; <span class="hljs-number">10</span>]
+		</code></pre>
+		<hr>
+		<p>
+			Autre possibilité, utiliser des composants «arithmétiques»...
+		</p>
+		<br><h4 class="exo"></h4>
+		<p>Quel est le contenu de la liste référencée par la variable <code>ma_liste</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p>
+		<pre><code class="python hljs">
+l = [<span class="hljs-number">1</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">15</span>, <span class="hljs-number">5</span>, <span class="hljs-number">20</span>, <span class="hljs-number">10</span>, <span class="hljs-number">8</span>]
+ma_liste = [p**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> l <span class="hljs-keyword">if</span> p &lt; <span class="hljs-number">10</span>]
+		</code></pre>
+		<p>
+			Rappel : <code>p**2</code> permet d'élever la variable <code>p</code> au carré.
+		</p>
+		<p>
+			Comme vous pouvez le remarquer, nous obtenons une liste (<code>ma_liste</code>) qui contient tous les éléments de la liste <code>l</code> élevés au carré à condition que ces éléments de <code>l</code> soient inférieurs à <code>10</code>.
+			Comme vous pouvez le constater, la compréhension de liste permet d'obtenir des combinaisons relativement complexes.
+		</p>
+		<hr>
+		
+		
+		<p>Attention, si la condition comporte un «sinon», alors elle doit être avant la boucle...</p>
+		
+		<br><h4 class="exo"></h4>
+		<pre><code class="python hljs">
+squares_cubes = [n**<span class="hljs-number">2</span> <span class="hljs-keyword">if</span> n%<span class="hljs-number">2</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> n**<span class="hljs-number">3</span> <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">16</span>)]
+print(squares_cubes)
+
+		</code></pre>
+		Tester ce code et expliquer ce qu'il fait.
+		
+		
+		<hr>
+		
+		<br><h2 class="h2counter">Travailler sur des «listes de listes»</h2>
+		<p>
+                    Chaque élément d'une liste peut être une liste, on parle de liste de listes.
+		</p>
+		<p>
+                    Voici un exemple de liste de listes :
+		</p>
+		<pre><code class="python hljs">
+m = [[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">5</span> ,<span class="hljs-number">6</span> ,<span class="hljs-number">8</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">15</span>]]
+		</code></pre>
+		<p>
+			Le premier élément de la liste ci-dessus est bien la liste <code>[1, 3, 4]</code>, le deuxième élément est la liste <code>[5, 6, 8]</code>...
+		</p>
+		<p>
+			Il est souvent plus pratique de présenter ces «listes de listes» comme suit :
+		</p>
+		<pre><code class="python hljs">
+m = [[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>],
+     [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>],
+     [<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>],
+     [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">15</span>]]
+		</code></pre>
+		<p>
+			Nous obtenons ainsi un tableau organisé en lignes et colonnes, qu'en mathématique on appelle matrice  :
+		
+		</p>
+		<ul>
+			<li>
+				<code>1</code>, <code>3</code>, <code>4</code> en constituent la première ligne ;
+			</li>
+			<li>
+				<code>5</code>, <code>6</code>, <code>8</code> en constituent la deuxième ligne ;
+			</li>
+			<li>
+				<code>2</code>, <code>1</code>, <code>3</code> en constituent la troisième ligne ;
+			</li>
+			<li>
+				<code>7</code>, <code>8</code>, <code>15</code> en constituent la quatrième ligne ;
+			</li>
+		</ul>
+		
+		<ul>
+			<li>
+				<code>1</code>, <code>5</code>, <code>2</code>, <code>7</code> en constituent la première colonne ;
+			</li>
+			<li>
+				<code>3</code>, <code>6</code>, <code>1</code>, <code>8</code> en constituent la deuxième colonne ;
+			</li>
+			<li>
+			 	<code>4</code>, <code>8</code>, <code>3</code>, <code>15</code> en constituent la troisième colonne.
+			</li>
+		</ul>
+		<p>
+			Pour cibler un élément particulier de la matrice, on utilise la notation avec «doubles crochets» : <code>m[ligne][colonne]</code> (attention, 
+			la première ligne et la première colonne ont pour indice <code>0</code>).
+		</p>
+		
+		
+		<hr>
+		
+		<br><h4 class="exo"></h4>
+		<p></p><p>Quelle est la valeur référencée par la variable <code>a</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p><p></p>
+		<pre><code class="python hljs">
+m = [[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>],
+     [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>],
+     [<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>],
+     [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">15</span>]]
+a = m[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>]
+		</code></pre>
+		<p>
+			Comme vous pouvez le constater, la variable <code>a</code> référence bien l'entier situé à la 2<sup>e</sup> ligne (indice <code>1</code>) et à la 3<sup>e</sup> colonne (indice <code>2</code>), c'est-à-dire <code>8</code>.
+		</p>
+		<hr>
+		<br><h4 class="exo"></h4>
+		<p></p><p>Quel est le contenu de la liste référencée par la variable <code>mm</code> après l'exécution du programme ci-dessous ? Utiliser la console pour vérifier votre réponse.</p><p></p>
+		<pre><code class="python hljs">
+m = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+mm = [m, m, m]
+m[<span class="hljs-number">0</span>] = <span class="hljs-number">100</span>
+		</code></pre>
+		<p>
+			Comme vous pouvez le constater, la modification de la liste référencée par la variable <code>m</code> entraine la modification de la liste référencée par la variable <code>mm</code> (alors que
+			nous n'avons pas directement modifié la liste référencée par <code>mm</code>).
+			Il faut donc être très prudent lors de ce genre de manipulation afin d'éviter des modifications non désirées.
+		</p>
+		<hr>
+		<p>
+			Il est possible de parcourir l'ensemble des éléments d'une matrice à l'aide d'une «double boucle» <code>for</code>...
+		</p>
+		
+		<br><h4 class="exo"></h4>
+		<p>Analyser puis tester le code suivant :</p>
+		<pre><code class="python hljs">
+m = [[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>],
+     [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>],
+     [<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>],
+     [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">15</span>]]
+nb_colonne = <span class="hljs-number">3</span>
+nb_ligne = <span class="hljs-number">4</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, nb_ligne):
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, nb_colonne):
+            a = m[i][j]
+            print(a)
+		</code></pre>
+		<hr>
+		
+
+		<br><h2 class="h2counter">Des listes de listes en compréhension</h2>
+
+		
+		<br><h4 class="exo"></h4>
+		<p>Analyser puis tester le code suivant :</p>
+		<pre><code class="python hljs">		
+		
+matrix = [
+    [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>],
+    [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>],
+    [<span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>],
+]
+ 
+transpose = [[row[n] <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> matrix] <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>)]
+ 
+print(transpose)
+		</code></pre>
+		<hr>
+		
+		<p>
+		La compréhension apporte un code concis et performant pour créer des 
+listes mais attention à la lisibilité de votre code : des listes en 
+compréhension par exemple
+		pour des boucles imbriquées risquent de rendre le code moins 
+compréhensible !
+		<br>
+		Pour améliorer la lisibilité, on peut découper la liste en plusieurs lignes.
+                </p>
+
+		<br><h2 class="h2counter">Performance</h2>
+
+		<br><h4 class="exo"></h4>
+		<p>Analyser puis tester le code suivant et comparer les deux modes de création de liste :</p>
+		<pre><code class="python hljs">	
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">liste_aleatoire</span><span class="hljs-params">(dim)</span>:</span>
+    <span class="hljs-keyword">return</span> [random.randint(<span class="hljs-number">0</span>,dim) <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,dim)]
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">boucle</span><span class="hljs-params">(liste,valeur)</span>:</span>
+    l = len(liste)
+    liste2 = []
+    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(l):
+        <span class="hljs-keyword">if</span> liste[x] &lt; valeur:
+            liste2.append(liste[x])
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">comprehension</span><span class="hljs-params">(liste,valeur)</span>:</span>
+    l = len(liste)
+    liste2 = [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(l) <span class="hljs-keyword">if</span> liste[x] &lt; valeur]
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">lissage</span><span class="hljs-params">(liste,pas)</span>:</span>
+    buffer = [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> liste]
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(liste)):
+        Min = max(<span class="hljs-number">0</span>,i-pas//<span class="hljs-number">2</span>)
+        Max = min(i+pas-pas//<span class="hljs-number">2</span>,len(liste))
+        liste[i]  = sum(buffer[Min:Max])/(Max-Min)
+
+        
+<span class="hljs-comment">#Valeurs de n choisies   </span>
+dim = <span class="hljs-number">5000</span>
+abscisses = [n <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,dim)]
+
+<span class="hljs-comment">#Temps de calcul</span>
+liste = liste_aleatoire(dim)
+tps_boucle = []  
+tps_comprehension = []
+<span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,dim):
+    print(n)
+    debut = time.time()
+    boucle(liste,n)
+    fin = time.time()
+    tps_boucle.append(fin - debut)
+    debut = time.time()
+    comprehension(liste,n)
+    fin = time.time()
+    tps_comprehension.append(fin - debut)
+
+<span class="hljs-comment"># 3 lignes pour de plus jolies courbes... et nécessaires sous Windows (?)...</span>
+pas_lissage = <span class="hljs-number">50</span> 
+lissage(tps_boucle,min(len(tps_boucle),pas_lissage))
+lissage(tps_comprehension,min(len(tps_comprehension),pas_lissage))
+    
+    
+<span class="hljs-comment">#Tracé</span>
+plt.plot(abscisses, tps_boucle, color = <span class="hljs-string">'red'</span>, label=<span class="hljs-string">'boucle'</span>)
+plt.plot(abscisses, tps_comprehension, color = <span class="hljs-string">'green'</span>, label=<span class="hljs-string">'compréhension'</span>)
+plt.legend(loc=<span class="hljs-string">'upper left'</span>)
+plt.title(<span class="hljs-string">'Comparaison de créations de listes'</span>)
+plt.xlabel(<span class="hljs-string">"Tailles listes"</span>)
+plt.ylabel(<span class="hljs-string">"Temps (s)"</span>)
+plt.show()
+		</code></pre>
+		<hr>
+
+		<br><h2 class="h2counter">Bonus</h2>
+		
+		<p>
+		<a href="https://docs.python.org/2/tutorial/datastructures.html#"> Documentation sur les listes et les tuples </a>
+                </p>
+		
+		<br><h4 class="exo"></h4>
+		<p>
+		Pour occuper les plus vaillants qui veulent affiner leur connaissance des listes Python...
+		<br>		
+                    Dans la console d'édition, taper chacune des lignes de code ci-dessous
+                    suivie de la ligne : <code>jourSemaine</code>, ou  <code>lundi</code>, ou  <code>we</code>, 
+                    ou  <code>trouve</code>, ou  <code>jbJours</code> (selon le cas...)
+                    pour tester les effets.
+                </p>
+		<pre><code class="python hljs">
+<span class="hljs-comment">#une liste python, initialisée</span>
+joursSemaine = [<span class="hljs-string">'lundi'</span>, <span class="hljs-string">'mardi'</span>, <span class="hljs-string">'mercredi'</span>, <span class="hljs-string">'jeudi'</span>, <span class="hljs-string">'vendredi'</span>, <span class="hljs-string">'samedi'</span>, <span class="hljs-string">'Dimanche'</span>]
+<span class="hljs-comment">#accès indexé</span>
+lundi =joursSemaine[<span class="hljs-number">0</span>]
+joursSemaine[<span class="hljs-number">6</span>]=<span class="hljs-string">'dimanche'</span>
+<span class="hljs-comment">#slices</span>
+we=joursSemaine[<span class="hljs-number">5</span>:<span class="hljs-number">7</span>]
+<span class="hljs-comment">#rechercher un élément dans une liste</span>
+trouve=<span class="hljs-string">'sunday'</span> <span class="hljs-keyword">in</span> joursSemaine
+<span class="hljs-comment">#insertion d'un élément, certains en voudraient 4 ;-)</span>
+joursSemaine[<span class="hljs-number">4</span>:<span class="hljs-number">4</span>]=[<span class="hljs-string">'autreJeudi'</span>]
+<span class="hljs-comment">#suppression d'un élément</span>
+joursSemaine[<span class="hljs-number">4</span>:<span class="hljs-number">5</span>]=[]
+<span class="hljs-keyword">del</span> joursSemaine[<span class="hljs-number">0</span>] <span class="hljs-comment">#on n'aime pas le lundi</span>
+<span class="hljs-comment">#ajout à la fin</span>
+joursSemaine.append(<span class="hljs-string">'lundi'</span>)
+<span class="hljs-comment">#taille d'une liste</span>
+nbJours=len(joursSemaine)
+		</code></pre>
+                <hr>
+		</div>
+        <div class="head_foot_note_right">
+                Dernière mise à jour de cette page : 04/10/2021
+        </div>
+
+</body></html>

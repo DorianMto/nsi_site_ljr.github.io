@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Interaction avec l'utilisateur dans une page web : utilisation du JavaScript</title>
+        <link rel="stylesheet" href="Interaction%20avec%20l'utilisateur%20dans%20une%20page%20web%20utilisation%20du%20JavaScript_files/style_TP_NSI1.css">
+        <link rel="stylesheet" href="Interaction%20avec%20l'utilisateur%20dans%20une%20page%20web%20utilisation%20du%20JavaScript_files/tomorrow-night.css">
+        <script src="Interaction%20avec%20l'utilisateur%20dans%20une%20page%20web%20utilisation%20du%20JavaScript_files/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>                
+        <!-- Voir le site https://highlightjs.org/usage/-->
+        <!--		
+            <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+        </script>
+        -->
+        <!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+        <!--	
+            <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        -->
+            
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="head_foot_note_right">
+                        <img src="Interaction%20avec%20l'utilisateur%20dans%20une%20page%20web%20utilisation%20du%20JavaScript_files/by-nc-sa.png">Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>.
+                </div>
+                <div class="navbar-header">
+                    <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                    <br><h2>Interaction avec l'utilisateur dans une page web : utilisation du JavaScript</h2>
+                </div>
+
+            </div>
+        </nav>
+        
+        
+        <div class="container act">
+            <br><h3>Introduction</h3>
+            <p>
+                Le langage HTML (<i>Hypertext Markup Language</i>) permet de créer la structure d’une page internet : grâce à un jeu de balises, 
+                il permet de décomposer la page comme un traitement de texte : titre, sous-titre, section...
+            </p>
+            <p>
+                Le langage CSS (<i>Cascade Style Sheets</i>) permet la mise en forme des éléments HTML. 
+            </p>
+            <p>
+                Les pages ainsi créées sont statiques, c’est-à-dire que 
+l’interaction avec l’utilisateur est réduite à la possibilité de cliquer
+ sur un lien
+                hypertexte présent dans la page.
+            </p>
+            <p>
+                On peut dynamiser la page internet de deux manières :
+                </p><ul>
+                    <li>
+                        soit du côté serveur avec par exemple le langage PHP (<i>Hypertext Preprocessor</i>) 
+                        qui peut par exemple ajouter le résultat d’une requête à une
+                        base de données dans la page qui sera fournie au navigateur ;
+                    </li>
+                    <li>
+                        soit du côté client avec JavaScript qui peut, 
+par exemple, faire apparaitre des info-bulles contextuelles ou réaliser 
+des animations.
+                    </li>
+                </ul>
+                JavaScript est un langage créé en 1995 par Brendan Eich qui travaillait chez <i>Netscape Communication Corporation</i> principal 
+                concurrent à l’époque d’<i>Internet Explorer</i>. JavaScript est alors transmis à l’ECMA (<i>European Computer Manufacturers Association</i>)
+ pour
+                standardisation sous la dénomination d’ECMAScript abrégé
+ en ES. Les deux versions 5, sortie en 2009, et 6, sortie en 2014, sont 
+                implémentées dans les différents navigateurs présents 
+sur le marché. Les versions suivantes 7, 8 et 9 sont des mises-à-jour 
+«mineures»
+                de l’ES6 et les fonctionnalités ajoutées ne sont pas 
+supportées par tous les navigateurs.
+            <p></p>
+            <p>
+                JavaScript dont le nom est une référence à Java de Sun 
+Microsystems, ne doit pas être confondu avec Java. En effet, Java est
+                fortement typé et précompilé alors que JavaScript est à 
+typage dynamique et interprété. JavaScript est un langage orienté objet.
+            </p>
+            
+            <br><h3>Manipulations</h3>
+            
+            <p>
+                    Le but ici n'est pas d'apprendre un nouveau langage de 
+                programmation, mais juste d'étudier quelques exemples d'utilisation du 
+                JavaScript, notamment dans le cas des interactions entre un utilisateur 
+                et une page web.
+            </p>
+            <p>
+                    Commençons par mettre en place notre environnement de travail.
+            </p>
+            <br><h4>Exercice 1</h4>
+            <p>
+                    Dans votre répertoire de travail, créer 3 fichiers : <code>index.html</code>, <code>style.css</code> et <code>script.js</code>.
+            </p>
+            <hr>
+            <br><h4>Exercice 2</h4>
+            <p>
+                    Après avoir ouvert le fichier <code>index.html</code> à l'aide d'un éditeur de texte, saisir le code ci-dessous :
+            </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+                <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+                <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+                <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">link</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">rel</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"stylesheet"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">href</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"style.css"</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+                <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio : HTML, CSS et JavaScript<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+                <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>Voici une page web qui ne fait pas grand-chose<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">src</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"script.js"</span></span></span><span class="hljs-tag">&gt;</span></span><span class="undefined"></span><span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+            <hr>
+            <p>
+                    Rien de très nouveau dans ce code, à part le <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code> qui permet d'exécuter le programme JavaScript contenu dans le fichier <code>script.js</code>.
+            </p>
+            <br><h4>Exercice 3</h4>
+            <p>
+                    Après avoir ouvert le fichier <code>style.css</code> à l'aide d'un éditeur de texte, saisir le code ci-dessous :
+            </p>
+            <pre><code class="css hljs">
+<span class="hljs-tag"><span class="hljs-selector-tag">h1</span></span><span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">text-align</span></span>:<span class="hljs-value"> center</span></span>;
+}</span>
+            </code></pre>
+            <br><h4>Exercice 4</h4>
+            <p>
+                    Après avoir ouvert le fichier <code>script.js</code> à l'aide d'un éditeur de texte, saisir le code ci-dessous :
+            </p>
+            <pre><code class="javascript hljs bash">
+alert(<span class="hljs-string"><span class="hljs-string">"Le JavaScript fonctionne !"</span></span>)
+            </code></pre>
+            <hr>
+            <br><h4>Exercice 5</h4>
+            <p>
+                    Afin d'afficher la page web que nous venons de créer dans un navigateur web, cliquer sur le fichier <code>index.html</code>.
+            </p>
+            <hr>
+            <p>
+                    La page web s'affiche bien, mais 
+                une nouvelle fenêtre apparait (souvent qualifiée de surgissante ou 
+                <i>pop-up</i> en anglais). L'apparition de cette fenêtre est dûe à l'instruction <code>alert</code> présente dans le JavaScript.
+            </p>
+            <p>
+                Le but ici n'étant pas d'apprendre à programmer en JavaScript, nous 
+                nous contenterons pour le moment de cette simple instruction <code>alert</code>.
+ 
+                Evidemment JavaScript permet de faire bien plus.
+                    En effet on retrouve en JavaScript les grands 
+classiques des 
+                langages de programmation : variable, condition, boucle,
+ fonction,... Pour en apprendre davantage sur la programmation en 
+JavaScript,
+                consulter <a href="https://openclassrooms.com/fr/courses/2984401-apprenez-a-coder-avec-javascript" target="_blank">le site openclassrooms</a>.
+            </p>
+            <p>
+                    Dans l'exemple ci-dessus, l'instruction <code>alert</code> est exécutée dès 
+                l'ouverture de la page web, il est tout à fait possible de lier 
+                l'exécution de certaines instructions JavaScript à l'action d'un 
+                utilisateur (par exemple un clic sur un bouton).
+            </p>
+            <br><h4>Exercice 6</h4>
+            <p>
+                    Modifier le code HTML comme suit :
+            </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">link</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">rel</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"stylesheet"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">href</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"style.css"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio : HTML, CSS et JavaScript<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>Voici une page web qui ne fait pas grand chose<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">onclick</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"maFonction()"</span></span></span><span class="hljs-tag">&gt;</span></span>Cliquer ici<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">src</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"script.js"</span></span></span><span class="hljs-tag">&gt;</span></span><span class="undefined"></span><span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+            <p>
+                    Modifier le code JavaScript comme suit :
+            </p>
+            <pre><code class="javascript hljs php">
+<span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">maFonction</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params">)</span> </span></span>{
+    alert(<span class="hljs-string"><span class="hljs-string">"Le JavaScript fonctionne !"</span></span>)
+}
+            </code></pre>
+            <p>
+                    Tester cette nouvelle page en cliquant sur le fichier index.html
+            </p>
+            <hr>
+            <p>
+                    On constate que l'instruction <code>alert</code> n'est plus 
+                exécutée à l'ouverture de la page web, mais uniquement dans le cas où 
+                l'utilisateur clique sur le bouton.
+            </p>
+            <p>
+                    On a associé au bouton un évènement <code>onclick</code> : en cas de clic sur la
+                souris, la fonction JavaScript <code>maFonction()</code> est exécutée. Si on 
+                s'intéresse au code JavaScript, on retrouve bien
+                    une fonction : <code>function maFonction(){...}</code> en 
+                JavaScript est équivalent à un <code>def maFonction() :</code> en Python. Entre 
+                l'accolade ouvrante et l'accolade fermante (qui délimite la fonction), 
+                on retrouve uniquement notre instruction <code>alert</code>.
+                    À l'ouverture de la page web cette instruction <code>alert</code> n'est pas 
+                exécutée, car elle se trouve dans une fonction. Le clic sur le bouton 
+                entraine l'exécution de la fonction "maFonction()" et donc de 
+                l'instruction <code>alert</code>.
+            </p>
+            <p>
+                    Il est évidemment possible de faire bien plus 
+                que l'affichage d'un simple pop-up avec JavaScript. Il est possible de 
+                modifier le style d'une balise, de modifier la classe (CSS) d'une balise
+                ou encore de modifier le contenu d'une balise, voici quelques exemples.
+            </p>
+            <br><h4>Exercice 7</h4>
+            <p>
+                    Modifier le code HTML comme suit :
+            </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">link</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">rel</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"stylesheet"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">href</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"style.css"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio : HTML, CSS et JavaScript<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"monPara"</span></span></span><span class="hljs-tag">&gt;</span></span>Voici une page web qui ne fait pas grand chose<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">onclick</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"maFonction()"</span></span></span><span class="hljs-tag">&gt;</span></span>Cliquer ici<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">src</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"script.js"</span></span></span><span class="hljs-tag">&gt;</span></span><span class="undefined"></span><span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+            <p>
+                    Modifier le code JavaScript comme suit :
+            </p>
+            <pre><code class="javascript hljs php">
+<span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">maFonction</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params">)</span> </span></span>{
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string"><span class="hljs-string">"#monPara"</span></span>).style.color=<span class="hljs-string"><span class="hljs-string">"red"</span></span>;
+}
+            </code></pre>
+            <p>
+                    Tester cette nouvelle page en cliquant sur le fichier <code>index.html</code>
+            </p>
+            <hr>
+            <p>
+                Dans l'exemple ci-dessus, on a ajouté un <code>id</code> (<code>"monPara"</code>) à la balise <code>p</code> dans le code HTML.
+                Dans le code JavaScript, la ligne <code>document.querySelector("#monPara").style.color="red";</code> permet de modifier le style de la balise ayant pour 
+                <code>id</code> <code>"monPara"</code> : la couleur du texte devient rouge.
+            </p>
+            <p>
+                        Comme cette modification du style se trouve dans la fonction 
+                <code>maFonction()</code>, cette modification sera effective uniquement si 
+                l'utilisateur appuie sur le bouton.
+            </p>
+            <p>
+                    Il est possible de travailler plus &lt;proprement&gt; en utilisant les classes CSS comme ci-dessous.
+            </p>
+            <br><h4>Exercice 8</h4>
+            <p>
+                    Modifier le code HTML comme suit :
+            </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">link</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">rel</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"stylesheet"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">href</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"style.css"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio : HTML, CSS et JavaScript<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"monPara"</span></span></span><span class="hljs-tag">&gt;</span></span>Voici une page web qui ne fait pas grand-chose<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">onclick</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"foncRouge()"</span></span></span><span class="hljs-tag">&gt;</span></span>Rouge<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">onclick</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"foncVert()"</span></span></span><span class="hljs-tag">&gt;</span></span>Vert<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">src</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"script.js"</span></span></span><span class="hljs-tag">&gt;</span></span><span class="undefined"></span><span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+            <p>
+                    Modifier le code JavaScript comme suit :
+            </p>
+            <pre><code class="javascript hljs php">
+<span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">foncRouge</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params">)</span> </span></span>{
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string"><span class="hljs-string">"#monPara"</span></span>).classList.remove(<span class="hljs-string"><span class="hljs-string">"vert"</span></span>);
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string"><span class="hljs-string">"#monPara"</span></span>).classList.add(<span class="hljs-string"><span class="hljs-string">"rouge"</span></span>);
+}
+<span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">foncVert</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params">)</span> </span></span>{
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string"><span class="hljs-string">"#monPara"</span></span>).classList.remove(<span class="hljs-string"><span class="hljs-string">"rouge"</span></span>);
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string"><span class="hljs-string">"#monPara"</span></span>).classList.add(<span class="hljs-string"><span class="hljs-string">"vert"</span></span>);
+}
+            </code></pre>
+            <p>
+                    Modifier le code CSS comme suit :
+            </p>
+            <pre><code class="css hljs">
+<span class="hljs-tag"><span class="hljs-selector-tag">h1</span></span><span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">text-align</span></span>:<span class="hljs-value"> center</span></span>;
+}</span>
+<span class="hljs-class"><span class="hljs-selector-class">.rouge</span></span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">color</span></span>:<span class="hljs-value">red</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">font-size</span></span>:<span class="hljs-value"><span class="hljs-number"><span class="hljs-number">20px</span></span></span></span>;
+}</span>
+<span class="hljs-class"><span class="hljs-selector-class">.vert</span></span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">color</span></span>:<span class="hljs-value">green</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">font-size</span></span>:<span class="hljs-value"><span class="hljs-number"><span class="hljs-number">30px</span></span></span></span>;
+}</span>
+            </code></pre>
+            <p>
+                    Après avoir analysé le code ci-dessus, tester cette nouvelle page en cliquant sur le fichier <code>index.html</code>.
+            </p>
+            <hr>
+            <p>
+                    Dans l'exemple ci-dessus, nous avons maintenant 2 boutons, un clic 
+                sur le bouton <code>vert</code>, permet d'exécuter la fonction <code>foncVert()</code>, un 
+                clic sur le bouton <code>rouge</code>, permet d'exécuter la fonction <code>foncRouge()</code>,
+                jusque là, rien de vraiment nouveau.
+                    La fonction JavaScript <code>foncVert()</code> permet de modifier la classe CSS
+                de la balise ayant pour <code>id</code> <code>"monPara"</code>. Dans un premier temps, la ligne
+                <code>document.querySelector("#monPara").classList.remove(rouge);</code> permet de supprimer l'association entre la balise d'<code>id</code> <code>"monPara"</code> et 
+                la classe CSS <code>rouge</code> (si cette association n'existe pas, cette ligne 
+                n'a aucun effet). Dans un deuxième temps, on associe la classe CSS 
+                <code>vert</code> avec la balise d'<code>id</code> <code>"monPara"</code> par la ligne<code>
+                document.querySelector("#monPara").classList.add(vert);</code>.
+            </p><p>
+                    Le principe est identique avec la fonction <code>foncRouge()</code>.
+            </p>
+            <p>
+                    Il est également possible de modifier le contenu d'une balise HTML.
+            </p>
+            <br><h4>Exercice 9</h4>
+            <p>
+                    Modifier le code HTML comme suit :
+            </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">link</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">rel</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"stylesheet"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">href</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"style.css"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio : HTML, CSS et JavaScript<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"monPara"</span></span></span><span class="hljs-tag">&gt;</span></span>Voici une page web qui ne fait pas grand chose<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">onclick</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"modifMessage()"</span></span></span><span class="hljs-tag">&gt;</span></span>Cliquez ici<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">src</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"script.js"</span></span></span><span class="hljs-tag">&gt;</span></span><span class="undefined"></span><span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+            <p>
+                    Modifier le code JavaScript comme suit :
+            </p>
+            <pre><code class="javascript hljs php">
+<span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">modifMessage</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params">)</span> </span></span>{
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string"><span class="hljs-string">"#monPara"</span></span>).innerHTML = <span class="hljs-string"><span class="hljs-string">"Bravo, vous avez cliqué sur le bouton !"</span></span>
+}
+            </code></pre>
+            <p>
+                    Après avoir analysé le code ci-dessus, tester cette nouvelle page en cliquant sur le fichier <code>index.html</code>.
+            </p>
+            <hr>
+            <p>
+                    Le contenu de la balise ayant pour <code>id</code> <code>"monPara"</code> est modifié grâce à la ligne
+                <code>document.querySelector("#monPara").innerHTML = "Bravo, vous avez cliqué sur le bouton !"</code>.
+            </p>
+            <p>
+                    Il existe d'autres évènements que <code>onclick</code>, par exemple, il est 
+            possible de détecter le &lt;survol&gt; par le curseur de la souris d'un élément HTML.
+            </p>
+            <br><h4>Exercice 10</h4>
+            <p>
+                    Modifier le code HTML comme suit :
+            </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">link</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">rel</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"stylesheet"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">href</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"style.css"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Le trio : HTML, CSS et JavaScript<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">div</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">onmouseover</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"foncEntre()"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">onmouseout</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"foncQuitte()"</span></span></span><span class="hljs-tag">  </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"maDiv"</span></span></span><span class="hljs-tag">&gt;</span></span><span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>Survolez-moi<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span><span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">div</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">src</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"script.js"</span></span></span><span class="hljs-tag">&gt;</span></span><span class="undefined"></span><span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">script</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+            <p>
+                    Modifier le code JavaScript comme suit :
+            </p>
+            <pre><code class="javascript hljs php">
+<span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">foncEntre</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params">)</span></span></span>{
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string"><span class="hljs-string">"#maDiv"</span></span>).classList.remove(<span class="hljs-string"><span class="hljs-string">"blanc"</span></span>);
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string"><span class="hljs-string">"#maDiv"</span></span>).classList.add(<span class="hljs-string"><span class="hljs-string">"rouge"</span></span>);
+}
+<span class="hljs-function"><span class="hljs-keyword"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span><span class="hljs-function"> </span><span class="hljs-title"><span class="hljs-function"><span class="hljs-title">foncQuitte</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="hljs-params"></span><span class="hljs-function"><span class="hljs-params">)</span> </span></span>{
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string"><span class="hljs-string">"#maDiv"</span></span>).classList.remove(<span class="hljs-string"><span class="hljs-string">"rouge"</span></span>);
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string"><span class="hljs-string">"#maDiv"</span></span>).classList.add(<span class="hljs-string"><span class="hljs-string">"blanc"</span></span>);
+}
+            </code></pre>
+            <p>
+                    Modifier le code CSS comme suit :
+            </p>
+            <pre><code class="css hljs">
+<span class="hljs-tag"><span class="hljs-selector-tag">h1</span></span><span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">text-align</span></span>:<span class="hljs-value"> center</span></span>;
+}</span>
+<span class="hljs-tag"><span class="hljs-selector-tag">p</span></span><span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">text-align </span></span>:<span class="hljs-value"> center</span></span>;
+}</span>
+<span class="hljs-id"><span class="hljs-selector-id">#maDiv</span></span><span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">width </span></span>:<span class="hljs-value"> <span class="hljs-number"><span class="hljs-number">200px</span></span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">height </span></span>:<span class="hljs-value"> <span class="hljs-number"><span class="hljs-number">100px</span></span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">margin </span></span>:<span class="hljs-value"> <span class="hljs-number"><span class="hljs-number">0</span></span> auto</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">border </span></span>:<span class="hljs-value"> <span class="hljs-number"><span class="hljs-number">2px</span></span> solid black</span></span>;
+}</span>
+<span class="hljs-class"><span class="hljs-selector-class">.rouge</span></span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">background-color</span></span>:<span class="hljs-value">red</span></span>;
+}</span>
+<span class="hljs-class"><span class="hljs-selector-class">.blanc</span></span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">background-color </span></span>:<span class="hljs-value"> white</span></span>;
+}</span>
+            </code></pre>
+            <p>
+                    Après avoir analysé le code ci-dessus, tester cette nouvelle page en cliquant sur le fichier <code>index.html</code>.
+            </p>
+            <hr>
+            <p>
+                L'évènement <code>onmouseover</code> correspond bien au survol par le curseur de la souris
+                d'un élément HTML. L'évènement <code>onemouseout</code> est lui déclenché quand le
+                curseur de la souris quitte un élément HTML donné.
+            </p>
+            <br><h3>Conclusion</h3>
+            <p>
+                    Il existe de nombreux autres évènements que nous n'aborderons pas ici. Pour en savoir davantage, consulter 
+                    le site <a href="https://www.w3schools.com/tags/ref_eventattributes.asp" target="_blank">www.w3schools.com/tags/ref_eventattributes.asp</a>.
+            </p>
+            <p>
+                    En résumé, le code HTML permet de générer des éléments graphiques 
+                qui seront affichés par un navigateur web, mais pas seulement : il est 
+                aussi possible de mettre en place dans le code HTML des évènements.
+                    Un évènement donné pourra déclencher l'exécution d'instructions 
+                JavaScript.
+            </p>
+            <p>
+                Le programme officiel de la spécialité NSI en première
+                indique qu’il ne saurait être question de développer une
+ expertise dans le langage JavaScript. Les sites suivants
+                seront utiles pour la mise en œuvre de projets.
+                </p><ul>
+                    <li>
+                        la syntaxe de JavaScript : 
+                        <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript" target="_blank">
+                        developer.mozilla.org/fr/docs/Web/JavaScript
+                        </a> ;
+                    </li>
+                    <li>
+                        les préconisations du W3C concernant les événements : 
+                        <a href="https://www.w3.org/TR/DOM-Level-3-Events/" target="_blank">www.w3.org/TR/DOM-Level-3-Events/</a> ;
+                    </li>
+                    <li>
+                        un tutoriel pour programmer en JavaScript : 
+                        <a href="https://openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/" target="_blank">
+                        openclassrooms.com/fr/courses/1916641-dynamisez-vos-sites-web-avec-javascript/
+                        </a>.
+                    </li>
+                </ul>
+            <p></p>
+
+        </div>
+        
+            
+        <div>
+            Suite de la leçon : <a href="http://mathag.free.fr/1920_INFO/TP-NSI1/NSI1-1920_TP-5-IHM_Web5_client-serveur.html">Modèle client-serveur</a>.
+        </div>
+                
+        <div class="head_foot_note_right">
+                Dernière mise à jour de cette page : 14/01/2022
+        </div>
+
+    
+</body></html>

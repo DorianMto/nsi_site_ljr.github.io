@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Intro algo : parcours séquentiel d'un tableau, complexité</title>
+        <link rel="stylesheet" href="Intro%20algo%20parcours%20s%C3%A9quentiel%20d'un%20tableau,%20complexit%C3%A9_files/style_TP_NSI1.css">
+        <link rel="stylesheet" href="Intro%20algo%20parcours%20s%C3%A9quentiel%20d'un%20tableau,%20complexit%C3%A9_files/tomorrow-night.css">
+        <script src="Intro%20algo%20parcours%20s%C3%A9quentiel%20d'un%20tableau,%20complexit%C3%A9_files/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>                
+        <!-- Voir le site https://highlightjs.org/usage/-->
+        <!--		
+            <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+        </script>
+        -->
+        <!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+        <!--	
+            <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        -->
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="head_foot_note_right">
+                    <img src="Intro%20algo%20parcours%20s%C3%A9quentiel%20d'un%20tableau,%20complexit%C3%A9_files/by-nc-sa.png"> Cette page comporte quelques éléments d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>.
+            </div>
+            <div class="navbar-header">
+                    <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                    <br><h2>Introduction à l'algorithmique : parcours séquentiel d'un tableau, complexité</h2>
+            </div>
+
+        </div>
+        </nav>
+        
+        <div class="container act">
+            <p>
+                La notion d'algorithme est souvent associée à l'informatique, pourtant le terme <b>algorithme</b> vient du nom du mathématicien perse du IX<sup>e</sup> siècle Muhammad Ibn Mūsā al-Khuwārizmī.
+                La notion d'algorithme est donc très antérieure à la création du premier ordinateur.
+            </p>
+            <p>
+                Voici deux définitions du mot <b>algorithme</b> trouvées dans la littérature :
+            </p>
+            <ul>
+                <li>
+                    Procédure de calcul bien définie qui prend en entrée
+ une valeur ou un ensemble de valeurs, et qui donne en sortie une valeur
+ ou un ensemble de valeurs.
+                </li>
+                <li>
+                    Un algorithme est la spécification d'un schéma de 
+calcul sous forme d'une suite finie d'opérations élémentaires obéissant à
+ un enchainement déterminé.
+                </li>
+            </ul>
+            <p>
+                Le terme «calcul» revient dans les 2 définitions, un algorithme effectue donc des calculs.
+            </p>
+            <p>
+                Pour concevoir un algorithme, la 2<sup>e</sup> 
+définition nous précise qu'il est nécessaire de définir «une suite finie
+ d'opérations élémentaires obéissant à un enchainement déterminé». 
+L'ordre dans lequel
+                on définit les «opérations élémentaires» a donc son 
+importance (considérons qu'une «opération élémentaire» est une action 
+simple jugée inutile de décomposer davantage en actions plus simples). 
+            </p>
+            <p>
+                    À noter que «procédure de calcul bien définie» dans 
+la première définition est équivalent à «suite finie d'opérations 
+élémentaires obéissant à un enchainement déterminé» dans la deuxième 
+définition. 
+            </p>
+            <p>
+                À noter également qu'autrefois le terme «schéma» était un synonyme du terme moderne «algorithme». 
+            </p>
+            <p>
+                On pourrait résumer ce qu'est un algorithme avec le graphique suivant :
+            </p>
+            <div class="centrer">
+                <img src="Intro%20algo%20parcours%20s%C3%A9quentiel%20d'un%20tableau,%20complexit%C3%A9_files/nsi_prem_algo_base_1.png" alt="algo">
+            </div>
+            <p>
+                Prenons un exemple concret.
+            </p>
+            <p>
+                Nous allons étudier cette année, ainsi que l'année 
+prochaine, des algorithmes de tri pour les tableaux (un tableau 
+ressemble beaucoup à une liste en Python, même si ce n'est pas 
+exactement la même chose).
+                Nous avons en entrée un tableau non trié et nous 
+obtenons en sortie un tableau trié :
+            </p>
+            <div class="centrer">
+                <img src="Intro%20algo%20parcours%20s%C3%A9quentiel%20d'un%20tableau,%20complexit%C3%A9_files/nsi_prem_algo_base_2.png" alt="algo">
+            </div>
+        <p>
+                La «valeur de sortie» n'est pas obligatoirement du même 
+type que la «valeur d'entrée». Prenons l'exemple d'un algorithme qui 
+prend en entrée un tableau t d'entiers et un entier x, et qui «répond» 
+par «oui» ou par «non» à la question «x est-il présent dans le tableau t
+ ?». Dans ce cas,
+                la «valeur de sortie» sera «oui» ou «non».
+            </p>
+            <div class="centrer">
+                <img src="Intro%20algo%20parcours%20s%C3%A9quentiel%20d'un%20tableau,%20complexit%C3%A9_files/nsi_prem_algo_base_3.png" alt="algo">
+            </div>
+            <div class="centrer">
+                <img src="Intro%20algo%20parcours%20s%C3%A9quentiel%20d'un%20tableau,%20complexit%C3%A9_files/nsi_prem_algo_base_4.png" alt="algo">
+            </div>
+            <p>
+                Écrivons l'algorithme décrit ci-dessus :
+                nous devons trouver la suite d'opérations élémentaires 
+qui permettra de répondre à la question : «x est-il présent dans le 
+tableau t ?».
+            </p>
+            <pre style="color:white; background-color:black;"><code class="hljs xml">
+VARIABLE
+t : tableau d'entiers
+x : nombre entier
+tr : booléen (VRAI ou FAUX)
+i : nombre entier
+DEBUT
+tr ← FAUX
+i ← 1
+tant que i<span class="hljs-tag">&lt;<span class="hljs-name">=longueur(t)</span> <span class="hljs-attr">et</span> <span class="hljs-attr">que</span> <span class="hljs-attr">tr</span>==<span class="hljs-string">FAUX:</span>
+  <span class="hljs-attr">si</span> <span class="hljs-attr">t</span>[<span class="hljs-attr">i</span>]==<span class="hljs-string">x:</span>
+    <span class="hljs-attr">tr</span> ← <span class="hljs-attr">VRAI</span>
+  <span class="hljs-attr">fin</span> <span class="hljs-attr">si</span>
+  <span class="hljs-attr">i</span> ← <span class="hljs-attr">i</span>+<span class="hljs-attr">1</span>
+<span class="hljs-attr">fin</span> <span class="hljs-attr">tant</span> <span class="hljs-attr">que</span>
+<span class="hljs-attr">renvoyer</span> <span class="hljs-attr">la</span> <span class="hljs-attr">valeur</span> <span class="hljs-attr">de</span> <span class="hljs-attr">tr</span>
+<span class="hljs-attr">FIN</span>
+            </span></code></pre>
+            <p>
+                Remarques
+            </p>
+            <ul>
+                <li>
+                    Quand on écrit un algorithme, on utilise un langage 
+dit «langage naturel» («tant que», «si»...), ce langage naturel permet 
+de passer facilement à un langage de programmation (Python, Java...), on
+ dit alors que l'on implémente l'algorithme.
+                </li>
+                <li>
+                    Attention, traditionnellement lorsqu'on écrit un 
+algorithme le premier élément d'un tableau a pour indice 1
+                    (alors que dans la plupart des langages de 
+programmation le premier élément d'un tableau a pour indice 0). Il faut 
+donc faire attention à cela lorsqu'on implémente un algorithme.
+                </li>
+                <li>
+                    Dans l'algorithme ci-dessus, on part du principe 
+qu'il existe une fonction «longueur» qui prend en paramètre un tableau 
+et qui renvoie le nombre d'éléments présents dans ce tableau.
+                    Déterminer le nombre d'éléments présents dans un 
+tableau n'est pas vraiment une «opération élémentaire», pourtant ici, on
+ considère l'utilisation de «longueur» comme une opération élémentaire !
+ Il arrive relativement souvent que l'on s'autorise ce genre de liberté 
+quand on écrit un algorithme.
+                </li>
+            </ul>
+            <p>
+                La première chose à faire quand on étudie un algorithme 
+est de le «faire tourner à la main» : on «exécute» l'algorithme en 
+utilisant uniquement une feuille et un crayon. Voilà ce que cela 
+pourrait donner avec l'algorithme écrit ci-dessus :
+            </p>
+            <div class="centrer">
+                    <img src="Intro%20algo%20parcours%20s%C3%A9quentiel%20d'un%20tableau,%20complexit%C3%A9_files/nsi_prem_algo_base_5.png" alt="algo">
+            </div>
+            <br><h4>Exercice 1</h4>
+            <p>
+                Faire «tourner à la main» l'algorithme «x est-il présent dans le tableau t ?» avec t=[5,8,15,53] et x=12.
+            </p>
+            <hr>
+            <h4>Complexité d'un algorithme</h4>
+            <p>
+                La notion de complexité d'un algorithme va rendre compte
+ de l'efficacité de cet algorithme. Pour un même problème, par exemple 
+trier un tableau, il existe plusieurs algorithmes,
+                certains algorithmes sont plus efficaces que d'autres : 
+ils mettront moins de temps que d'autres algorithmes pour résoudre 
+exactement le même problème sur la même machine).
+            </p>
+            <p>
+                Il existe 2 types de complexité : une complexité en 
+temps et une complexité en espace (en mémoire). Nous nous intéresserons 
+ici uniquement à la complexité en temps. La complexité en temps est 
+directement liée au nombre d'opérations élémentaires qui doivent être 
+exécutées pour résoudre un problème donné.
+                L'évaluation de ce nombre d'opérations élémentaires 
+n'est pas chose facile, on rencontre souvent des cas litigieux. Prenons 
+tout de suite un exemple avec l'algorithme ci-dessus «x est-il présent 
+dans le tableau t ?».
+            </p>
+            <p>
+                Il y a 2 cas à traiter :
+            </p>
+            <ul>
+                <li>
+                    l'entier recherché est bien présent dans le tableau, il se trouve à la position d'index j ;
+                </li>
+                <li>
+                    l'entier recherché n'est pas présent dans le tableau.
+                </li>
+            </ul>
+            <p>
+                Commençons par le premier cas :
+            </p>
+            <pre style="color:white; background-color:black;"><code class="hljs xml">
+VARIABLE
+t : tableau d'entiers
+x : nombre entier
+tr : booléen (VRAI ou FAUX)
+i : nombre entier
+DEBUT
+1 fois   tr ← FAUX
+1 fois   i ← 1
+j+1 fois tant que i<span class="hljs-tag">&lt;<span class="hljs-name">=longueur(t)</span> <span class="hljs-attr">et</span> <span class="hljs-attr">que</span> <span class="hljs-attr">tr</span>==<span class="hljs-string">FAUX:</span>
+<span class="hljs-attr">j</span> <span class="hljs-attr">fois</span>      <span class="hljs-attr">si</span> <span class="hljs-attr">t</span>[<span class="hljs-attr">i</span>]==<span class="hljs-string">x:</span>
+<span class="hljs-attr">1</span> <span class="hljs-attr">fois</span>       <span class="hljs-attr">tr</span> ← <span class="hljs-attr">VRAI</span>
+           <span class="hljs-attr">fin</span> <span class="hljs-attr">si</span>
+<span class="hljs-attr">j</span> <span class="hljs-attr">fois</span>     <span class="hljs-attr">i</span> ← <span class="hljs-attr">i</span>+<span class="hljs-attr">1</span>
+        <span class="hljs-attr">fin</span> <span class="hljs-attr">tant</span> <span class="hljs-attr">que</span>
+<span class="hljs-attr">1</span> <span class="hljs-attr">fois</span>  <span class="hljs-attr">renvoyer</span> <span class="hljs-attr">la</span> <span class="hljs-attr">valeur</span> <span class="hljs-attr">de</span> <span class="hljs-attr">tr</span>
+<span class="hljs-attr">FIN</span>
+            </span></code></pre>
+            <p>
+                Au total cela fait : 1 + 1 + j + 1 + j + 1 + j + 1 = 3j + 5 opérations élémentaires.
+            </p>
+            <p>
+                Dans le cas où l'entier recherché ne se trouve pas dans 
+le tableau (et que le nombre d'éléments dans le tableau est n) :
+            </p>
+            <pre style="color:white; background-color:black;"><code class="hljs xml">
+VARIABLE
+t : tableau d'entiers
+x : nombre entier
+tr : booléen (VRAI ou FAUX)
+i : nombre entier
+DEBUT
+1 fois   tr ← FAUX
+1 fois   i ← 1
+n+1 fois tant que i<span class="hljs-tag">&lt;<span class="hljs-name">=longueur(t)</span> <span class="hljs-attr">et</span> <span class="hljs-attr">que</span> <span class="hljs-attr">tr</span>==<span class="hljs-string">FAUX:</span>
+<span class="hljs-attr">n</span> <span class="hljs-attr">fois</span>      <span class="hljs-attr">si</span> <span class="hljs-attr">t</span>[<span class="hljs-attr">i</span>]==<span class="hljs-string">x:</span>
+<span class="hljs-attr">0</span> <span class="hljs-attr">fois</span>       <span class="hljs-attr">tr</span> ← <span class="hljs-attr">VRAI</span>
+           <span class="hljs-attr">fin</span> <span class="hljs-attr">si</span>
+<span class="hljs-attr">n</span> <span class="hljs-attr">fois</span>     <span class="hljs-attr">i</span> ← <span class="hljs-attr">i</span>+<span class="hljs-attr">1</span>
+        <span class="hljs-attr">fin</span> <span class="hljs-attr">tant</span> <span class="hljs-attr">que</span>
+<span class="hljs-attr">1</span> <span class="hljs-attr">fois</span>  <span class="hljs-attr">renvoyer</span> <span class="hljs-attr">la</span> <span class="hljs-attr">valeur</span> <span class="hljs-attr">de</span> <span class="hljs-attr">tr</span>
+<span class="hljs-attr">FIN</span>
+            </span></code></pre>
+            <p>
+                Au total nous avons : 1 + 1 + n + 1 + n + 0 + n + 1 = 3n + 4 opérations élémentaires.
+            </p>
+            <p>
+                Comme dans la plupart des cas n &gt; j, on effectue plus
+ d'opérations élémentaires quand le nombre recherché n'est pas dans le 
+tableau (sauf dans le cas précis où l'entier recherché est en dernière 
+position, mais nous ne tiendrons pas compte de ce cas). On parle de 
+«complexité dans le pire des cas» quand on s'intéresse uniquement au cas
+ où le nombre d'opérations élémentaires est le plus grand.
+                Dans la suite nous nous intéresserons uniquement à cette
+ complexité dans le pire des cas (dans la suite on dira «complexité» 
+pour «complexité en temps dans le pire des cas»). Ainsi pour l'exemple 
+précédent, nous considérerons uniquement le cas où le nombre total 
+d'opérations élémentaires est de 3n + 4.
+            </p>
+            <p>
+                Nous venons de voir que la complexité dépend de la 
+taille du tableau, plus le tableau est grand et plus le nombre 
+d'opérations élémentaires à effectuer est important.
+                Pour effectuer des comparaisons entre plusieurs 
+algorithmes, nous allons raisonner sur des tableaux de grande taille, 
+car plus les tableaux sont grands et plus les différences entre les 
+algorithmes seront flagrantes.
+                Pour comparer des algorithmes, nous allons donc 
+uniquement nous intéresser à ce que l'on appelle «l'ordre de grandeur 
+asymptotique». La définition précise de cet «ordre de grandeur 
+asymptotique»
+                est trop complexe pour être abordé ici. Vous devez juste
+ savoir que cet «ordre de grandeur asymptotique» concerne les cas où 
+l'on prend n très très grand. On note cet «ordre de grandeur 
+asymptotique» avec un O majuscule. Dans le cas étudié ici on a :
+            </p>
+            <p>
+                3n+4 = O(n).
+            </p>
+            <p>
+                La relation ci-dessus signifie que «3n+4 est dominée 
+asymptotiquement par n», autrement dit «si n est suffisamment grand, il 
+existe une constante c qui permettra d'avoir c.n ⩾ 3n+4».
+                    
+            </p>
+            <p>
+                Vous n'avez pas tout compris ? Cela n'a pas vraiment 
+d'importance, ce qu'il faut retenir c'est que nous utiliserons 
+systématiquement
+                cette notation O pour exprimer la complexité des 
+algorithmes : on dira donc que la complexité de notre algorithme «x 
+est-il présent dans le tableau t ?» est O(n).
+            </p>
+            <p>
+                Comment obtient-on cette notation O à partir du nombre d'opérations élémentaires ?
+            </p>
+            <p>
+                Ici nous avons simplement supprimé la constante additive
+ (4) et le coefficient multiplicateur de n (c'est-à-dire 3), il reste 
+donc uniquement n d'où le 3n+4 = O(n).
+                Dans le cas où nous avons un polynôme de degrés 
+quelconque, par exemple pour 6n<sup>2</sup>+3n+10, il suffit de :
+            </p>
+            <ul>
+                <li>
+                    supprimer la constante ;
+                </li>
+                <li>
+                    garder uniquement le n qui possède l'exposant le plus grand ;
+                </li>
+                <li>
+                    supprimer le coefficient devant le n.
+                </li>
+            </ul>
+            <p>
+                On a donc 6n<sup>2</sup>+3n+10 = O(n<sup>2</sup>), ce qui se lit «6n<sup>2</sup>+3n+10 est dominée asymptotiquement par n<sup>2</sup>».
+            </p>
+            <br><h4>Exercice 2</h4>
+            <p>
+                Écrire un algorithme permettant de trouver le plus grand
+ entier présent dans un tableau. Vous ferez «tourner à la main» votre 
+algorithme en utilisant le tableau t = [3,5,1,8,4,2]. Déterminer ensuite
+ la complexité de votre algorithme.
+            </p>
+            <hr>
+            <br><h4>Exercice 3</h4>
+            <p>
+                Écrire un algorithme permettant de calculer la moyenne 
+de tous les entiers présents dans un tableau. Vous ferez «tourner à la 
+main» votre algorithme en utilisant le tableau t = [3,5,1,8,4,2]. 
+Déterminer ensuite la complexité de votre algorithme.
+            </p>
+            <hr>
+            <br><h4>Exercice 4 pour les fortiches</h4>
+            <p>
+                En récupérant le code Python de l'avant-dernier exercice
+ de l'activité précédente intitulée «Tuples et tableaux (en langage 
+Python)», écrire un programme qui trace les temps de calcul des 
+l'algorithmes précédents sur des tableaux aléatoires de taille variable 
+et vérifier que les graphiques obtenus sont compatibles avec les 
+complexités déterminées.
+            </p>
+            <hr>
+        </div>
+		
+        <div class="head_foot_note_right">
+            Dernière mise à jour de cette page : 08/12/2020
+        </div>
+
+    
+</body></html>

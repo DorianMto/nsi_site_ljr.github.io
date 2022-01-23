@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Dictionnaires</title>
+        <link rel="stylesheet" href="Dictionnaires_files/style_TP_NSI1.css">
+        <link rel="stylesheet" href="Dictionnaires_files/tomorrow-night.css">
+        <script src="Dictionnaires_files/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>                
+        <!-- Voir le site https://highlightjs.org/usage/-->
+        <!--		
+            <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+        </script>
+        -->
+        <!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+        <!--	
+            <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        -->
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="head_foot_note_right">
+                <img src="Dictionnaires_files/by-nc-sa.png"> Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a> et 
+                du pool d'activités du MOODLE DIU-EIL de Montpellier.
+            </div>
+            <div class="navbar-header">
+                <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                <br><h2>Dictionnaires (en langage Python)</h2>
+            </div>
+
+        </div>
+        </nav>
+        
+        <div class="container act">
+            <p>
+                Les dictionnaires du langage Python sont une 
+implémentation d'une structure typée appelée dans d'autres langages 
+«n-uplets nommés». Ils sont aussi appelés <strong>tableaux associatifs</strong>.
+            </p>
+            <p>
+                Comme les listes, les dictionnaires permettent de 
+«stocker» des données. Chaque élément d'un dictionnaire est un couple 
+«clé/valeur». Voici un exemple de dictionnaire :
+            </p>
+            <pre><code class="python hljs">
+<span class="hljs-comment"># Création d'un dictionnaire : méthode 1</span>
+mon_dico = {<span class="hljs-string">"computer"</span>: <span class="hljs-string">"ordinateur"</span>, <span class="hljs-string">"mouse"</span>: <span class="hljs-string">"souris"</span>, <span class="hljs-string">"keyboard"</span>: <span class="hljs-string">"clavier"</span>}
+            </code></pre>
+            <p>Des accolades <code>{}</code> sont utilisées pour définir le début et la fin du dictionnaire (alors que ce sont des crochets <code>[]</code> pour les listes 
+            et des parenthèses <code>()</code> pour les tuples).
+                    Dans le dictionnaire ci-dessus, <code>"computer"</code>, <code>"mouse"</code> et <code>"keyboard"</code> sont des clés et <code>"ordinateur"</code>, <code>"souris"</code> et <code>"clavier"</code> sont des valeurs.
+                    La clé <code>"computer"</code> est associée à la valeur <code>"ordinateur"</code>, la clé <code>"mouse"</code> est associée à la valeur <code>"souris"</code> et la clé <code>"keyboard"</code> est associée à la valeur <code>"clavier</code>.
+                    Les clés sont des chaines de caractères, des nombres
+ ou bien des tuples de chaines de caractères, de nombres ou de tuples. 
+                    Les valeurs peuvent être de type quelconque : 
+chaines de caractères, nombres, booléens...</p>
+                    
+                    <p>Pour créer un dictionnaire, il est aussi possible de procéder comme suit :</p>
+                    <pre><code class="python hljs">
+<span class="hljs-comment"># Création d'un dictionnaire : méthode 2</span>
+mon_dico = {}
+mon_dico[<span class="hljs-string">"computer"</span>] = <span class="hljs-string">"ordinateur"</span>
+mon_dico[<span class="hljs-string">"mouse"</span>] = <span class="hljs-string">"souris"</span>
+mon_dico[<span class="hljs-string">"keyboard"</span>] = <span class="hljs-string">"clavier"</span>
+                    </code></pre>
+                    
+                    <p>Mais d'autres possibilités existent :
+                    
+                        </p><ul>
+                            <li>à partir d'une liste de paires clés-valeurs avec le constructeur <code>dict()</code> :
+                            <br>
+                            <pre><code class="python hljs">
+<span class="hljs-comment"># Création d'un dictionnaire : méthode 3</span>
+mon_dico = dict([(<span class="hljs-string">'computer'</span>, <span class="hljs-string">'ordinateur'</span>),(<span class="hljs-string">'mouse'</span>,<span class="hljs-string">'souris'</span>),(<span class="hljs-string">'keyboard'</span>,<span class="hljs-string">'clavier'</span>)])
+                            </code></pre>
+                            
+                            </li><li>ou si les clés sont des chaines de caractères, encore avec le constructeur <code>dict()</code> :
+                            <br>
+                            <pre><code class="python hljs">
+<span class="hljs-comment"># Création d'un dictionnaire : méthode 4</span>
+mon_dico = dict(computer=<span class="hljs-string">'ordinateur'</span>,mouse=<span class="hljs-string">'souris'</span>,keyboard=<span class="hljs-string">'clavier'</span>)
+                            </code></pre>
+                            
+                            </li><li>ou si c'est possible en compréhension :
+                            <br>
+                            <pre><code class="python hljs">
+<span class="hljs-comment"># Création d'un dictionnaire : méthode 5</span>
+mon_dico = {x: x**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> (<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>)}
+                            </code></pre>
+                    
+                            
+                        </li></ul>
+                    <p></p>
+                    <br><h4>Exercice 1</h4>
+                    <p></p><p>La variable <code>mon_dico</code> référence un dictionnaire. Il est possible d'afficher le contenu du dictionnaire référencé par la variable <code>mon_dico</code> en saisissant <code>mon_dico</code> dans la console Python. Faire le test après avoir exécuté le programme ci-dessous.</p>
+                    <pre><code class="python hljs">
+mon_dico = {<span class="hljs-string">"computer"</span>: <span class="hljs-string">"ordinateur"</span>, <span class="hljs-string">"mouse"</span>: <span class="hljs-string">"souris"</span>, <span class="hljs-string">"keyboard"</span>: <span class="hljs-string">"clavier"</span>}
+                    </code></pre>
+                    <p>
+                        Avez-vous remarqué que l'impression du 
+dictionnaire n'est pas nécessairement dans le même ordre que sa création
+ ?
+                    </p>
+                    <hr>
+                    <p>Il est possible d'afficher la valeur associée à une clé.</p>
+                    
+                    <br><h4>Exercice 2</h4>
+                    <p>Soit le programme suivant :</p>
+                    <pre><code class="python hljs">
+mon_dico = {<span class="hljs-string">"computer"</span>: <span class="hljs-string">"ordinateur"</span>, <span class="hljs-string">"mouse"</span>: <span class="hljs-string">"souris"</span>, <span class="hljs-string">"keyboard"</span>: <span class="hljs-string">"clavier"</span>}
+print(<span class="hljs-string">'Bonjour, en anglais, "mouse" veut dire :'</span>, mon_dico[<span class="hljs-string">"mouse"</span>])
+                    </code></pre>
+                    <p>Exécuter ces lignes en console puis tester d'autres clés du dictionnaire.</p>
+                    <hr>
+                    
+                    <p>On peut ajouter un élément à un dictionnaire (les dictionnaires sont dits <strong>mutables</strong>).</p>
+                    <br><h4>Exercice 3</h4>
+                    <p>Soit le programme suivant :</p>
+                    <pre><code class="python hljs">
+mon_dico = {<span class="hljs-string">"computer"</span>: <span class="hljs-string">"ordinateur"</span>, <span class="hljs-string">"mouse"</span>: <span class="hljs-string">"souris"</span>, <span class="hljs-string">"keyboard"</span>: <span class="hljs-string">"clavier"</span>}
+mon_dico[<span class="hljs-string">'screen'</span>] = <span class="hljs-string">"écran"</span>
+<span class="hljs-keyword">print</span> (mon_dico[<span class="hljs-string">"screen"</span>])
+                    </code></pre>
+                    <p>Quel est le résultat attendu après l'exécution de
+ ce programme ? Vérifier votre réponse et ajouter encore un élément au 
+dictionnaire.</p>
+                    <hr>
+                    <p>L'instruction <code>del</code> permet du supprimer un couple «clé/valeur»</p>
+                    <br><h4>Exercice 4</h4>
+                    <p>Quel est le contenu du dictionnaire référencé par la variable <code>mes_fruits</code> après l'exécution du programme ci-dessous ? 
+                    Vérifier votre réponse à l'aide de la console.</p>
+                    <pre><code class="python hljs">
+mes_fruits = {<span class="hljs-string">"poire"</span>: <span class="hljs-number">3</span>, <span class="hljs-string">"pomme"</span>: <span class="hljs-number">4</span>, <span class="hljs-string">"orange"</span>: <span class="hljs-number">2</span>}
+<span class="hljs-keyword">del</span> mes_fruits[<span class="hljs-string">"pomme"</span>]
+                    </code></pre>
+                    <hr>
+                    <p>Il est possible de modifier une valeur.</p>
+                    <br><h4>Exercice 5</h4>
+                    <p>Soit le programme suivant :</p>
+                    <pre><code class="python hljs">
+mes_fruits = {<span class="hljs-string">"poire"</span>: <span class="hljs-number">3</span>, <span class="hljs-string">"pomme"</span>: <span class="hljs-number">4</span>, <span class="hljs-string">"orange"</span>: <span class="hljs-number">2</span>}
+mes_fruits[<span class="hljs-string">"pomme"</span>] = mes_fruits[<span class="hljs-string">"pomme"</span>] - <span class="hljs-number">1</span>
+                    </code></pre>
+                    <p>Quel est le contenu du dictionnaire référencé par la variable <code>mes_fruits</code> après l'exécution du programme ci-dessus ? 
+                    Vérifier votre réponse à l'aide de la console.</p>
+                    <hr>
+                    <p>
+                        Il est possible de parcourir un dictionnaire à l'aide d'une boucle <code>for</code>. Ce parcours peut se faire selon les clés ou les valeurs.
+                        Commençons par parcourir les clés à l'aide de la méthode <code>keys()</code>.
+                    </p>
+                    <br><h4>Exercice 6</h4>
+                    <p>Tester le programme suivant :</p>
+                    <pre><code class="python hljs">
+mes_fruits = {<span class="hljs-string">"poire"</span>: <span class="hljs-number">3</span>, <span class="hljs-string">"pomme"</span>: <span class="hljs-number">4</span>, <span class="hljs-string">"orange"</span>: <span class="hljs-number">2</span>}
+print(<span class="hljs-string">"liste des fruits :"</span>)
+<span class="hljs-keyword">for</span> fruit <span class="hljs-keyword">in</span> mes_fruits.keys():
+    print(fruit)
+                    </code></pre>
+                    <hr>
+                    <p>La méthode <code>values()</code> permet de parcourir le dictionnaire selon les valeurs.</p>
+                    <br><h4>Exercice 7</h4>
+                    <p>Tester le programme suivant :</p>
+                    <pre><code class="python hljs">
+mes_fruits = {<span class="hljs-string">"poire"</span>: <span class="hljs-number">3</span>, <span class="hljs-string">"pomme"</span>: <span class="hljs-number">4</span>, <span class="hljs-string">"orange"</span>: <span class="hljs-number">2</span>}
+<span class="hljs-keyword">for</span> quantite <span class="hljs-keyword">in</span> mes_fruits.values():
+    print(quantite)
+                    </code></pre>
+                    <hr>
+                    
+                    <p>Il est possible de parcourir un dictionnaire à la fois sur les clés et les valeurs en utilisant la méthode <code>items()</code>.</p>
+                    <br><h4>Exercice 8</h4>
+                    <p>Tester le programme suivant puis expliquer le rôle de l'instruction <code>in</code>.</p>
+                    <pre><code class="python hljs">
+mes_fruits = {<span class="hljs-string">"poire"</span>: <span class="hljs-number">3</span>, <span class="hljs-string">"pomme"</span>: <span class="hljs-number">4</span>, <span class="hljs-string">"orange"</span>: <span class="hljs-number">2</span>}
+<span class="hljs-keyword">print</span> (<span class="hljs-string">"Stock de fruits :"</span>)
+<span class="hljs-keyword">for</span> fruit, qte <span class="hljs-keyword">in</span> mes_fruits.items():
+	<span class="hljs-keyword">print</span> (fruit, <span class="hljs-string">" : "</span>, qte)
+                    </code></pre>
+                    <p>
+                            Vous avez sans doute remarqué l'utilisation du tuple <code>fruit, qte</code> au niveau du <code>for...in</code>.
+                    </p>
+                    <hr>
+            
+                    <br><h4>Exercice 9</h4>
+                    <p>Tester le programme suivant puis décrire précisément la méthode <code>pop()</code>.</p>
+                    <pre><code class="python hljs">
+mes_fruits = {<span class="hljs-string">"poire"</span>: <span class="hljs-number">3</span>, <span class="hljs-string">"pomme"</span>: <span class="hljs-number">4</span>, <span class="hljs-string">"orange"</span>: <span class="hljs-number">2</span>, <span class="hljs-string">"prunes"</span> : <span class="hljs-number">8</span>, <span class="hljs-string">"banane"</span> : <span class="hljs-number">5</span>}
+<span class="hljs-keyword">print</span> (<span class="hljs-string">"Stock de fruits :"</span>, mes_fruits)
+q = mes_fruits.pop(<span class="hljs-string">"pomme"</span>)
+print(<span class="hljs-string">"stock après retrait des pommes : "</span>, mes_fruits)
+print(q)
+                    </code></pre>
+                    <hr>
+                    
+                    <br><h4>Exercice 10</h4>
+                    On peut avoir besoin de savoir si une clé existe dans un dictionnaire avant d'y accéder. 
+                    Lire la page web suivante pour répondre à cette attente puis tester la méthode <code>get()</code>sur des exemples simples :
+                    <a href="https://www.tutorialspoint.com/python/dictionary_get.htm"> https://www.tutorialspoint.com/python/dictionary_get.htm </a>
+                    (oui, c'est de l'anglais ! 
+                    Mais cette lecture est un bon exercice car il est 
+difficile de faire de l'informatique en évitant cette langue...).
+                    <hr>
+                            
+                    <br><h3>Une application sur le diagramme de Hertzsprung-Russel </h3>	
+                    <p>
+                    Le diagramme de Hertzsprung-Russel, ou diagramme H-R
+ en abrégé, est un graphique dans lequel les étoiles sont positionnées 
+en fonction de leurs luminosités (magnitudes absolues) et de leurs
+                    températures mesurées à partir de données spectrales
+ (indices B-V). Il a permis de classer les populations d’étoiles et 
+d’établir une théorie de l’évolution stellaire.
+                    </p>
+                    <div class="centrer">
+                        <img src="Dictionnaires_files/diaHR.gif">
+                        <!--<figcaption></figcaption>-->
+                    </div>
+                    <br><h4>Exercice 11</h4>
+                    <p>Voici quelques lignes de code décrivant quelques étoiles.</p>
+<pre><code class="python hljs">
+typeSpectral={<span class="hljs-string">'Deneb'</span>: <span class="hljs-string">'A'</span>, <span class="hljs-string">'Sirius'</span>: <span class="hljs-string">'B'</span>, <span class="hljs-string">'Procyon'</span>: <span class="hljs-string">'F'</span>, <span class="hljs-string">'Betelgeuse'</span>: <span class="hljs-string">'M'</span>, <span class="hljs-string">'Rigel'</span>: <span class="hljs-string">'B'</span>,
+<span class="hljs-string">'Regulus'</span>: <span class="hljs-string">'B'</span>, <span class="hljs-string">'Pollux'</span>: <span class="hljs-string">'G'</span>,<span class="hljs-string">'Siriu'</span>:<span class="hljs-string">'B'</span>, <span class="hljs-string">'Capella'</span>: <span class="hljs-string">'G+K'</span>}
+</code></pre>
+<ol>
+  <li> Le Soleil est une étoile de type spectral G. L'ajouter au dictionnaire puis afficher le contenu du dictionnaire.
+
+  </li><li> Une erreur de saisie vous impose de supprimer la clé Sirius. Afficher le contenu du dictionnaire après cette suppression.
+
+  </li><li> Afficher l'ensemble des clés de ce dictionnaire en utilisant la méthode <code>keys()</code>.
+
+  </li><li> Calculer la magnitude moyenne (si cela a bien un sens) pour le dictionnaire suivant.      
+<pre><code class="python hljs">
+magnitudeAbsolue={<span class="hljs-string">'Deneb'</span>: <span class="hljs-number">-6.93</span>,<span class="hljs-string">'Sirius'</span>: <span class="hljs-number">1.44</span>,<span class="hljs-string">'Procyon'</span>: <span class="hljs-number">2.68</span>,<span class="hljs-string">'Soleil'</span>: <span class="hljs-number">4.83</span>,<span class="hljs-string">'Betelgeuse'</span>: <span class="hljs-number">-5.47</span>,
+<span class="hljs-string">'Regulus'</span>: <span class="hljs-number">-0.58</span>,<span class="hljs-string">'Pollux'</span>: <span class="hljs-number">1.07</span>,<span class="hljs-string">'Capella'</span> : <span class="hljs-number">-0.54</span>,<span class="hljs-string">'Aldebaran'</span> : <span class="hljs-number">-0.70</span> }
+</code></pre>
+    <ol type="a">
+        <li> Utiliser la méthode <code>values()</code> pour itérer sur les valeurs.</li>
+        <li> Accumuler les valeurs dans une variable.</li>
+        <li> Calculer la moyenne et l'afficher.</li>
+    </ol> 
+
+  </li><li> Le soleil est-il dans la liste ? Pour le vérifier, utiliser une ligne de code contenant le mot <code>in</code>, sans boucle.</li>
+
+  <li> Afficher l'enregistrement associé au Soleil.</li>
+  
+  <li> Voici quelques lignes de code permettant de tester si une clé est
+ présente dans un dictionnaire et de retourner la valeur associée en 
+même temps :
+  
+<pre><code class="python hljs">
+print(magnitudeAbsolue.get(<span class="hljs-string">"Soleil"</span>,<span class="hljs-string">"non répertorié"</span>))
+print(magnitudeAbsolue.get(<span class="hljs-string">"Lune"</span>,<span class="hljs-string">"non répertorié"</span>))
+</code></pre>
+
+Tester ces lignes de code pour comprendre comment fonctionne la méthode <code>get</code>.</li>
+
+
+  <li> En utilisant la méthode <code>items()</code> qui renvoie à chaque étape un tuple (clé,valeur), 
+  complèter le code suivant afin de rechercher et afficher les étoiles pour lesquelles le type spectral est B. </li>
+
+<pre><code class="python hljs">
+<span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> typeSpectral.items():
+    <span class="hljs-keyword">if</span> <span class="hljs-comment"># A complèter =='B':</span>
+        print(e[<span class="hljs-number">0</span>])
+</code></pre>
+
+<p>
+Nous allons maintenant travailler sur une table qui est un dictionnaire de dictionnaires :
+</p>
+<pre><code class="python hljs">
+starsCatalogue={
+<span class="hljs-string">'Deneb'</span>:{<span class="hljs-string">'ts'</span> : <span class="hljs-string">'A'</span>, <span class="hljs-string">'ma'</span> : <span class="hljs-number">-6.93</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">0.10</span>, <span class="hljs-string">'d al'</span> : <span class="hljs-number">1411.93</span>},
+<span class="hljs-string">'phi1 orionis'</span> : {<span class="hljs-string">'ts'</span> : <span class="hljs-string">'B'</span>,<span class="hljs-string">'ma'</span>: <span class="hljs-number">-3.224</span>,<span class="hljs-string">'B-V'</span>:<span class="hljs-number">-0.157</span>, <span class="hljs-string">'d al'</span> : <span class="hljs-number">1090</span>},
+<span class="hljs-string">'pi andromeda'</span> : {<span class="hljs-string">'ts'</span> : <span class="hljs-string">'B'</span>,<span class="hljs-string">'ma'</span>: <span class="hljs-number">-1.978</span>,<span class="hljs-string">'B-V'</span>:<span class="hljs-number">-0.123</span>, <span class="hljs-string">'d al'</span> : <span class="hljs-number">600</span>},
+<span class="hljs-string">'alpha coronae borealis'</span> : {<span class="hljs-string">'ts'</span> : <span class="hljs-string">'A'</span>,<span class="hljs-string">'ma'</span>: <span class="hljs-number">0.41</span>,<span class="hljs-string">'B-V'</span>:<span class="hljs-number">0.032</span>, <span class="hljs-string">'d al'</span> : <span class="hljs-number">75</span>},
+<span class="hljs-string">'beta pictoris'</span> : {<span class="hljs-string">'ts'</span> : <span class="hljs-string">'A'</span>,<span class="hljs-string">'ma'</span>: <span class="hljs-number">2.407</span>,<span class="hljs-string">'B-V'</span>:<span class="hljs-number">0.171</span>, <span class="hljs-string">'d al'</span> : <span class="hljs-number">63</span>},
+<span class="hljs-string">'gamma virginis'</span> : {<span class="hljs-string">'ts'</span> : <span class="hljs-string">'F'</span>,<span class="hljs-string">'ma'</span>: <span class="hljs-number">2.402</span>,<span class="hljs-string">'B-V'</span>: <span class="hljs-number">0.368</span>, <span class="hljs-string">'d al'</span> : <span class="hljs-number">39</span>},
+<span class="hljs-string">'eta arietis'</span> : {<span class="hljs-string">'ts'</span> : <span class="hljs-string">'F'</span>,<span class="hljs-string">'ma'</span>: <span class="hljs-number">2.928</span>,<span class="hljs-string">'B-V'</span>: <span class="hljs-number">0.457</span>, <span class="hljs-string">'d al'</span> : <span class="hljs-number">94</span>},
+<span class="hljs-string">'beta comae berenice'</span> : {<span class="hljs-string">'ts'</span> : <span class="hljs-string">'G'</span>,<span class="hljs-string">'ma'</span>: <span class="hljs-number">4.428</span>,<span class="hljs-string">'B-V'</span>:<span class="hljs-number">0.572</span>, <span class="hljs-string">'d al'</span> : <span class="hljs-number">30</span>},
+<span class="hljs-string">'Sirius'</span>: {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'B'</span>, <span class="hljs-string">'ma'</span> : <span class="hljs-number">1.44</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">0.</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-number">8.60</span>},
+<span class="hljs-string">'Procyon'</span>: {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'F'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">2.68</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">0.44</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-number">11.41</span>},
+<span class="hljs-string">'Soleil'</span>: {<span class="hljs-string">'ts'</span> : <span class="hljs-string">'G'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">4.83</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">0.65</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-literal">None</span> },
+<span class="hljs-string">'Betelgeuse'</span>: {<span class="hljs-string">'ts'</span>:<span class="hljs-string">'M'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">-5.47</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">1.52</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-number">497.95</span>},
+<span class="hljs-string">'Rigel'</span>: {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'B'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">-6.96</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">-0.03</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-number">862.85</span>},
+<span class="hljs-string">'61 cygni A'</span>: {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'K'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">7.488</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">1.069</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-number">11</span>},
+<span class="hljs-string">'70 ophiuchi A'</span>: {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'K'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">5.499</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">0.86</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-number">79.3</span>},
+<span class="hljs-string">'gliese 185'</span>: {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'M'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">8.643</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">1.43</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-literal">None</span>},
+<span class="hljs-string">'Regulus'</span>: {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'B'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">-0.58</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">-0.09</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-number">79.3</span>},
+<span class="hljs-string">'alpha mensae'</span>: {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'G'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">5.037</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">0.714</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-number">33</span>},
+<span class="hljs-string">'Pollux'</span>: {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'G'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">1.07</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">0.98</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-number">33.78</span> },
+<span class="hljs-string">'Capella'</span> : {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'G+K'</span>,<span class="hljs-string">'ma'</span> : <span class="hljs-number">-0.54</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">0.79</span> , <span class="hljs-string">'d al'</span> : <span class="hljs-number">42.80</span>},
+<span class="hljs-string">'Aldebaran'</span> : {<span class="hljs-string">'ts'</span>: <span class="hljs-string">'K'</span>,<span class="hljs-string">'ma'</span>: <span class="hljs-number">-0.70</span>, <span class="hljs-string">'B-V'</span> : <span class="hljs-number">1.55</span>, <span class="hljs-string">'d al'</span> : <span class="hljs-number">66.44</span>}}
+</code></pre>
+
+  <li> Le code suivant trie les enregistrements par magnitude croissante. Le modifier afin qu'il trie
+les enregistrements par indice de couleur décroissant.
+<pre><code class="python hljs">
+tri=[etoile <span class="hljs-keyword">for</span> etoile <span class="hljs-keyword">in</span> starsCatalogue.keys()]
+n=len(tri)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>): <span class="hljs-comment"># tri à bulles</span>
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i):
+        <span class="hljs-keyword">if</span> starsCatalogue[tri[j+<span class="hljs-number">1</span>]][<span class="hljs-string">'ma'</span>]&lt;starsCatalogue[tri[j]][<span class="hljs-string">'ma'</span>]:
+            e=tri[j+<span class="hljs-number">1</span>]
+            tri[j+<span class="hljs-number">1</span>]=tri[j]
+            tri[j]=e
+            
+<span class="hljs-keyword">for</span> etoile <span class="hljs-keyword">in</span> tri: <span class="hljs-comment"># Affichage des enregistrements du dictionnaire triés</span>
+    print(etoile,<span class="hljs-string">' type :'</span>,starsCatalogue[etoile][<span class="hljs-string">'ts'</span>],<span class="hljs-string">' ma :'</span>,starsCatalogue[etoile][<span class="hljs-string">'ma'</span>])
+</code></pre>
+</li>
+
+  <li> Tracer le diagramme de Hertzsprung-Russel. En recherchant dans la documentation de <code>matplotlib</code>,
+légender les axes de ce diagramme.
+
+<pre><code class="python hljs">
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+x=[]
+y=[]
+rayon=[]
+couleur=[]
+
+<span class="hljs-keyword">for</span> donnees <span class="hljs-keyword">in</span> starsCatalogue.values():
+    x.append(donnees[<span class="hljs-string">'B-V'</span>])
+    y.append(-donnees[<span class="hljs-string">'ma'</span>])
+    rayon.append(<span class="hljs-number">10</span>)
+    couleur.append(<span class="hljs-string">'black'</span>)
+plt.scatter(x,y,s=rayon, c=couleur)
+plt.show()
+</code></pre>
+</li>
+</ol>
+					<hr>
+					
+                <p>
+                    Les dictionnaires seront étudiés plus en détails en 
+terminale. Pour des raisons qui seront alors explicitées, ils offrent 
+des opérations très efficaces en pratique.
+                </p>
+		
+		<p>
+		<a href="https://docs.python.org/2/tutorial/datastructures.html#dictionaries"> Documentation sur les dictionnaires </a>
+                </p>
+		</div>
+		
+        <div class="head_foot_note_right">
+                Dernière mise à jour de cette page : 29/11/2021
+        </div>
+
+</body></html>

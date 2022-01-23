@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)http://mathag.free.fr/1920_INFO/TP-NSI1/NSI1-1920_TP-5-IHM_Web3_HTML-CSS.html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>HTML et CSS : les bases</title>
+		<link rel="stylesheet" href="./HTML et CSS _ les bases_files/style_TP_NSI1.css">
+		<link rel="stylesheet" href="./HTML et CSS _ les bases_files/tomorrow-night.css">
+		<script src="./HTML et CSS _ les bases_files/highlight.pack.js.téléchargement"></script>
+                <script>hljs.initHighlightingOnLoad();</script>                
+               <!-- Voir le site https://highlightjs.org/usage/-->
+<!--		
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+-->
+<!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+<!--	
+    <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+-->
+            
+	</head>
+	<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+	<div class="head_foot_note_right">
+                <img src="./HTML et CSS _ les bases_files/by-nc-sa.eu_100.png" alt="cc : by nc sa">Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>.
+        </div>
+        <div class="navbar-header">
+                <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                <br><h2>HTML et CSS : les bases</h2>
+        </div>
+
+      </div>
+    </nav>
+    
+    <div class="container act">
+        <p>
+                Nous allons nous intéresser à un acteur fondamental du développement
+            web, le couple HTML+CSS (<i>Hyper Text Markup Langage</i> et <i>Cascading Style 
+            Sheets</i>).
+        </p>
+        <p>
+                Dans un premier temps, nous allons exclusivement nous intéresser au 
+            HTML. Voici la définition que nous en donne 
+            Wikipedia&nbsp;:
+        </p>
+        <p>
+                L’<i>Hypertext Markup Langage</i>, généralement abrégé&nbsp;HTML, est 
+            le&nbsp;format de données&nbsp;conçu pour représenter les&nbsp;pages 
+            web. C’est un&nbsp;langage de balisage&nbsp;permettant d’écrire de 
+            l’hypertexte, d’où son nom. HTML permet également de structurer 
+            sémantiquement et de mettre en forme le contenu des pages, d’inclure 
+            des&nbsp;ressources&nbsp;multimédias,&nbsp;dont des&nbsp;images, des 
+            formulaires de saisie, et des programmes informatiques. Il permet de 
+            créer des documents&nbsp;interopérables&nbsp;avec des équipements très 
+            variés de manière conforme aux exigences de l’accessibilité du web. Il 
+            est souvent utilisé conjointement avec des&nbsp;langages de 
+            programmation&nbsp;(JavaScript) et des formats de présentation (feuilles
+            de style en cascade).
+        </p>
+        <p>
+                Pour l'instant, nous allons retenir deux éléments de cette 
+            définition «conçu pour représenter les&nbsp;pages web» et 
+            «un&nbsp;langage de balisage».
+        </p>
+        <p>
+                Grâce au HTML on peut, dans son navigateur (Firefox, 
+            Chrome, Opera,....), afficher du texte et des images, proposer 
+            des hyperliens (liens vers d'autres pages web), afficher des formulaires
+            et même maintenant des vidéos (grâce à la dernière version du 
+            HTML, l'HTML5).
+        </p>
+        <p>
+                HTML n'est pas un langage de programmation (comme Python par 
+            exemple), ici pas de conditions ni de boucles : c'est un 
+            langage de description.
+        </p>
+        <p>
+                Pour aborder le HTML, nous allons, dans un premier temps utiliser le site <i>jsfiddle.net</i>.
+        </p>
+        <p>
+                Après avoir lancé un navigateur web, taper <a href="http://jsfiddle.net/" target="_blank">http://jsfiddle.net/</a> dans la barre d'adresse.
+        </p>
+        <p>
+                Vous devriez voir apparaître ceci&nbsp;:
+        </p>
+        <img src="./HTML et CSS _ les bases_files/jsfiddle.png" class="img-responsive" alt="jsfiddle">
+        <p>
+                Nous allons pour l'instant uniquement utiliser la fenêtre «&nbsp;HTML&nbsp;» et la fenêtre «&nbsp;Result&nbsp;».
+        </p>
+        <br><h4>Exercice 1</h4>
+        <p>
+                Écrire le code HTML suivant&nbsp;:
+        </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Hello World! Ceci est un titre<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>paragraphe<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>. Avez-vous bien compris&nbsp;?<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+        <p>
+                Cliquer sur le bouton «RUN» en haut à gauche (ou la commande «CTRL+Entrée»). Qu'est-ce qui s'affiche dans la fenêtre&nbsp;?
+        </p>
+        <hr>
+        <p>
+                Comme déjà évoqué ci-dessus, en HTML tout est une histoire de balise
+            que l'on ouvre et que l'on ferme.
+                Une balise ouvrante est de la forme <code>&lt;nom_de_la_balise&gt;</code>, les 
+            balises fermantes sont de la forme <code>&lt;/nom_de_la_balise&gt;</code>.
+        </p>
+        <p>
+                En observant attentivement le code, vous devriez forcément remarquer
+            que toute balise ouverte doit être refermée à un moment ou un autre. La
+            balise ouvrante et la balise fermante peuvent être sur la même ligne ou
+            pas, cela n'a aucune espèce d'importance, la seule question à se poser 
+            ici est : ai-je bien refermé toutes les balises que j'ai ouvertes ?
+        </p>
+        <p>
+            Enfin pour terminer avec les généralités sur les balises, il est important de savoir qu'une structure du type ci-dessous
+            est interdite car la <code>&lt;balise2&gt;</code> a été ouverte après la <code>&lt;balise1&gt;</code>, elle devra donc être refermée avant la <code>&lt;balise1&gt;</code>.
+        </p>
+        <pre><code class="html hljs xml">
+<span class="hljs-tag">&lt;<span class="hljs-name">balise1</span>&gt;</span><br>
+<span class="hljs-tag">&lt;<span class="hljs-name">balise2</span>&gt;</span><br>
+<span class="hljs-tag">&lt;/<span class="hljs-name">balise1</span>&gt;</span><br>
+<span class="hljs-tag">&lt;/<span class="hljs-name">balise2</span>&gt;</span><br>
+        </code></pre>
+        <p>
+                En revanche, l'enchainement suivant est correct :
+        </p>
+        <pre><code class="html hljs xml">
+<span class="hljs-tag">&lt;<span class="hljs-name">balise1</span>&gt;</span><br>
+    <span class="hljs-tag">&lt;<span class="hljs-name">balise2</span>&gt;</span><br>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">balise2</span>&gt;</span><br>
+<span class="hljs-tag">&lt;/<span class="hljs-name">balise1</span>&gt;</span><br>
+        </code></pre>
+        <p>
+                Noter que dans notre exemple nous respectons bien cette règle 
+            «&nbsp;d'imbrication&nbsp;» des balises avec la balise <code>&lt;p&gt;</code> et la 
+            balise <code>&lt;strong&gt;</code>.
+        </p>
+        <p>
+                Il est important de comprendre que chaque balise a une signification
+            qu'il faut bien respecter (on parle de la sémantique des balises).
+        </p>
+        <p>
+                Par exemple le texte situé entre la balise ouvrante et fermante 
+            <code>&lt;h1&gt;</code> est obligatoirement un titre important (il existe des balises
+            <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>......qui sont aussi des titres, mais des titres 
+            moins importants (sous-titre)).
+                La balise <code>&lt;p&gt;</code> permet de définir des paragraphes, enfin, la 
+            balise <code>&lt;strong&gt;</code> permet de mettre en évidence un élément important.
+        </p>
+        <p>
+                Vous devez aussi savoir qu'il existe des balises qui sont à la fois 
+            ouvrantes et fermantes (&lt;balise/&gt;) :
+                un exemple, la balise permettant de sauter une ligne, la balise 
+            <code>&lt;br /&gt;</code> (balise qu'il faut d'ailleurs éviter d'utiliser pour 
+            différentes raisons que nous n'aborderons pas ici).
+        </p>
+        <p>
+                Il est possible d'ajouter des éléments à une balise ouvrante, on 
+            parle d'attribut. Une balise peut contenir plusieurs attributs&nbsp;:
+            <code>
+                &lt;ma_balise attribut_1=&nbsp;"valeur_1" attribut_2="valeur_2"&gt;
+            </code>.
+        </p>
+        <p>
+                Il existe de nombreux attributs, nous allons nous 
+            contenter de 2 exemples&nbsp;: <code>id</code> (pour identifiant) et
+            <code>class</code>. Nous verrons l’intérêt de ces attributs dans l'activité suivante.
+        </p>
+        <br><h4>Exercice 2</h4>
+        <p>
+                Écrivez le code HTML suivant&nbsp;:
+        </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un titre<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h2</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">class</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"titre_1"</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un sous titre<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h2</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"para_1"</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>paragraphe<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>. Avez-vous bien compris&nbsp;?<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+        <p>
+                Qu'est-ce qui s'affiche dans la fenêtre&nbsp;?
+        </p>
+        <hr>
+        <p>
+                Le HTML n'a pas été conçu pour gérer la mise en page (c'est 
+            possible, mais c'est une mauvaise pratique).
+                Le HTML s'occupe uniquement du contenu et de la sémantique,
+                pour tout ce qui concerne la mise en page et l'aspect 
+            «&nbsp;décoratif&nbsp;» (on parle du «&nbsp;style&nbsp;» de la page), on
+            utilisera le CSS (Cascading Style Sheets).
+        </p>
+        <p>
+                Dans JSFIDDLE, il est possible d'écrire du CSS dans la fenêtre en haut à droite.
+        </p>
+        <br><h4>Exercice 3</h4>
+        <p>
+                Écrivez le code HTML suivant&nbsp;:
+        </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un titre<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h2</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un sous titre<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h2</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>paragraphe<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>. Avez-vous bien compris&nbsp;?<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+        <p>
+                Écrivez le code CSS suivant :
+        </p>
+            <pre><code class="css hljs">
+<span class="hljs-tag"><span class="hljs-selector-tag">h1</span></span>
+<span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">text-align</span></span>:<span class="hljs-value"> center</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">background-color</span></span>:<span class="hljs-value"> red</span></span>;
+}</span>
+<span class="hljs-tag"><span class="hljs-selector-tag">h2</span></span>
+<span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">font-family</span></span>:<span class="hljs-value"> Verdana</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">font-style</span></span>:<span class="hljs-value"> italic</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">color</span></span>:<span class="hljs-value"> green</span></span>;
+}</span>
+            </code></pre>
+        <p>
+                Qu'est-ce qui s'affiche dans la fenêtre&nbsp;?
+        </p>
+        <hr>
+        <p>
+            Dans l'exemple l'exercice 3, les propriétés 
+            <code>text-align</code> et <code>background-color</code> seront appliquées au contenu 
+            de toutes les balises de type <code>&lt;h1&gt;</code> (avec respectivement les valeurs 
+            <code>center</code> et <code>red</code>).....
+        </p>
+        <br><h4>Exercice 4</h4>
+        <p>
+                Écrivez le code HTML suivant&nbsp;:
+        </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un titre<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h2</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un sous titre<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h2</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">id</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"para_1"</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>paragraphe<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>. Avez-vous bien compris&nbsp;?<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+        <p>
+                Écrivez le code CSS suivant :
+        </p>
+            <pre><code class="css hljs">
+<span class="hljs-id"><span class="hljs-selector-id">#para_1</span></span>
+<span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">font-style</span></span>:<span class="hljs-value"> italic</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">color</span></span>:<span class="hljs-value"> green</span></span>;
+}</span>
+            </code></pre>
+        <p>
+                Qu'est-ce qui s'affiche dans la fenêtre&nbsp;? Que remarquez-vous&nbsp;?
+        </p>
+        <p>
+                Il est donc possible de cibler un paragraphe et pas un autre en 
+            utilisant l'<code>id</code> du paragraphe (en CSS l'<code>id</code> se traduisant par le signe <code>#</code>).
+        </p>
+        <p>
+                Il est aussi possible d'utiliser l'attribut <code>class</code> à la place de l'<code>id</code>. Dans le CSS on utilisera le point <code>.</code> à la place du  <code>#</code>.
+        </p>
+        <p>
+                La différence entre <code>id</code> et <code>class</code> est légère.
+        </p>
+        <p>
+                L'attribut <code>class</code> permet de donner le même nom à plusieurs reprises dans une même page.
+        </p>
+        <p>
+                S'il y avait eu un troisième paragraphe, il aurait pu y avoir <code>:&lt;p 
+            class="para_1"&gt; Voici un 3e paragraphe&lt;/p&gt;</code>,
+                mais nous n'aurions pas pu avoir  <code>&lt;p id="para_1"&gt; Voici un 3e
+            paragraphe &lt;/p&gt;</code>, car le nom <code>para_1</code> a déjà été utilisé pour le premier
+            paragraphe.
+        </p>
+        <p>
+                <i>JSFIDDLE</i> est un très bel outil, mais il ne peut pas être utilisé 
+            pour la réalisation d'un vrai site internet (ou d'une vraie application web).
+        </p>
+        <p>
+                Nous allons créer deux fichiers : un fichier HTML 
+            (<code>index.html</code>) et un fichier CSS (<code>style.css</code>).
+        </p>
+        <br><h4>Exercice 5</h4>
+        <p>
+                À l'aide d'un éditeur de texte, créer un nouveau fichier.
+        </p>
+        <p>
+                Le sauvegarder en précisant son nom, par exemple <code>index.html</code>.
+        </p>
+        <p>
+                Écrire le code suivant dans votre éditeur de texte (sans oublier de sauvegarder quand vous avez terminé)&nbsp;:
+        </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Voici mon site<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Hello World! Ceci est un titre<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>paragraphe<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>. Avez-vous bien compris&nbsp;?<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+        <p>
+                Tester ce code à l'aide d'un navigateur web (Firefox, Chrome ou Internet Explorer) en «double-cliquant» sur le fichier <code>index.html</code>.
+        </p>
+        <hr>
+        <p>
+                Dans l'exemple de l'exercice 5, on reconnait le code se trouvant entre les balises <code>&lt;body&gt;</code> :
+        </p>
+        <pre><code class="html hljs xml">
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>
+    ......<br>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+        </code></pre>
+        <p>
+                Tout code HTML doit se trouver entre ces 2 balises.
+        </p>
+        <p>
+                Passons en revue les autres balises.
+        </p>
+        <p>
+                La première ligne <code>&lt;!doctype html&gt;</code> permet d'indiquer au 
+            navigateur que nous utiliserons la dernière version du HTML, le fameux 
+            HTML5.
+        </p>
+        <p>
+                La balise <code>&lt;html&gt;</code> est obligatoire, l'attribut <code>lang="fr"</code> permet 
+            d'indiquer au navigateur que le français est utilisé pour écrire la page.
+        </p>
+        <p>
+                Les balises <code>&lt;head&gt;...&lt;/head&gt;</code> délimitent  ce que l'on 
+            appelle l'en-tête (ou <i>entête</i> selon l'orthographe de 1990). Sur l'exemple de l'exercice 5, l'entête contient deux balises :
+                </p><ul>
+                    <li> 
+                        la balise <code>&lt;meta charset="utf-8"&gt;</code> qui permet de définir 
+                        l'encodage des caractères (utf-8) ;
+                    </li>
+                    <li>
+                        la balise <code>&lt;title&gt;</code> qui définit
+                        le titre de la page (attention ce titre ne s'affiche pas dans le 
+                        navigateur, ne pas confondre avec la balise <code>&lt;h1&gt;</code>).
+                    </li>
+                </ul>
+        <p></p>
+        <br><h4>Exercice 6</h4>
+        <p>
+                Toujours à l'aide d'un éditeur de texte, nous allons créer un fichier
+            qui contenant le CSS de la page (par exemple <code>style.css</code>).
+        </p>
+        <p>
+                Compléter ce fichier à l'aide du code suivant :
+        </p>
+        <pre><code class="css hljs">
+<span class="hljs-tag"><span class="hljs-selector-tag">h1</span></span>
+<span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">text-align</span></span>:<span class="hljs-value"> center</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">background-color</span></span>:<span class="hljs-value"> red</span></span>;
+}</span>
+<span class="hljs-tag"><span class="hljs-selector-tag">p</span></span>
+<span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">font-family</span></span>:<span class="hljs-value"> Verdana</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">font-style</span></span>:<span class="hljs-value"> italic</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute"><span class="hljs-attribute">color</span></span>:<span class="hljs-value"> green</span></span>;
+}</span>
+        </code></pre>
+        <p>
+                Pour l'instant ce CSS ne sera pas appliqué à la page HTML : il faut modifier le code HTML en ajoutant une ligne qui va 
+            permettre d'associer le code CSS à la page de HTML.
+        </p>
+        <p>
+                Modifier le code HTML avec la ligne suivante <code>&lt;link rel="stylesheet" href="style.css"&gt;</code> comme suit :
+        </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Voici mon site<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">link</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">rel</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"stylesheet"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">href</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"style.css"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Hello World! Ceci est un titre<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>paragraphe<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>. Avez-vous bien compris&nbsp;?<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+        <p>
+                Tester votre code à l'aide d'un navigateur web en «double-cliquant» sur le fichier <code>index.html</code>.
+        </p>
+        <hr>
+        <p>
+                Dans l'exemple que nous venons de voir, les fichiers <code>index.html</code> et
+            <code>style.css</code> se trouvent dans le même dossier. Il est souvent utile de 
+            placer les fichiers CSS dans un dossier «CSS». Il faut alors modifier 
+            le code HTML en conséquence :
+        </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">link</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">rel</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"stylesheet"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">href</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"CSS/style.css"</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+        <p>
+                Pour terminer, voici quelques balises très utilisées&nbsp;.
+        </p>
+        <h2>La balise <code>&lt;a&gt;</code></h2>
+        <pre><code class="html hljs xml">
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">a</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">href</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"mon_autre_page.html"</span></span></span><span class="hljs-tag">&gt;</span></span>Cliquez ici pour vous rendre sur mon autre page<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">a</span></span></span><span class="hljs-tag">&gt;</span></span>
+        </code></pre>
+        <p>
+                La balise <code>&lt;a&gt;</code> permet de créer des liens hypertextes, ce sont ces liens
+            hypertextes qui vous permettent de naviguer entre les pages d'un site 
+            ou entre les sites. Les liens hypertextes sont par défaut soulignés et 
+            de couleur bleue (modifiable grâce au CSS). 
+        </p>
+        <p>
+            La balise <code>&lt;a&gt;</code> possède un 
+            attribut <code>href</code> qui a pour valeur le chemin du fichier que l'on cherche à 
+            atteindre ou l'adresse du site cible (exemple :   <code>&lt;a 
+            href="http://www.google.fr"&gt;Cliquez ici pour vous rendre sur 
+            google.fr&lt;/a&gt;</code>). Entre la balise ouvrante et fermante, on trouve le
+            texte qui s'affichera à l'écran (c'est ce texte qui est souligné et de 
+            couleur bleue).
+        </p>
+        <h2>La balise <code>&lt;img&gt;</code></h2>
+        <p>
+                La balise <code>&lt;img&gt;</code> sert à insérer des images :
+        </p>
+            <pre><code data-trim="" class="hljs xml" contenteditable="">
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">img</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">src</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"mon_image.jpg"</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">alt</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"avion"</span></span></span><span class="hljs-tag">/&gt;</span></span>
+            </code></pre>
+        <p>
+                La balise <code>&lt;img&gt;</code> est à la fois ouvrante et fermante comme la balise <code>&lt;br /&gt;</code>. Elle possède deux attributs :
+        </p>
+            <ul>
+                <li><code>src</code> qui doit être égal au nom du fichier image (ou au chemin si le fichier image se trouve dans un autre dossier) ;</li>
+                <li>
+                    <code>alt</code> qui doit être égal à une description de l'image (cet 
+                    attribut est utilisé notamment par les systèmes de description des pages
+                    web utilisées par les non-voyants), il faut donc systématiquement 
+                    renseigner cet attribut.
+                </li>
+
+        </ul>
+        <h2>Les balises <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code> et <code>&lt;button&gt;</code></h2>
+        <p>
+                Les formulaires sont des éléments importants des sites internet, ils
+            permettent à l'utilisateur de transmettre des informations. Un 
+            formulaire devra être délimité par une balise <code>&lt;form&gt;</code> (même si ce n'est pas
+            une obligation) :
+        </p>
+        
+        <pre><code data-trim="" class="hljs xml" contenteditable="">
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>
+    ....<br>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+        </code></pre>
+        <p>
+                Il existe différentes balises permettant de construire un 
+            formulaire, notamment la balise <code>&lt;input&gt;</code>. Cette balise possède un attribut 
+            <code>type</code> qui lui permet de jouer des rôles très différents.
+        </p>
+        <p>
+                La balise <code>&lt;button&gt;</code> est aussi très utile...
+        </p>
+        <br><h4>Exercice 7</h4>
+        <p>
+                Créer un fichier html contenant le code suivant :
+        </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Voici mon site<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">form</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>voici un champ de texte&nbsp;: <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">input</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">type</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"text"</span></span></span><span class="hljs-tag">/&gt;</span></span><span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>voici une checkbox <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">input</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">type</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"checkbox"</span></span></span><span class="hljs-tag">/&gt;</span></span><span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag">&gt;</span></span>Cliquez ici !<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">button</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">form</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+        <p>
+                Tester ce code à l'aide d'un navigateur web en «double-cliquant» sur le fichier html que vous venez de créer.
+        </p>
+        <hr>
+        
+        <h2>Les balises <code>&lt;div&gt;</code> et <code>&lt;span&gt;</code></h2>
+        <p>
+                Ces balises sont très utilisées (surtout la balise <code>&lt;div&gt;</code>). Pourtant,
+            il faudrait autant que possible les éviter, pourquoi ?
+        </p>
+        <p>
+                Parce qu'elles n'ont aucune signification particulière, ce sont des balises  dites «génériques».
+        </p>
+        <p>
+                À quoi servent-elles alors ?
+        </p>
+        <p>
+                À organiser la page, à regrouper plusieurs balises dans une même entité.
+        </p>
+        <p>
+                Pourquoi deux balises génériques ?
+        </p>
+        <p>
+                Parce que <code>&lt;div&gt;</code> est une balise de type <code>block</code> et que <code>&lt;span&gt;</code> est une balise de type <code>inline</code> !
+        </p>
+        <p>
+                Sans vouloir trop entrer dans les détails, il faut bien comprendre 
+            que l'ordre des balises dans le code HTML a une grande importance. Les 
+            balises sont affichées les unes après les autres, on parle du flux 
+            normal de la page.
+        </p>
+        <p>
+                C'est ici qu'entrent en jeu les balises de types <code>block</code> et <code>inline</code>.
+        </p>
+        <ul>
+                <li>Les contenus des balises de type <code>block</code> (<code>&lt;p&gt;</code>, <code>&lt;div&gt;</code>,<code>&lt;h1&gt;</code>...) se placent sur la page web les uns au-dessous des autres.</li>
+                <li>Les contenus des balises de type <code>inline</code> (<code>&lt;strong&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>) se placent sur la page web les uns à côté des autres.</li>
+        </ul>
+        <p>
+                Cela revient à dire qu'une balise de type <code>block</code> prend toute la 
+            largeur de la page alors qu'une balise de type <code>inline</code> prend juste la 
+            largeur qui lui est nécessaire.
+        </p>
+        <br><h4>Exercice 8</h4>
+        <p>
+                Créer un fichier html contenant le code suivant :
+        </p>
+            <pre><code data-trim="" class="hljs xml" contenteditable="">
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Voici mon site<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">div</span></span></span><span class="hljs-tag">&gt;</span></span>div est une balise de type "block"<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">div</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>la balise p est une autre balise de type block<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">span</span></span></span><span class="hljs-tag">&gt;</span></span>En revanche, span est une balise de type "inline"<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">span</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">a</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">href</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"www.google.fr"</span></span></span><span class="hljs-tag">&gt;</span></span>Et voici une autre balise de type "inline"<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">a</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>h1 est bien une balise de type "block"<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+        <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">span</span></span></span><span class="hljs-tag">&gt;</span></span>la malheureuse balise span est "obligée" de se placer en dessous<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">span</span></span></span><span class="hljs-tag">&gt;</span></span>
+    <span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+        <p>Tester ce code.</p>
+        <hr>
+        
+        <br><h2>Validation HTML et CSS</h2>
+        
+        <p>
+            Un validateur de code HTML et CSS permet de corriger des erreurs commises lors de la création d'une page web.
+            Il existe des validateurs de code HTML en ligne (taper «W3C» ou simplement «validation html» sur un moteur de recherche), un outil simple est proposé ici : 
+            le validateur HTML intégré à Firefox. Il a le mérite d'être à portée, même s'il est en anglais.
+        </p>
+        
+        <br><h4>Exercice 9</h4>
+        <ol>
+                <li>Ouvrir votre la dernière page HTML que vous avez créée avec le navigateur Firefox.</li>
+                <li>
+                    Y incorporer quelques erreurs volontaires du genre une balise non refermée ou une balise inventée... 
+                    Y ajouter quelques maladresses quant à la mise en page (sauts de ligne, indentation...)
+                    puis sauver cette nouvelle page dans un nouveau fichier au nom de votre choix.
+                </li>
+                <li>Cliquer sur l'onglet «Outils» (ou taper la touche F12).</li>
+                <li>
+                    Choisir les lignes «Web developper» puis «Web console» (ou taper Ctrl+Shift+K).
+                    La fenêtre se sépare alors horizontalement en deux comme ci-dessous :   
+                    <figure class="centrer">
+                        <img src="./HTML et CSS _ les bases_files/console_web+HTML_validator.png" width="1200" alt="vue nav web console">
+                        <figcaption>Navigateur avec la console de validation HTML</figcaption>
+                    </figure>
+                    La partie inférieure est la console web.
+                </li>
+                <li>
+                    Cliquer sur l'onglet de la console «HTML validator». La fenêtre de validation HTML s'ouvre et des erreurs et avertissements y apparaissent, 
+                    que l'on peut corriger en rééditant en parallèle le fichier HTML (avec par exemple Notepad++).
+                </li>
+                <li>Un autre moyen de valider le code HTML sur cette console est de cliquer sur le bouton «W3c Online» de la fenêtre de validation HTML.</li>
+                <li>
+                    Tester également le bouton «Clean up» de la fenêtre de validation HTML 
+                    et le paramétrage offert afin de prendre exemple, notamment sur l'indentation proposée.
+                </li>
+                
+        </ol>
+        <hr>
+        <br><h4>Exercice 10</h4>
+        <p>
+                Élaborer une page HTML en utilisant les balises vues ci-dessus et en réexploitant ce que vous venez d'apprendre.
+        </p>
+        <hr>
+    </div>
+    
+        
+    <div>
+        Suite de la leçon : <a href="http://mathag.free.fr/1920_INFO/TP-NSI1/NSI1-1920_TP-5-IHM_Web4_HTML+JS.html">Interaction avec l'utilisateur dans une page web : utilisation du JavaScript</a>.
+    </div>
+            
+    <div class="head_foot_note_right">
+            Dernière mise à jour de cette page : 14/01/2022
+    </div>
+
+</body></html>

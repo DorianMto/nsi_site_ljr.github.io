@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!-- Auteur : David Roche @davR74130 -->
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Représentation d’un texte en machine</title>
+        <link rel="stylesheet" href="Repr%C3%A9sentation%20d%E2%80%99un%20texte%20en%20machine_files/style_TP_NSI_2122.css">   
+        <link rel="stylesheet" href="Repr%C3%A9sentation%20d%E2%80%99un%20texte%20en%20machine_files/tomorrow-night.css">
+        <script src="Repr%C3%A9sentation%20d%E2%80%99un%20texte%20en%20machine_files/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>             
+        <!-- Voir le site https://highlightjs.org/usage/-->
+<!--		
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+-->
+<!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+<!--	
+    <script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+-->
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="head_foot_note_right">
+                        <img src="Repr%C3%A9sentation%20d%E2%80%99un%20texte%20en%20machine_files/by-nc-sa.png"> Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>
+                </div>
+                <div class="navbar-header">
+                        <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                        <h2>Représentation d’un texte en machine</h2>
+                </div>
+
+            </div>
+        </nav>
+      
+      
+        <div class="container act">
+            <p>
+                Nous savons qu'un ordinateur est uniquement capable de 
+traiter des données binaires, comment sont donc codés les textes dans un
+ ordinateur ? Ou plus précisément, comment sont codés les caractères 
+dans un ordinateur ?
+            </p>
+            <h3>ASCII</h3>
+            <p>
+                Avant 1960 de nombreux systèmes de codage de caractères 
+existaient, ils étaient souvent incompatibles entre eux. En 1960, 
+l'organisation internationale de normalisation (ISO) décide de mettre un
+ peu d'ordre dans ce codage en créant la norme ASCII (American Standard 
+Code for Information Interchange). À chaque caractère est associé un 
+nombre binaire sur 8 bits (1 octet).
+                En fait, seuls 7 bits sont utilisés pour coder un 
+caractère, le 8<sup>e</sup> (dit <i>bit de parité</i>...)  n'est pas 
+utilisé pour le codage des caractères. Avec 7 bits il est possible de 
+coder jusqu'à 128 caractères ce qui est largement suffisant pour un 
+texte écrit en langue anglaise (pas d'accents).
+            </p>
+            <img src="Repr%C3%A9sentation%20d%E2%80%99un%20texte%20en%20machine_files/ASCII.svg">
+            <p>
+                Comme vous pouvez le constater dans le tableau ci-dessus, au "A" majuscule correspond le code binaire (1000001)<sub>2</sub> ((65)<sub>10</sub> ou (41)<sub>16</sub>).
+            </p>
+            <br><h4>Exercice 1</h4>
+            <p>
+                Quel est le code binaire du "a" minuscule en ASCII?
+            </p>
+            <hr>
+            <p>
+                Comme vous pouvez le constater, certains codes ne correspondent pas à des caractères (de 0 à (32)<sub>10</sub>), nous n'aborderons pas ce sujet ici.
+            </p>
+            <h3>ISO-8859-1</h3>
+            <p>
+                La norme ASCII convient bien à la langue anglaise, mais 
+pose des problèmes dans d'autres langues, par exemple le français. En 
+effet l'ASCII ne prévoit pas d'encoder les lettres accentuées.
+                C'est pour répondre à ce problème qu'est née la norme 
+ISO-8859-1. Cette norme reprend les mêmes principes que l'ASCII, mais 
+les nombres binaires associés à chaque caractère sont codés sur 8 bits, 
+ce qui permet d'encoder jusqu'à 256 caractères.
+                Cette norme est principalement utilisée dans les pays 
+européens puisqu'elle permet d'encoder les caractères utilisés dans les 
+principales langues européennes (la norme ISO-8859-1 est aussi appelée 
+«latin1» car elle permet d'encoder les caractères de l'alphabet dit 
+«latin»).
+            </p>
+            <p>
+                Problème, il existe beaucoup d'autres langues dans le 
+monde qui n'utilisent pas l'alphabet dit «latin», par exemple le chinois
+ ou le japonnais ! D'autres normes ont donc dû voir le jour, par exemple
+ la norme "GB2312" pour le chinois simplifié ou encore la norme 
+JIS_X_0208 pour le japonais.
+            </p>
+            <p>
+                Cette multiplication des normes a très rapidement posé 
+problème. Imaginons un français qui parle le japonais. Son traitement de
+ texte est configuré pour reconnaitre les caractères de l'alphabet 
+«latin» (norme ISO-8859-1). Un ami japonais lui envoie un fichier texte 
+écrit en japonais. Le français devra modifier la configuration de son 
+traitement afin que ce dernier puisse
+                afficher correctement l'alphabet japonais. S'il 
+n'effectue pas ce changement de configuration, il verra s'afficher des 
+caractères ésotériques.
+            </p>
+            <h3>Unicode</h3>
+            <p>
+                Pour éviter ce genre de problème, en 1991  une nouvelle norme a vu le jour : Unicode.
+            </p>
+            <p>
+                Unicode a pour ambition de rassembler tous les 
+caractères existants afin qu'une personne utilisant Unicode puisse, sans
+ changer la configuration de son traitement de texte, lire des textes en
+ français ou en japonais.
+            </p>
+            <p>
+                Unicode est uniquement une table qui regroupe tous les 
+caractères existants au monde, il ne s'occupe pas de la façon dont les 
+caractères sont codés dans la machine. Unicode accepte plusieurs 
+systèmes de codage : UTF-8, UTF-16, UTF-32. Le plus utilisé, notamment 
+sur le Web, est UTF-8.
+            </p>
+            <p>
+                Pour encoder les caractères Unicode, UTF-8 utilise un 
+nombre variable d'octets : les caractères "classiques" (les plus 
+couramment utilisés) sont codés sur un octet, alors que des caractères 
+"moins classiques" sont codés sur un nombre d'octets plus important 
+(jusqu'à 4 octets). Un des avantages d'UTF-8 c'est qu'il est totalement 
+compatible avec la norme ASCII : les caractères Unicode codés avec UTF-8
+ ont exactement le même code que les mêmes caractères en ASCII.
+            </p>
+            
+            <h3>Quel codage choisir ?</h3>
+            <p>
+                Le plus simple est d’utiliser le codage UTF-8, en 
+particulier pour la création d’un nouveau site web. 
+                Les codages que nous venons de passer en revue donnent 
+accès à un jeu très limité de caractères. À l’inverse, UTF-8 est un 
+codage de la famille Unicode, 
+                qui permet d’écrire n’importe quel caractère existant 
+dans n’importe quelle langue ou presque. 
+                Ce codage «universel» rencontre un fort succès : depuis 
+janvier 2010, plus de la moitié des pages sur le Web sont en UTF-8.
+            </p>
+
+            <br><h4>Exercice 2</h4>
+            <p>
+                Quel est le code binaire du "b" minuscule Unicode codé avec UTF-8 ?
+            </p>
+            <hr>
+            
+            <h3>Quel est l'encodage de mon fichier texte ? Comment le convertir ?</h3>
+            <p>
+                La plupart des éditeurs de texte permettent de savoir 
+quel est l'encodage d'un fichier texte ouvert et de changer cet 
+encodage...
+            </p>
+            
+            <br><h4>Exercice 3</h4>
+            <p>
+                Déterminer si les éditeurs de texte que vous connaissez 
+(Bloc-Notes, Notepad++ sous Windows, tex ou autres sous Linux...) 
+offrent ces fonctionnalités et les tester.<br>
+                Rendre compte de ces manipulations.
+            </p>
+            <hr>
+
+
+            <h3>Et sous Linux ?</h3>
+
+
+
+            <p>
+                En premier lieu, nous pouvons vérifier le type d’encodage avec <code>file</code> ou <code>file -bi</code>
+ sous Linux 
+                (attention, il semble que sous certaines versions trop 
+anciennes de Linux, cette commande ne permet pas d'obtenir 
+l'encodage...) :
+            </p>
+
+            <pre>                <code class="hljs css"><span class="hljs-selector-tag">user</span>@<span class="hljs-keyword">toto</span>:~&gt;<span class="hljs-keyword">file</span> fichier.txt
+fichier.txt: ISO-<span class="hljs-number">8859</span> text
+                </code>
+            </pre>
+
+
+            <p>
+                Puis la ligne suivante permet de convertir un fichier iso en utf8 sous Linux :
+            </p>
+
+            <pre>                <code class="hljs css"><span class="hljs-selector-tag">iconv</span> <span style="color: #660033;"><span class="hljs-selector-tag">-f</span></span> <span class="hljs-selector-tag">iso8859-</span><span style="color: #000000;"><span class="hljs-selector-tag">1</span></span> <span style="color: #660033;"><span class="hljs-selector-tag">-t</span></span> <span class="hljs-selector-tag">utf8</span> <span class="hljs-selector-tag">fichier1</span> <span style="color: #660033;"><span class="hljs-selector-tag">-o</span></span> <span class="hljs-selector-tag">fichier2</span>
+                </code>
+            </pre>
+            
+
+            <br><h4>Exercice 4</h4>
+            <p>
+                Chercher quelques fichiers texte sur votre ordinateur, 
+déterminer leurs encodages et tester des conversions (attention à ne pas
+ altérer des fichiers importants !).
+            </p>
+            <p>
+                Autre possibilité : éditer ce fichier avec Bloc-Notes et
+ le sauver avec un encodage différent (autre que UTF-8, ANSI par 
+exemple) dans un fichier portant un nom différent puis ouvrir ce dernier
+ fichier
+                avec Firefox et changer l'encodage depuis Firefox pour 
+visualiser le fichier correctement...
+            </p>
+            <hr>
+				
+        </div>
+		
+        <div class="head_foot_note_right">
+            Dernière mise à jour de cette page : 24/06/2122
+        </div>
+    
+
+</body></html>

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<!-- Auteurs : Tom Niget @zdimension_ David Roche-->
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Indexation et recherche dans une table</title>
+        <link rel="stylesheet" href="Indexation%20et%20recherche%20dans%20une%20table_fichiers/style_TP_NSI_2122.css">
+        <link rel="stylesheet" href="Indexation%20et%20recherche%20dans%20une%20table_fichiers/tomorrow-night.css">
+        <script src="Indexation%20et%20recherche%20dans%20une%20table_fichiers/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- Voir le site https://highlightjs.org/usage/-->
+		
+        <script type="text/x-mathjax-config;executed=true">
+            MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+            });
+        </script>
+        <!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath...&raquo; makes the &laquo;$&raquo; accepted...-->
+
+        <script src="Indexation%20et%20recherche%20dans%20une%20table_fichiers/MathJax.js" id="">
+        </script>
+    <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+    <body><div id="MathJax_Message" style="display: none;"></div>
+        <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="head_foot_note_right">
+                <img src="Indexation%20et%20recherche%20dans%20une%20table_fichiers/by-nc-sa.png" alt="cc : by nc sa"> Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>
+            </div>
+            <div class="navbar-header">
+                <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                    
+                <br><h2>Indexation et recherche dans une table de données</h2>
+            </div>
+
+        </div>
+        
+        </nav>
+        <div class="container act">
+            <p>
+                On trouve pléthore de données sur internet. Certaines sont publiques, par exemple le site <a href="https://www.data.gouv.fr/fr/" target="_blank">data.gouv.fr</a> récense un grand nombre de données publiques : elles sont librement réutilisables.
+            </p>
+            <p>
+                Ces données pour être exploitables doivent être 
+structurées. La structuration la plus commune en informatique est la 
+tabulation. Avec l'introduction du modèle relationnel (qui
+                sera étudié en NSI terminale) proposé par l'américain 
+Edgar F. Codd dans les années 1970 alors qu'il est employé par IBM, les 
+tables de données stockées dans des 
+                <strong>bases de données</strong> deviennent rapidement le principal moyen de stocker de l'information structurée. 
+            </p>
+            <p>
+                Même sans utiliser de tels systèmes, la manipulation de 
+données en tables
+                depuis un langage de programmation est un outil 
+important à maitriser car utilisé dans de nombreux domaines : calcul 
+scientifique, intelligence artificielle, programmation web, 
+bio-informatique, informatique financière, etc. 
+            </p>
+            <p>
+                Cette activité propose la découverte des deux formats de données structurées en tables suivants :
+                </p><ul>
+                    <li>
+                        <strong>CSV</strong> ;
+                    </li>
+                    <li>
+                        <strong>JSON</strong>.
+                    </li>
+                </ul>
+                Une activité ultérieure proposera l'utilisation d'une 
+bibliothèque Python pour exploiter ces données en tables...
+            <p></p>
+            <p>
+                Outre CSV et JSON que nous allons étudier ici,
+                le format <strong>XML</strong> (proche du format HTML) est aussi très utilisé :
+                </p><ul>
+                    <li>
+                        le format CSV se présente sous forme de tables où les valeurs sont
+                        séparées par des virgules (format anglais) ou des points-virgules (format français) ;
+                    </li>
+                    <li>
+                        le format JSON associe chaque donnée à
+                        une étiquette sous forme de listes ;
+                    </li>
+                    <li>
+                        le format XML utilise des balises (mots entre "&lt;" et "&gt;") pour organiser les informations 
+                        qui peuvent être imbriquées les unes dans les autres.
+                    </li>
+                </ul>
+            <p></p>
+                Le CSV et le JSON sont simples à écrire et à lire, 
+contrairement au XML qui nécessite de longues lignes de code. Le CSV est
+ rigide 
+                (tous les descripteurs doivent être renseignés) 
+contrairement au XML et au JSON. Le format XML est le format le plus 
+rapide à traiter
+                par la machine.
+            <p>
+            </p>
+            <br><h4>Exercice 1</h4>
+            <p>
+                Afin de découvrir ce que sont les données ouvertes (<i>open data</i> en anglais), aller sur le site <a href="https://www.data.gouv.fr/fr/" target="_blank">data.gouv.fr</a>
+                et en haut de la page d'acceuil, cliquer sur l'onglet 
+«Documentation». Vous pouvez également rechercher sur Wikipedia...
+                <br>
+                Résumer en quelques lignes l'essentiel de ce que vous retenez de ces pages.
+            </p>
+            <hr>
+            <br><h4>Exercice 2</h4>
+            <p>
+                Explorer pendant quelques minutes le site <a href="https://www.data.gouv.fr/fr/" target="_blank">data.gouv.fr</a>. Rechercher les données «Opérations coordonnées par les CROSS» à l'aide du moteur de recherche proposé par le site.</p>
+                <p>On peut constater que ces données sont au format CSV.
+            </p>
+            <hr>
+            <p>
+                Le format CSV est très courant sur internet.
+            </p>
+            <p>
+                Voici ce que dit Wikipédia sur le format CSV :
+            </p>
+            <blockquote>
+                <p>
+                    <em>Comma-separated values</em>, connu sous le sigle CSV, est un format 
+                    informatique ouvert représentant des données tabulaires sous forme de 
+                    valeurs séparées par des virgules.
+                </p>
+                <p>
+                    Un fichier CSV est un fichier texte, par opposition aux formats 
+                    dits « binaires ». Chaque ligne du texte correspond à une ligne du 
+                    tableau et les virgules correspondent aux séparations entre les 
+                    colonnes. Les portions de texte séparées par une virgule correspondent 
+                    ainsi aux contenus des cellules du tableau.
+                </p>            
+            </blockquote>
+            
+            <p>
+                Voici un exemple du contenu d'un fichier CSV :
+            </p>
+            <pre><code class="hljs">
+nom,prenom,date_naissance
+Durand,Jean-Pierre,23/05/1985
+Dupont,Christophe,15/12/1967
+Terta,Henry,12/06/1978
+            </code></pre>
+            <p>
+                D'évidence ici on a des informations concernant 3 personnes :
+            </p>
+            <ul>
+                <li>Jean-Pierre Durand qui est né le 23/05/1985</li>
+                <li>Christophe Dupont qui est né le 15/12/1967</li>
+                <li>Henry Terta qui est né le 12/06/1978</li>
+            </ul>
+            <p>
+                «nom», «prenom» et «date_naissance» sont appelés des descripteurs  
+                alors que, par exemple, «Durand», «Dupont» et «Terta» sont les valeurs 
+                du descripteur «nom».
+            </p>
+            
+            <br><h4>Exercice 3</h4>
+            <p>
+                Donner les différentes valeurs du descripteur «date_naissance».
+            </p>
+            <hr>
+            <p>
+                ATTENTION 
+            </p>
+            <blockquote>
+                <p>
+                    La virgule est un standard pour les données anglo-saxonnes, mais 
+                    pas pour les données aux normes françaises. En effet, en français, la 
+                    virgule est le séparateur des chiffres décimaux. Il est impossible de
+                    différencier les virgules décimales des virgules de séparation 
+                    des informations. C’est pourquoi on utilise un autre séparateur : le 
+                    point-virgule (;). Dans certains cas cela peut engendrer quelques 
+                    problèmes, il faut donc rester vigilant sur le type de séparateur 
+                    utilisé.
+                </p>
+                <p>
+                    Les tableurs, tels que «Calc» (Libre Office), sont 
+normalement 
+                    capables de lire les fichiers au format CSV 
+(attention, certains tableurs gèrent mal le séparateur CSV 
+«point-virgule» et le
+                    séparateur des chiffres décimaux «virgule»).
+                </p>
+            </blockquote>
+
+            <br><h4>Exercice 4</h4>
+            <ol>
+                <li>
+                    Lancer votre éditeur de texte préféré (par exemples <i>NotePad++</i> ou <i>Bloc_notes</i>... : 
+                    ne pas confondre avec un traitement de texte, comme <i>Word</i> ou <i>LibreOffice Writer</i>...).
+                </li>
+                <li>
+                    Y coller le code du fichier CSV ci-dessus (dans le cadre noir). 
+                </li>
+                <li>
+                    Enregistrer ce fichier au nom de <code>ident_virgule.csv</code> dans votre dossier de travail.
+                </li>
+                <li>
+                    Ouvrir maintenant ce fichier à l'aide du tableur de <i>LibreOffice</i> (choisir la virgule comme séparateur et sélectionner l'encodage UTF-8).
+                </li>
+            </ol>
+                
+            <p>
+                Si par hasard vous utilisez un autre tableur qui ne gère
+ pas correctement 
+                le séparateur «virgule», il suffit au préalable, depuis 
+l'éditeur de texte, de remplacer toutes les virgules par des 
+points-virgules 
+                (ne pas le faire une par une, demander au professeur si 
+vous ne savez pas le faire par des commandes) 
+                et de sauvegarder le résultat dans le fichier <code>ident_pointVirgule.csv</code>.
+            </p>
+            <p class="encadre">
+                Par la suite, toujours garder ces éventuels problèmes à 
+l'esprit : la virgule ou le point-virgule comme séparateur d'une part,
+                et l'encodage d'autre part (surtout avec des données 
+françaises).
+            </p>
+            <hr>
+            
+            <p>
+                Vous devriez obtenir ceci :
+            </p>
+            <div class="centrer">
+                <img src="Indexation%20et%20recherche%20dans%20une%20table_fichiers/snt_donnee_1.png" alt="snt données 1">
+            </div>
+            <p>
+                Avec le tableur on constate que les données sont plus lisibles car bien «rangées» dans un 
+                tableau avec des lignes et des colonnes (voilà pourquoi on parle de 
+                données tabulaires).
+            </p>
+            <p>
+                Il est possible de trouver sur le web des données beaucoup plus 
+                intéressantes à traiter que celles contenues dans le fichier 
+                «ident_pointVirgule.csv» (ou «ident_virgule.csv»). Par exemple, le site <a href="http://sql.sh/736-base-donnees-villes-francaises" target="_blank">sql.sh</a> propose un fichier csv contenant des informations sur l'ensemble des communes françaises.
+            </p>
+            
+            <br><h4>Exercice 5</h4>
+            <p>
+                Ouvrir le fichier <a href="https://pixees.fr/informatiquelycee/n_site/asset/villes_point_virgule.csv">villes_point_virgule.csv</a>
+                à l'aide d'un tableur (c’est une version légèrement modifiée de celle 
+                disponible sur le site sql.sh : y ont notamment été ajoutés des entêtes). En 
+                cas de problème avec votre tableur, voici une version «séparateur 
+                virgule» : 
+                <a href="https://pixees.fr/informatiquelycee/n_site/asset/villes_virgule.csv">villes_virgule.csv</a> (attention le séparateur «décimal» est ici le point).
+            </p>
+            <hr>
+            
+            <p>
+                Ce fichier comporte 12 colonnes (et 36&nbsp;700 
+                lignes si on ne compte pas l'entête !), voici la signification des colonnes :
+            </p>
+            <ul>
+                <li>dep : numéro de département ;</li>
+                <li>nom : nom de la commune ;</li>
+                <li>cp : code postal ;</li>
+                <li>nb_hab_2010 : nombre d'habitants en 2010 ;</li>
+                <li>nb_hab_1999 : nombre d'habitants en 1999 ;</li>
+                <li>nb_hab_2012 : nombre d'habitants en 2012 (approximatif) ;</li>
+                <li>dens : densité de la population (habitants par kilomètre carré) ;</li>
+                <li>surf : superficie de la commune en kilomètre carré ;</li>
+                <li>long : longitude ;</li>
+                <li>lat : latitude ;</li>
+                <li>alt_min : altitude minimale de la commune (il manque des données pour certains territoires d'outre-mer) ;</li>
+                <li>alt_max : altitude maximale de la commune (il manque des données pour certains territoires d'outre-mer).</li>
+            </ul>
+            
+            <br><h4>Exercice 6</h4>
+            <p>
+                En vous aidant du fichier ouvert dans l'exercice 5, 
+                déterminer l'altitude maximale et l'altitude minimale de votre commune : la commande «CTRL-F» (pour <i>Find</i> en anglais) permet de rechercher
+                des chaines de caractères dans un fichier.
+            </p>
+            <hr>
+            
+            <!-- A partir d'ici c'est inspiré de la fin de l'activité pixees de données structurées du cours de SNT ! -->
+            
+            
+            <p>
+                Autre format de données très courant sur le «web», le JSON (JavaScript Object Notation). 
+                Le JSON fonctionne avec un système de paire clé/valeur issu de la syntaxe des objets JavaScript
+                qui correspond aussi à celle des dictionnaires Python.
+            </p>
+            <p>
+                Un
+                «objet» est encadré par des accolades :
+            </p>
+            <pre><code class="hljs">
+{cle_1 : val_1, cle_2 : val_2, cle_3 : val_3}
+            </code></pre>
+            
+            <p>
+                Souvent, pour une question de lisibilité, on écrira :
+            </p>
+            
+            <pre><code class="hljs">
+{
+cle_1 : val_1,
+cle_2 : val_2,
+cle_3 : val_3
+}
+            </code></pre>
+            
+            <p>
+                Un fichier au format JSON peut regrouper un grand nombre d'objets :
+            </p>
+            
+            <pre><code class="javascript hljs json">
+[{
+<span class="hljs-attr">"nom"</span> : <span class="hljs-string">"Durand"</span>,
+<span class="hljs-attr">"prenom"</span> : <span class="hljs-string">"Jean-Pierre"</span>,
+<span class="hljs-attr">"date_naissance"</span> : <span class="hljs-string">"23/05/1985"</span>
+},
+{
+<span class="hljs-attr">"nom"</span> : <span class="hljs-string">"Dupont"</span>,
+<span class="hljs-attr">"prenom"</span> : <span class="hljs-string">"Christophe"</span>,
+<span class="hljs-attr">"date_naissance"</span> : <span class="hljs-string">"15/12/1967"</span>
+},
+{
+<span class="hljs-attr">"nom"</span> : <span class="hljs-string">"Terta"</span>,
+<span class="hljs-attr">"prenom"</span> : <span class="hljs-string">"Henry"</span>,
+<span class="hljs-attr">"date_naissance"</span> : <span class="hljs-string">"12/06/1978"</span>
+}]
+            </code></pre>
+            
+            <p>
+                Ci-dessus, nous avons une liste (délimitée par [  ]) contenant des objets.
+            </p>
+            <p>
+                La «valeur» d'une paire «clé/valeur» peut être une liste  :
+            </p>
+            
+            <pre><code class="javascript hljs json">
+{
+<span class="hljs-attr">"nom"</span> : <span class="hljs-string">"Durand"</span>,
+<span class="hljs-attr">"prenom"</span> : <span class="hljs-string">"Jean-Pierre"</span>,
+<span class="hljs-attr">"date_naissance"</span> : <span class="hljs-string">"23/05/1985"</span>
+<span class="hljs-string">"sport"</span> : [<span class="hljs-string">"tennis"</span>, <span class="hljs-string">"football"</span>, <span class="hljs-string">"pétanque"</span>]
+}
+            </code></pre>
+            
+            <p>
+                Ou même un autre objet :
+            </p>
+            
+            <pre><code class="javascript hljs json">
+{
+<span class="hljs-attr">"nom"</span> : <span class="hljs-string">"Durand"</span>,
+<span class="hljs-attr">"prenom"</span> : <span class="hljs-string">"Jean-Pierre"</span>,
+<span class="hljs-attr">"date_naissance"</span> : <span class="hljs-string">"23/05/1985"</span>
+<span class="hljs-string">"adresse"</span> : {<span class="hljs-attr">"num"</span>:<span class="hljs-number">6</span>, <span class="hljs-attr">"rue"</span>:<span class="hljs-string">"impasse du rossignol"</span>, <span class="hljs-attr">"ville"</span>:<span class="hljs-string">"Nogent-le-Rotrou"</span>, <span class="hljs-attr">"cp"</span>:<span class="hljs-string">"28400"</span>}
+}
+            </code></pre>
+            
+            <p>
+                Il est possible d'obtenir des structures de données très complexes avec le format JSON.
+            </p>
+            
+            <br><h4>Exercice 7</h4>
+            <p>
+                Étudier la structure du fichier <a href="https://pixees.fr/informatiquelycee/n_site/asset/ident.json">ident.json</a> :
+                </p><ul>
+                    <li>
+                        il peut être téléchargé puis ouvert avec un simple éditeur de texte pour une analyse de la structure 
+                        et enfin ouvert avec <i>Firefox</i> en visionnant alternativement l'onglet «<i>Données brutes</i>» 
+                        (ou «<i>Raw data</i>» en anglais) pour voir la structure, ou l'onglet «<i>JSON</i>» pour voir le rendu ;
+                    </li>
+                    <li>
+                        il peut aussi être visualisé en ligne avec <i>Firefox</i> selon les deux onglets décrits ci-dessus.
+                    </li>
+                </ul>
+            <p></p>
+            <hr>
+            
+            
+            <p>
+                Un JSON particulier, le geoJSON est un format (<a href="http://geojson.org/" target="_blank">http://geojson.org/</a>) qui permet d'encoder des données à «caractère géographique». 
+                Voici ce que dit Wikipédia à propos de ce format.
+            </p>
+            <blockquote>
+                GeoJSON (de l'anglais <i>Geographic JSON</i>, signifiant
+ littéralement JSON géographique) est un format ouvert d'encodage 
+d'ensemble de données géospatiales simples utilisant la norme JSON 
+(JavaScript Object Notation). Il permet de décrire des données de type 
+point, ligne, chaîne de caractères, polygone, ainsi que des ensembles et
+ sous-ensembles de ces types de données et d'y ajouter des attributs 
+d'informations qui ne sont pas spatiaux. Le format GeoJSON, 
+contrairement à la majorité des standards de systèmes d'informations 
+géographiques, n'est pas écrit par l'Open Geospatial Consortium, mais 
+par un groupe de travail de développeurs au travers d'internet.
+            </blockquote>
+            <p>
+                Comme indiqué dans Wikipédia, le geoJSON est avant tout 
+du JSON, nous retrouverons donc les mêmes caractéristiques que le JSON 
+(système de clé/valeur).
+            </p>
+            
+            <br><h4>Exercice 9</h4>
+            <p>
+                Dans la barre d'adresse de votre navigateur, taper l'adresse suivante :
+            </p>
+            
+            <pre><code class="hljs php">
+https:<span class="hljs-comment">//earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&amp;starttime=2019-07-31&amp;endtime=2019-08-01</span>
+            </code></pre>
+            
+            <p>
+                Vous devriez obtenir quelque chose ressemblant à ceci :
+            </p>
+            
+            <pre><code class="javascript hljs json">
+                    {<span class="hljs-attr">"type"</span>:<span class="hljs-string">"FeatureCollection"</span>,<span class="hljs-attr">"metadata"</span>:{<span class="hljs-attr">"generated"</span>:<span class="hljs-number">1564685404000</span>,<span class="hljs-attr">"url"</span>:<span class="hljs-string">"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&amp;starttime=2019-07-31&amp;endtime=2019-08-01"</span>,<span class="hljs-attr">"title"</span>:<span class="hljs-string">"USGS Earthquakes"</span>,<span class="hljs-attr">"status"</span>:<span class="hljs-number">200</span>,<span class="hljs-attr">"api"</span>:<span class="hljs-string">"1.8.1"</span>,<span class="hljs-attr">"count"</span>:<span class="hljs-number">547</span>},<span class="hljs-attr">"features"</span>:[{<span class="hljs-attr">"type"</span>:<span class="hljs-string">"Feature"</span>,<span class="hljs-attr">"properties"</span>:{<span class="hljs-attr">"mag"</span>:<span class="hljs-number">0.33000000000000002</span>,<span class="hljs-attr">"place"</span>:<span class="hljs-string">"6km NW of The Geysers, CA"</span>,<span class="hljs-attr">"time"</span>:<span class="hljs-number">1564617341320</span>,<span class="hljs-attr">"updated"</span>:<span class="hljs-number">1564619343353</span>,<span class="hljs-attr">"tz"</span>:<span class="hljs-number">-480</span>,<span class="hljs-attr">"url"</span>:<span class="hljs-string">"https://earthquake.usgs.gov/earthquakes/eventpage/nc73239641"</span>,<span class="hljs-attr">"detail"</span>:<span class="hljs-string">"https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=nc73239641&amp;format=geojson"</span>,<span class="hljs-attr">"felt"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"cdi"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"mmi"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"alert"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"status"</span>:<span class="hljs-string">"automatic"</span>,<span class="hljs-attr">"tsunami"</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">"sig"</span>:<span class="hljs-number">2</span>,<span class="hljs-attr">"net"</span>:<span class="hljs-string">"nc"</span>,<span class="hljs-attr">"code"</span>:<span class="hljs-string">"73239641"</span>,<span class="hljs-attr">"ids"</span>:<span class="hljs-string">",nc73239641,"</span>,<span class="hljs-attr">"sources"</span>:<span class="hljs-string">",nc,"</span>,<span class="hljs-attr">"types"</span>:<span class="hljs-string">",geoserve,nearby-cities,origin,phase-data,scitech-link,"</span>,<span class="hljs-attr">"nst"</span>:<span class="hljs-number">7</span>,<span class="hljs-attr">"dmin"</span>:<span class="hljs-number">0.012579999999999999</span>,<span class="hljs-attr">"rms"</span>:<span class="hljs-number">0.029999999999999999</span>,<span class="hljs-attr">"gap"</span>:<span class="hljs-number">78</span>,<span class="hljs-attr">"magType"</span>:<span class="hljs-string">"md"</span>,<span class="hljs-attr">"type"</span>:<span class="hljs-string">"earthquake"</span>,<span class="hljs-attr">"title"</span>:<span class="hljs-string">"M 0.3 - 6km NW of The Geysers, CA"</span>},<span class="hljs-attr">"geometry"</span>:{<span class="hljs-attr">"type"</span>:<span class="hljs-string">"Point"</span>,<span class="hljs-attr">"coordinates"</span>:[<span class="hljs-number">-122.80266570000001</span>,<span class="hljs-number">38.819168099999999</span>,<span class="hljs-number">3.29</span>]},<span class="hljs-attr">"id"</span>:<span class="hljs-string">"nc73239641"</span>},
+{<span class="hljs-attr">"type"</span>:<span class="hljs-string">"Feature"</span>,<span class="hljs-attr">"properties"</span>:{<span class="hljs-attr">"mag"</span>:<span class="hljs-number">1.28</span>,<span class="hljs-attr">"place"</span>:<span class="hljs-string">"22km ESE of Little Lake, CA"</span>,<span class="hljs-attr">"time"</span>:<span class="hljs-number">1564617244070</span>,<span class="hljs-attr">"updated"</span>:<span class="hljs-number">1564617457582</span>,<span class="hljs-attr">"tz"</span>:<span class="hljs-number">-480</span>,<span class="hljs-attr">"url"</span>:<span class="hljs-string">"https://earthquake.usgs.gov/earthquakes/eventpage/ci38678103"</span>,<span class="hljs-attr">"detail"</span>:<span class="hljs-string">"https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=ci38678103&amp;format=geojson"</span>,<span class="hljs-attr">"felt"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"cdi"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"mmi"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"alert"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"status"</span>:<span class="hljs-string">"automatic"</span>,<span class="hljs-attr">"tsunami"</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">"sig"</span>:<span class="hljs-number">25</span>,<span class="hljs-attr">"net"</span>:<span class="hljs-string">"ci"</span>,<span class="hljs-attr">"code"</span>:<span class="hljs-string">"38678103"</span>,<span class="hljs-attr">"ids"</span>:<span class="hljs-string">",ci38678103,"</span>,<span class="hljs-attr">"sources"</span>:<span class="hljs-string">",ci,"</span>,<span class="hljs-attr">"types"</span>:<span class="hljs-string">",geoserve,nearby-cities,origin,phase-data,scitech-link,"</span>,<span class="hljs-attr">"nst"</span>:<span class="hljs-number">18</span>,<span class="hljs-attr">"dmin"</span>:<span class="hljs-number">0.085260000000000002</span>,<span class="hljs-attr">"rms"</span>:<span class="hljs-number">0.11</span>,<span class="hljs-attr">"gap"</span>:<span class="hljs-number">94</span>,<span class="hljs-attr">"magType"</span>:<span class="hljs-string">"ml"</span>,<span class="hljs-attr">"type"</span>:<span class="hljs-string">"earthquake"</span>,<span class="hljs-attr">"title"</span>:<span class="hljs-string">"M 1.3 - 22km ESE of Little Lake, CA"</span>},<span class="hljs-attr">"geometry"</span>:{<span class="hljs-attr">"type"</span>:<span class="hljs-string">"Point"</span>,<span class="hljs-attr">"coordinates"</span>:[<span class="hljs-number">-117.684166</span>,<span class="hljs-number">35.867000599999997</span>,<span class="hljs-number">3.4300000000000002</span>]},<span class="hljs-attr">"id"</span>:<span class="hljs-string">"ci38678103"</span>},
+{<span class="hljs-attr">"type"</span>:<span class="hljs-string">"Feature"</span>,<span class="hljs-attr">"properties"</span>:{<span class="hljs-attr">"mag"</span>:<span class="hljs-number">1.3</span>,<span class="hljs-attr">"place"</span>:<span class="hljs-string">"19km NW of Sutton-Alpine, Alaska"</span>,<span class="hljs-attr">"time"</span>:<span class="hljs-number">1564617217896</span>,<span class="hljs-attr">"updated"</span>:<span class="hljs-number">1564617408500</span>,<span class="hljs-attr">"tz"</span>:<span class="hljs-number">-540</span>,<span class="hljs-attr">"url"</span>:<span class="hljs-string">"https://earthquake.usgs.gov/earthquakes/eventpage/ak0199qzxzh9"</span>,<span class="hljs-attr">"detail"</span>:<span class="hljs-string">"https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=ak0199qzxzh9&amp;format=geojson"</span>,<span class="hljs-attr">"felt"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"cdi"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"mmi"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"alert"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"status"</span>:<span class="hljs-string">"automatic"</span>,<span class="hljs-attr">"tsunami"</span>:<span class="hljs-number">0</span>,<span class="hljs-attr">"sig"</span>:<span class="hljs-number">26</span>,<span class="hljs-attr">"net"</span>:<span class="hljs-string">"ak"</span>,<span class="hljs-attr">"code"</span>:<span class="hljs-string">"0199qzxzh9"</span>,<span class="hljs-attr">"ids"</span>:<span class="hljs-string">",ak0199qzxzh9,"</span>,<span class="hljs-attr">"sources"</span>:<span class="hljs-string">",ak,"</span>,<span class="hljs-attr">"types"</span>:<span class="hljs-string">",geoserve,origin,"</span>,<span class="hljs-attr">"nst"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"dmin"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"rms"</span>:<span class="hljs-number">0.35999999999999999</span>,<span class="hljs-attr">"gap"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"magType"</span>:<span class="hljs-string">"ml"</span>,<span class="hljs-attr">"type"</span>:<span class="hljs-string">"earthquake"</span>,<span class="hljs-attr">"title"</span>:<span class="hljs-string">"M 1.3 - 19km NW of Sutton-Alpine, Alaska"</span>},<span class="hljs-attr">"geometry"</span>:{<span class="hljs-attr">"type"</span>:<span class="hljs-string">"Point"</span>,<span class="hljs-attr">"coordinates"</span>:[<span class="hljs-number">-149.07429999999999</span>,<span class="hljs-number">61.939900000000002</span>,<span class="hljs-number">21.5</span>]},<span class="hljs-attr">"id"</span>:<span class="hljs-string">"ak0199qzxzh9"</span>},
+
+                    ...
+            </code></pre>
+            <hr>
+            
+            <p>
+                Vous avez obtenu des informations au format geoJSON, sur
+ les tremblements de Terre ayant eu lieu entre le 31 juillet 2019 et le 
+01 août 2019, partout dans le monde.
+            </p>
+            <p>
+                Le site <a href="http://earthquake.usgs.gov/fdsnws/event/1/" target="_blank">http://earthquake.usgs.gov</a>, 
+                comme le site <a href="http://openweathermap.org/" target="_blank">http://openweathermap.org/</a>, propose une API qui renvoie des données à partir d'une simple url. 
+                Il propose plusieurs options pour la requête, on trouve une description complète de ces options <a href="http://earthquake.usgs.gov/fdsnws/event/1/" target="_blank">ici</a> 
+                (attention, vous aurez un message d'erreur si votre requête renvoie plus de 20&nbsp;000 évènements).
+            </p>
+            
+            <br><h4>Exercice 10</h4>
+            <ol>
+                <li>
+                    En vous aidant de la documentation présente sur le site <a href="http://earthquake.usgs.gov/fdsnws/event/1/" target="_blank">http://earthquake.usgs.gov</a>,
+ 
+                    écrire une requête sous forme d'url qui permettra 
+d'obtenir des données (au format geoJSON) sur les tremblements de terre,
+ d'une magnitude supérieure à 6, 
+                    ayant eu lieu ces 30 derniers jours partout dans le 
+monde.
+                </li>
+                <li>
+                    Tester votre requête en la copiant dans la barre 
+d'adresse de votre navigateur. Une fois les données obtenues, les 
+étudier afin de comprendre la structure de ces données.
+                </li>
+            </ol>
+            
+            <hr>
+            
+            <p>
+                ATTENTION
+            </p>            
+            <blockquote>
+                <p>
+                    Les dates et les heures sont fournies au format 
+«timestamp». Le «timestamp» 
+                    désigne le nombre de secondes écoulé depuis le 1er 
+janvier 1970 à minuit UTC précise. 
+                    Au lieu de donner une date et une heure pour un 
+événement donné, il est possible de donner son «timestamp». 
+                    Par exemple, au lieu de dire l'événement A a eu lieu
+ le 24 octobre 2018 à 13h 11 minutes et 10 secondes, on pourra dire que 
+l'événement A a pour «timestamp»
+                    1540379470 (durée qui s'est écoulée en secondes 
+entre le 1er janvier 1970 à minuit UTC et le 24 octobre 2018 à 13h 11 
+minutes et 10 secondes). 
+                    Vous trouverez un convertisseur de timestamp sur ce <a href="http://www.timestamp.fr/?">site</a>. 
+                </p>
+                <p>
+                    Attention, dans le JSON renvoyé par le site <a href="http://earthquake.usgs.gov/fdsnws/event/1/" target="_blank">http://earthquake.usgs.gov</a>
+                    le timestamp est donné en millisecondes, il est donc
+ nécessaire de diviser par 1000 la valeur que vous allez trouver dans le
+ JSON 
+                    (et garder uniquement la partie entière du résultat 
+de votre division).   
+                </p>
+            </blockquote>
+            <hr>
+        </div>
+		
+		
+        <div class="head_foot_note_right">
+                Dernière mise à jour de cette page : 13/07/2021
+        </div>
+    
+</body></html>

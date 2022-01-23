@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Spécification et mise au point</title>
+        <link rel="stylesheet" href="Sp%C3%A9cification%20et%20mise%20au%20point_files/style_TP_NSI1.css">
+        <link rel="stylesheet" href="Sp%C3%A9cification%20et%20mise%20au%20point_files/tomorrow-night.css">
+        <script src="Sp%C3%A9cification%20et%20mise%20au%20point_files/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>             
+                <!-- Voir le site https://highlightjs.org/usage/-->
+        <!--		
+            <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+        </script>
+        -->
+        <!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+        <!--	
+            <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        -->
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="head_foot_note_right">
+                <img src="Sp%C3%A9cification%20et%20mise%20au%20point_files/by-nc-sa.png" alt="cc : by nc sa"> 
+                <br>
+                Cette page est inspirée des sites suivants :
+                <br>
+                <a href="https://isn-icn-ljm.pagesperso-orange.fr/NSI/co/grain_specification.html">
+                isn-icn-ljm.pagesperso-orange.fr/NSI/co/grain_specification.html</a>
+                <br>
+                <a href="http://sametmax.com/les-docstrings/">
+                sametmax.com/les-docstrings/</a>    
+                <br>
+                <a href="https://cache.media.eduscol.education.fr/file/NSI/77/3/RA_Lycee_G_NSI_lang_tests_1170773.pdf">
+                Ressources NSI d'Eduscol</a>                
+            </div>
+            <div class="navbar-header">
+                <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                    
+                <br><h1>Spécification et mise au point de programmes</h1>
+            </div>
+        </div>
+        </nav>
+        
+        <br><br>
+        
+        <br>
+    
+        <div class="container act">
+            <h2>Spécification</h2>
+            
+            <h3>Terminologie de génie logiciel</h3>
+            <p>
+                En génie logiciel (<i>génie</i> au sens d'ingénierie ou 
+science de l'ingénieur),
+                le jargon varie selon les domaines et les pays mais on 
+peut retenir que deux phases sont nécessaires avant le codage 
+                (c'est-à-dire l'écriture en langage informatique) d'un 
+programme :
+                </p><ul>
+                    <li>
+                        l'établissement d'un cahier des charges (parfois
+ aussi appelé la spécification fonctionnelle) qui répond à la question 
+«quoi ?» ;
+                    </li>
+                    <li>
+                        la conception (parfois aussi appelée la 
+spécification technique) qui répond à la question «comment ?».          
+              
+                    </li>
+                </ul>
+                Attention selon les environnements, le jargon diffère et
+ l'analyse peut correspondre à la première phase (on parle alors parfois
+ d'analyse fonctionnelle)
+                ou à la deuxième phase (on parle alors
+                parfois d'analyse détaillée) voire aux deux !
+                Parfois l'analyse est même une étape amont répondant à 
+la question «pourquoi ?»...
+                <br>
+                Dans ce document, ce que nous appelons «spécification» 
+correspond à la documentation du programme apparaissant dans le code et 
+qui
+                reprend les éléments essentiels de la conception.
+            <p></p>
+            
+            <h3>Les commentaires</h3>
+            <p>
+                Les commentaires d'un programme sont les explications du
+ code à destination des développeurs en cours ou ultérieurs mais aussi 
+parfois des utilisateurs
+                de ce programme : c'est du texte dans le programme, qui 
+peut être lu par l'homme mais que la machine n'exécute pas.
+                
+                Ces commentaires sont nécessaires à la bonne 
+compréhension du programme et doivent pour une bonne partie reprendre 
+les documents des phases antérieures 
+                au codage.
+            </p>
+            <p>
+                Voici deux exemples de commentaires en Python.
+                </p><ul>
+                    <li>sur une ligne après un croisillon (<i>hash</i> en anglais, qui sert à composer le fameux <i>hashtag</i> ou mot-dièse ou mot-clic des réseaux sociaux) :
+            <pre><code class="python hljs">
+<span class="hljs-comment"># a doit être un entier</span>
+a = <span class="hljs-number">5</span>
+            </code></pre>
+                    </li>
+                    <li>
+                        ou sur plusieurs lignes entre des triples guillemets anglais :
+            <pre><code class="python hljs">
+<span class="hljs-string">''' a doit être un entier
+sinon il peut y avoir des problèmes...'''</span>
+a = <span class="hljs-number">5</span>
+            </code></pre>
+                        Remarquons que comme pour une chaine de 
+caractères ces trois simples guillemets peuvent être remplacés par trois
+ doubles guillemets 
+                        (<i>three single or double quotes</i> en anglais).
+                    </li>
+                </ul>
+            <p></p>
+            <p>
+                Pour quelques recommandations sur les commentaires cliquer <a href="http://mathag.free.fr/1718_ISN+ICN/ISN1718-Recommandations_commentaires.pdf">ici</a>
+                (à lire plus tard à la maison...).
+            </p>
+            
+            
+            <h3>Définition d'un sous-programme</h3>
+            <p>
+                Commençons par un exemple : le code suivant définit une fonction qui calcule la distance entre deux points.
+            </p>
+            <pre><code class="python hljs">
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">distance</span><span class="hljs-params">(A,B)</span>:</span>
+    <span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> sqrt
+    <span class="hljs-keyword">return</span> sqrt((A[<span class="hljs-number">0</span>]-B[<span class="hljs-number">0</span>])**<span class="hljs-number">2</span>+(A[<span class="hljs-number">1</span>]-B[<span class="hljs-number">1</span>])**<span class="hljs-number">2</span>)
+            </code></pre>
+            <p>
+            On peut maintenant utiliser cette fonction :
+            </p>
+            <pre><code class="python hljs">
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">distance</span><span class="hljs-params">(A,B)</span>:</span>
+    <span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> sqrt
+    <span class="hljs-keyword">return</span> sqrt((A[<span class="hljs-number">0</span>]-B[<span class="hljs-number">0</span>])**<span class="hljs-number">2</span>+(A[<span class="hljs-number">1</span>]-B[<span class="hljs-number">1</span>])**<span class="hljs-number">2</span>)
+
+E=(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>)
+F=(<span class="hljs-number">-5</span>,<span class="hljs-number">-2</span>)
+
+print(distance(E,F))
+            </code></pre>
+
+            Et voici le résutat :
+            <pre><code class="python hljs">
+&gt;&gt;&gt;
+<span class="hljs-number">9.899494936611665</span>
+            </code></pre>
+            <p>
+                Les sous-programmes sont de deux types :
+                </p><ul>
+                    <li>
+                        les procédures, sous-programmes qui ne renvoient rien, agissent donc comme des instructions ;
+                    </li>
+                    <li>
+                        les fonctions, sous-programmes qui renvoient un résultat (en Python avec l'instruction <code>return</code>).
+                    </li>
+                </ul>
+            <p></p>
+            <p>
+                (En Python les deux types de sous-programmes se définissent avec le code <code>def</code> et on les appelle tous les deux abusivement «fonctions»).
+            </p>
+            <p>
+                Un sous-programme a besoin de données : dans l'exemple 
+précédent il faut fournir les coordonnées des deux points.
+            </p>
+            <p>
+                Ces données sont ce qu'on appelle les paramètres ( ou arguments) du sous-programme.
+            </p>
+                
+            <p>
+                Un sous-programme doit être clair pour qu'un utilisateur
+ (autre que le concepteur ) puisse s'en servir.
+
+                Dans l'exemple ci-dessus il convient de préciser que les
+ paramètres sont des tuples qui contiennent des nombres, que la racine 
+carrée est utilisée 
+                et qu'un réel est obtenu en sortie...
+            </p>
+            <h3>La spécification d'un sous-programme</h3>
+            <p>
+                La spécification d'un sous-programme comprend :
+            </p>
+            <ul>
+                <li>
+                    sa signature : son nom, ses paramètres ;
+                </li>
+                <li>
+                    sa documentation : l'explication de ce que fait le sous-programme ;
+                </li>
+                <li>
+                    ses conditions d'applications ;
+                </li>
+                <li>
+                    etc....
+                </li>
+            </ul>   
+            <p>
+                C'est toute information sur le sous-programme pour les utilisateurs.
+            </p> 
+            <p>
+                Voici les étapes à suivre pour spécifier un sous-programme :
+            </p>
+            <ol>
+                <li>
+                    définir l'objectif du sous-programme ;
+                </li>
+                <li>
+                    identifier les paramètres (entrées, sorties, type, rôle) ;
+                </li>
+                <li>
+                    identifier les préconditions (entrées, conditions d'utilisation du sous-programme) ;
+                </li>
+                <li>
+                    identifier les postconditions (résultats, effets du sous-programme).
+                </li>
+            </ol>
+            <p>
+                Le langage C a été développé de manière à ce que ces 
+informations soient obligatoirement déclarées lors de la déclaration 
+d'un sous-programme, 
+                on les regroupe sous le vocable de <strong>prototypage</strong>. En Python le prototypage n'est pas obligatoire mais des outils sont à la disposition
+                du développeur soucieux d'avoir de bonnes pratiques de spécification.
+            </p>
+            
+            <h3>Les docstrings en Python</h3>
+            <p>
+                En Python on peut écrire ces informations en tête du sous-programme entre <code>"""</code> et <code>"""</code> : 
+                cela constitue une zone appelée <strong>docstrings</strong> qui va être décrite en détail plus-bas.
+            </p> 
+            <p>
+                Pour notre exemple cela donne le code suivant.
+            </p><pre><code class="python hljs">
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">distance</span><span class="hljs-params">(A,B)</span>:</span>
+    <span class="hljs-string">""" Calcul de la distance entre les points A et B
+    
+    Utilise  sqrt de la bibliothèque math
+
+    Préconditions :
+
+    Postconditions :
+        renvoie la distance euclidienne entre deux points
+
+    Paramètres:
+        A : premier point
+        type A : tuple (A[0],A[1]) de réels
+        B : deuxième point
+        type B : tuple (B[0],B[1]) de réels
+
+    Renvoie un flottant
+    """</span>
+    <span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> sqrt
+    <span class="hljs-keyword">return</span> sqrt((A[<span class="hljs-number">0</span>]-B[<span class="hljs-number">0</span>])**<span class="hljs-number">2</span>+(A[<span class="hljs-number">1</span>]-B[<span class="hljs-number">1</span>])**<span class="hljs-number">2</span>)
+            </code></pre>
+            
+            <h4>Principe</h4>
+            <p>
+                La docstring est un commentaire (une chaîne de 
+caractères que l’on n’assigne pas) qui doit être placée juste sous la 
+signature de la fonction.
+            </p>
+            <p>
+            Les docstrings offrent de nombreux avantages :
+            </p>
+            <ul>
+                <li>
+                    la fonction <code>help()</code> affiche cette documentation dans une console Python ;
+                </li>
+                <li>
+                    c'est du texte facile à lire qui renseigne rapidement les développeurs ultérieurs sur la fonction ;
+                </li>
+                <li>
+                    on peut générer une bonne documentation du code avec des commandes qui extraient ces docstrings ;
+                </li>
+                <li>
+                    c’est un mécanisme standardisé de documentation ;
+                </li>
+                <li>
+                    le code Python peut utiliser la docstring pour la lire ou l’afficher ;
+                </li>
+                <li>
+                    on peut insérer des tests dans les docstrings qui 
+non seulement enrichissent la spécification mais peuvent aussi 
+                    être exécutés en mode test : ce second aspect est 
+exploré en fin de cette activité.
+                </li>
+            </ul>
+
+            <h4>Usage</h4>
+            <p>
+                Considérons par exemple la fonction suivante :
+            </p><pre><code class="python hljs">
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ajouter</span><span class="hljs-params">(a, b)</span>:</span>
+    <span class="hljs-string">"""
+        Ajoute deux nombres l'un à l'autre et renvoie
+        le résultat.
+    """</span>
+    <span class="hljs-keyword">return</span> a + b
+            </code></pre>
+            <p>
+                Alors on peut écrire un <code>help</code> dans une console Python pour obtenir la docstring de la fonction :
+            </p>
+            <pre><code class="python hljs">
+<span class="hljs-meta">&gt;&gt;&gt; </span>help(ajouter)
+Help on function ajouter <span class="hljs-keyword">in</span> module __main__:
+ 
+ajouter(a, b)
+    Ajoute deux nombres l<span class="hljs-string">'un à l'</span>autre et renvoie le résultat.
+            </code></pre>
+            <p>
+                Il y a ainsi une documentation de la fonction accessible par la console, sans avoir à ouvrir d'autres fichiers.
+            </p>
+            <p>
+                On peut également documenter les modules en plaçant la 
+docstring comme première expression Python (qui n’est pas un 
+commentaire) tout en haut du fichier :
+            </p>
+            <pre><code class="python hljs">
+<span class="hljs-comment">#!/usr/bin/env python</span>
+<span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+ 
+ 
+<span class="hljs-string">"""
+    Ceci est un module génial qui va faire 
+    plein de trucs super cool.
+"""</span>
+ 
+<span class="hljs-keyword">import</span> threading
+<span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> wraps
+<span class="hljs-keyword">from</span> Queue <span class="hljs-keyword">import</span> Empty
+ 
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseAsbtractAdapterStrategyFactoryMock</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+            </code></pre>
+            
+
+            <div style="padding:5px; background-color:#9ba0ee; border:2px solid #656ab0; -moz-border-radius:9px; -khtml-border-radius:9px; -webkit-border-radius:9px; border-radius:9px;">
+                Petite parenthèse : cela n'a rien à voir mais...
+                <br>
+                Remarquons au passage que les deux premières lignes, qui
+ ne font pas partie de la docstring, sont recommandées en tête de tout 
+programme Python :
+                <ul>
+                    <li>
+                        la première est composée 
+                        <ul>
+                            <li>
+                                du couple de caractères <code>#!</code> 
+appelé «shebang», qui indique au système d'exploitation 
+                                (de type Unix) que ce fichier n'est pas 
+un fichier binaire mais un script (ensemble de commandes),
+                            </li>
+                            <li>
+                                du chemin d'accès vers le programme qui interprète les commandes de ce script ;
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        la deuxième indique l'encodage du fichier.
+                    </li>
+                </ul>  
+            </div>
+            <p>
+                On peut aussi documenter une classe et ses méthodes (une
+ classe sert à la programmation objet, cela servira plus tard...) :
+            </p>
+            <pre><code class="python hljs">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ADallas</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-string">"""
+        Cette classe vous donne le classe à Dallas
+        quand vous en avez vraiment besoin.
+    """</span>
+ 
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">univers_impitoyable</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-string">"""
+            Retourne un objet univers, prêt
+            à être impitoyable.
+        """</span>
+            </code></pre>
+
+            <p>
+                La plupart des fonctions et modules de la bibliothèque 
+standard sont ainsi documentés, on peut donc écrire :                   
+   
+            </p>
+
+            <pre><code class="python hljs">
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> os
+<span class="hljs-meta">&gt;&gt;&gt; </span>help(os)
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> partial
+<span class="hljs-meta">&gt;&gt;&gt; </span>help(partial)
+<span class="hljs-meta">&gt;&gt;&gt; </span>help(str)
+<span class="hljs-meta">&gt;&gt;&gt; </span>help(<span class="hljs-string">'foo'</span>.upper)
+            </code></pre>
+            <p>
+                À essayer...
+            </p>
+
+            <h4>Bonne pratique</h4>
+            <p>
+                Il existe plusieurs manières de formater une docstring, 
+                la «proposition d'amélioration de Python» <strong>PEP 257</strong>  (PEP de l'anglais <i>Python Enhancement Proposal</i>) 
+                a même été rédigée à ce sujet (taper cette expression sur un moteur 
+                de recherche pour en savoir davantage), mais l'essentiel se résume aux deux exemples suivants :
+            </p><pre><code class="python hljs">
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ma_fonction</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""Docstring d'une ligne"""</span>
+ 
+ 
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ma_fonction</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""Résumé de la docstring de plusieurs lignes.
+ 
+    Contenu détaillé de la doctstring.
+    Contenu détaillé de la doctstring.
+    Contenu détaillé de la doctstring.
+ 
+    """</span>
+            </code></pre>
+            
+            
+
+            <h3>Les annotations de fonction en Python</h3>
+            <p>
+                Un autre moyen très pratique de spécifier les types des 
+paramètres d'entrées et le résultat d'une fonction Python est 
+l'annotation. 
+                L'annotation n'est pas obligatoire et son non-respect ne
+ provoquera pas d'erreur spécifique, elle est purement informative
+                et l'attribut <code>__annotations__</code> permet de récupérer ces informations.
+            </p>
+            <p>
+                Mais un exemple est plus parlant que de longues 
+explications pour péciser la syntaxe des annotations de pré et 
+post-conditions :
+            </p>
+
+            <pre><code class="python hljs">
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pick</span><span class="hljs-params">(L:<span class="hljs-string">"list of ints"</span>, bidule:<span class="hljs-string">"truc"</span>, index:int)</span> -&gt; int:</span>
+    <span class="hljs-keyword">return</span> L[index]
+
+print(pick([<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],<span class="hljs-number">1</span>,<span class="hljs-number">0</span>))
+print(pick(<span class="hljs-string">'Albert'</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>))
+print(pick({<span class="hljs-string">'un'</span>:<span class="hljs-number">1</span>,<span class="hljs-string">'deux'</span>:<span class="hljs-number">2</span>},<span class="hljs-number">1</span>,<span class="hljs-string">'deux'</span>))
+print(pick.__annotations__)
+            </code></pre>
+            
+            <h4>Exercice 1</h4>
+            Tester le script Python précédent, l'exécuter et analyser les résultats.
+            <hr>
+            <p>
+                De plus amples informations sur les annotations de fonction en Python sont développées dans la 
+                <a href="https://www.python.org/dev/peps/pep-3107/">PEP 3107</a>.
+            </p>
+    
+            <br>
+            <h2>Mise au point</h2>
+            
+            <h3>Les tests unitaires</h3>
+            
+            <p>
+                Tout programmeur, du débutant au chevronné constate 
+qu'il est indispensable de tester ses programmes afin de s'assurer 
+qu'ils font ce qui était souhaité.
+            </p>
+            <p>
+                Tester la globalité d'un programme après l'avoir 
+complètement développé pour une conclusion «ça marche» ou «ça marche 
+pas» s'avère 
+                très inefficace. En effet la moindre erreur dans une 
+fonction fausse le programme et il peut arriver que l'on se dise «ça 
+peut pas venir de là»,
+                de tout chambouler dans le programme en conséquence, 
+alors que l'erreur est dans une autre fonction.
+            </p>
+            <p>
+                Il s'avère par conséquent nécessaire de tester le 
+programme élément par élément puis de procéder à l'intégration 
+progressive de ces éléments...
+            </p>
+            <p>
+                Les tests de ces parties élémentaires s'appellent les <strong>tests unitaires</strong>. Les tests unitaires d'une fonction peuvent être écrits avant la fonction à tester
+                et par une personne différente. Ils sont parfois laissés dans le code accompagnés de commentaires. 
+            </p>
+            <p>
+                Ces tests peuvent contenir plusieurs jeux de tests (jeux
+ d'essais ou jeux de données). 
+                Par exemple dans le cas du tri d'une liste que l'on veut
+ ranger dans l'ordre croissant, 
+                on peut prévoir des tests avec une liste de longueur 1, 
+une liste déjà ordonnée, une liste avec seulement le premier à déplacer 
+en deuxième place, 
+                une liste rangée dans l'ordre inverse, une liste avec 
+des valeurs égales, une liste très longue...
+            </p>
+            <p>
+                Les environnements de travail (<i>frameworks</i>) 
+actuels ont des débogueurs intégrés. Ces derniers permettent de définir 
+des points d'arrêt (carrés ou ronds rouges), 
+                d'observer les valeurs des variables (en passant la 
+souris dessus), d'afficher la pile d'appels et d'exécuter le programme 
+pas à pas. 
+            </p>
+            <p>
+                Il y a aussi la méthode à l'ancienne que nous 
+utiliserons au début : afficher les valeurs des variables ou des 
+messages aux endroits sur lesquels on a des soupçons. 
+                Il faudra juste penser à nettoyer votre code ensuite.
+            </p>
+            <p>
+                La qualité et le nombre des tests sont essentiels, mais 
+attention, le succès d’un jeu de tests ne garantit pas la correction 
+d’un programme.
+            </p>
+            <div style="padding:5px; background-color:#9ba0ee; border:2px solid #656ab0; -moz-border-radius:9px; -khtml-border-radius:9px; -webkit-border-radius:9px; border-radius:9px;">
+                <strong>Quand définir les tests ?</strong>
+                <br>
+                On peut définir de nombreux tests pour un programme 
+donné sur la seule base des spécifications fonctionnelle et technique, 
+                il est donc tout à fait possible et c'est même une 
+pratique courante d'écrire un certain nombre de tests pour une fonction 
+                avant même d'avoir écrit le code de cette fonction. Dans
+ le cas d'un travail en équipe et une fois les documents amont écrit, 
+                on peut même confier la définition des tests et 
+l'écriture du programme à deux personnes différentes. 
+                Cette pratiqe vise à éviter que la même erreur ne se 
+glisse à la fois dans le programme et dans les tests.
+            </div>
+
+            <h3>Développement piloté par les tests</h3>
+            
+            <h4>Exercice 2</h4>
+            <ol>
+                <li>
+                    Lire le document suivant : <a href="https://cache.media.eduscol.education.fr/file/NSI/77/3/RA_Lycee_G_NSI_lang_tests_1170773.pdf">
+                    Mise au point de programmes testés</a> (il provient du site Eduscol).
+                </li>
+                <li>
+                    Parcourir les paragraphes 3.2 et 3.3 puis utiliser la méthode de test du 3.2 (les <strong>assertions</strong>)
+                    pour mettre au point la fonction <code>division_euclidienne</code> : noter que cette instruction peut tout autant servir à vérifier les
+                    préconditions que les postconditions.
+                </li>
+                <li>
+                    Pour les plus rapides : essayer aussi la méthode du 3.3.
+                </li>
+            </ol>
+            <hr>
+            Et pour finir voici quelques recommandations essentielles pour
+            <a href="https://eduscol.education.fr/document/7307/download#page=7">
+                écrire des programmes «faciles» à mettre au point
+            </a> (pages 7,8 et 9).
+            
+
+        </div>               
+                
+        <div class="head_foot_note_right">
+            Dernière mise à jour de cette page : 31/07/2021
+        </div>
+        
+    
+</body></html>
