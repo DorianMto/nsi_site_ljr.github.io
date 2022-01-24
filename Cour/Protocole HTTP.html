@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Protocole HTTP</title>
+        <link rel="stylesheet" href="Protocole%20HTTP_files/style_TP_NSI1.css">
+        <link rel="stylesheet" href="Protocole%20HTTP_files/tomorrow-night.css">
+        <script src="Protocole%20HTTP_files/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>                
+        <!-- Voir le site https://highlightjs.org/usage/-->
+        <!--		
+            <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+        </script>
+        -->
+        <!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+        <!--	
+            <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        -->
+            
+    </head>
+    <body cz-shortcut-listen="true">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="head_foot_note_right">
+                        <img src="Protocole%20HTTP_files/by-nc-sa.png">Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>.
+                </div>
+                <div class="navbar-header">
+                    <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                    <br><h2>Protocole HTTP</h2>
+                </div>
+
+            </div>
+        </nav>
+    
+    
+        <div class="container act">
+            <p>
+                    Revenons sur l'adresse qui s'affiche dans la barre d'adresse d'un 
+navigateur web et plus précisément sur le début de cette adresse 
+c'est-à-dire le «http».
+            </p>
+            <p>
+                Selon les cas cette adresse commence par «http» ou 
+«https» (nous verrons ce deuxième cas à la fin de cette activité).
+            </p>
+            <p>
+                Rappelons qu'un protocole est un ensemble de règles qui permettent à des ordinateurs de communiquer.
+            </p>
+            <p>
+                Le protocole HTTP (<i>HyperText Transfert Protocol</i>) permet au client d'effectuer des requêtes à destination 
+                d'un serveur web. En retour, le serveur web envoie alors une réponse.
+            </p>
+            <p>
+                Voici une version simplifiée de la composition d'une requête HTTP (client vers serveur)&nbsp;:
+            </p>
+            <ul>
+                    <li>la méthode employée pour effectuer la requête ;</li>
+                    <li>l'URL (<i>Uniform Resource Locator</i>) de la ressource ;</li>
+                    <li>la version du protocole utilisé par le client (souvent HTTP 1.1) ;</li>
+                    <li>le navigateur employé (Firefox, Chrome...) et sa version ;</li>
+                    <li>le type du document demandé (par exemple HTML) ;</li>
+                    <li>...</li>
+            </ul>
+            <p>
+                Certaines de ces lignes sont optionnelles.
+            </p>
+            <p>
+                Voici un exemple de requête HTTP :
+            </p>
+            <pre><code class="hljs">
+GET /mondossier/monFichier.html HTTP/1.1
+User-Agent&nbsp;: Mozilla/5.0
+Accept&nbsp;: text/html
+            </code></pre>
+            <p>
+                Plusieurs informations y apparaissent :
+            </p>
+            <ul>
+                <li>
+                    <code>GET</code> est la méthode employée (voir ci-dessous) ;
+                </li>
+                <li>
+                    <code>/mondossier/monFichier.html</code> est l'URL de la ressource demandée ;
+                </li>
+                <li>
+                    <code>HTTP/1.1</code> est la version du protocole est la 1.1 ;
+                </li>
+                <li>
+                    <code>Mozilla/5.0</code> est la société du navigateur web employé (Firefox en l'occurrence) ;
+                </li>
+                <li>
+                    <code>text/html</code> : le client attend des données HTML.
+                </li>
+            </ul>
+            <p>
+                Revenons sur la méthode employée. Une requête HTTP&nbsp; utilise une méthode (c'est une commande qui
+                demande au serveur d'effectuer une certaine action). Voici la liste des
+                méthodes disponibles&nbsp;: GET, HEAD, POST, OPTIONS, CONNECT, TRACE, PUT, PATCH, DELETE.
+            </p>
+            <p>
+                Voici la description de quatre de ces méthodes&nbsp;:
+            </p>
+            <ul>
+                <li>
+                    GET est la méthode la plus courante pour demander une ressource, elle est sans effet sur la ressource ;
+                </li>
+                <li>
+                    POST est utilisée pour soumettre des 
+                    données en vue d'un traitement (côté serveur), elle est 
+                    par exemple employée pour envoyer au serveur les données issues d'un
+                    formulaire ;
+                </li>
+                <li>
+                    DELETE permet de supprimer une ressource sur le serveur ;
+                </li>
+                <li>
+                    PUT permet de modifier une ressource sur le serveur.
+                </li>
+            </ul>
+            
+            <h4>Réponse du serveur à une requête HTTP</h4>
+            
+            <p>
+                Une fois la requête reçue, le serveur retourne une réponse, voici un exemple de réponse du serveur&nbsp;:
+            </p>
+            <pre><code class="hljs xml">
+HTTP/1.1 200 OK
+Date: Thu, 15 feb 2019 12:02:32 GMT
+Server: Apache/2.0.54 (Debian GNU/Linux) DAV/2 SVN/1.1.4
+Connection: close
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=ISO-8859-1
+<span class="hljs-doctype"><span class="hljs-meta">&lt;!doctype html&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">lang</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"fr"</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">meta</span></span></span><span class="hljs-tag"> </span><span class="hljs-attribute"><span class="hljs-tag"><span class="hljs-attr">charset</span></span></span><span class="hljs-tag">=</span><span class="hljs-value"><span class="hljs-tag"><span class="hljs-string">"utf-8"</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>Voici mon site<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">title</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">head</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+ <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Hello World! Ceci est un titre<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>Ceci est un <span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>paragraphe<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">strong</span></span></span><span class="hljs-tag">&gt;</span></span>. Avez-vous bien compris&nbsp;?<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">body</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">html</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+            <p>
+                Cette réponse ne sera pas détaillée ici mais voici quelques 
+                explications sur les éléments principaux.
+            </p>
+            <p>
+                Commençons par la fin&nbsp;: le serveur renvoie du code HTML, une 
+                fois ce code reçu par le client, il est interprété par le navigateur qui
+                affiche le résultat à l'écran. Cette partie correspond au corps de la 
+                réponse.
+            </p>
+            <p>
+                La première ligne s'appelle la ligne de statut&nbsp;:</p>
+            <ul>
+                <li>
+                    HTTP/1.1&nbsp; indique la version de HTTP utilisée par le serveur ;
+                </li>
+                <li>
+                    200&nbsp; est un code signifiant que le document recherché par le 
+                    client a bien été trouvé par le serveur, il existe d'autres codes dont 
+                    un que vous connaissez peut-être déjà&nbsp;: le code 404 qui 
+                    signifiele document recherché n'a pu être trouvé.
+                </li>
+            </ul>
+            <p>
+                Les 5 lignes suivantes constituent l'entête de la 
+réponse, une ligne nous intéresse plus particulièrement&nbsp;: 
+            </p>
+            <pre><code class="hljs http">
+<span class="hljs-attribute"><span class="hljs-attribute">Server</span></span>: <span class="hljs-string">Apache/2.0.54 (Debian GNU/Linux) DAV/2 SVN/1.1.4</span>
+            </code></pre>
+            <p>
+                Le serveur web qui a fourni la réponse http ci-dessus a comme 
+                système d'exploitation une distribution GNU/Linux nommée «Debian» (pour 
+                en savoir plus sur GNU/Linux, n'hésitez pas à faire vos propres 
+                recherches). «Apache» est le cœur du serveur web puisque c'est ce 
+                logiciel qui gére les requêtes http (il reçoit les requêtes http en 
+                provenance des clients et renvoie les réponses http).
+                Il existe d'autres logiciels capables de gérer les requêtes http 
+                (nginx, lighttpd...) mais, aux dernières nouvelles, Apache est toujours 
+                le plus populaire puisqu'il est installé sur environ la moitié des 
+                serveurs web mondiaux !
+            </p>
+            
+            
+            <h4>Le protocole HTTPS</h4>
+            
+            <p>
+                Le «HTTPS» est la version «sécurisée» du protocole HTTP. Par 
+                «sécurisé» on entend que les données sont chiffrées avant d'être 
+                transmises sur le réseau.
+            </p>
+            <p>
+                Voici les différentes étapes d'une communication client-serveur utilisant le protocole HTTPS :
+            </p>
+            <ul>
+                <li>
+                    Le client demande au serveur une connexion sécurisée (en utilisant 
+                    «https» à la place de «http» dans la barre d'adresse du navigateur web).
+                </li>
+                <li>
+                    Le serveur répond au client qu'il est OK pour l'établissement d'une
+                    connexion sécurisée. Afin de prouver au client qu'il est bien celui 
+                    qu'il prétend être, le serveur fournit au client un certificat prouvant 
+                    son «identité».
+                    En effet, il existe des attaques dites «man in the middle», où un 
+                    serveur «pirate» essaie par exemple de se faire passer pour le serveur
+                    d'une banque : le client, pensant être en communication avec le serveur
+                    de sa banque,
+                    peut saisir son identifiant et son mot de passe,
+                    qui seront alors récupérés par le serveur pirate. Afin d'éviter ce 
+                    genre d'attaque, des organismes délivrent donc des certificats prouvant 
+                    l'identité des sites qui proposent des connexions «https».
+                </li>
+                <li>
+                    À partir de ce moment-là, les échanges entre le client et le 
+                    serveur sont chiffrés grâce à un système de «clé publique - clé 
+                    privée» (le principe de ce chiffrement ne sera pas abordé ici). Même si un pirate
+                    arrivait à intercepter les données circulant entre le client et le 
+                    serveur, ces dernières ne lui seraient d'aucune utilité, car elles sont rendues totalement 
+                    incompréhensibles par le chiffrement (seuls le client et le serveur 
+                    sont aptes à déchiffrer ces données).
+                </li>
+            </ul>
+            <p>
+                D'un point vu strictement pratique il est nécessaire de 
+                vérifier que le protocole est bien utilisé (l'adresse commence par 
+                «https») avant de transmettre des données sensibles (coordonnées 
+                bancaires...). Si ce n'est pas le cas, attendez-vous au pire, car toute 
+                personne qui intercepterait les paquets de données serait en mesure de lire 
+                vos données sensibles.
+            </p>
+        </div>
+        
+            
+        <div>
+            Suite de la leçon : <a href="http://mathag.free.fr/1920_INFO/TP-NSI1/NSI1-1920_TP-5-IHM_Web7_PythonServerForm.html">Montage d'un serveur Web, avec formulaire, en Python</a>.
+        </div>
+                
+        <div class="head_foot_note_right">
+                Dernière mise à jour de cette page : 19/01/2020
+        </div>
+
+    
+</body></html>
