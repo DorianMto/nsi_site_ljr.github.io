@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Introduction au web</title>
+        <link rel="stylesheet" href="Introduction%20au%20web_files/style_TP_NSI1.css">
+        <link rel="stylesheet" href="Introduction%20au%20web_files/tomorrow-night.css">
+        <script src="Introduction%20au%20web_files/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>                
+        <!-- Voir le site https://highlightjs.org/usage/-->
+        <!--		
+            <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+        </script>
+        -->
+        <!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+        <!--	
+            <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        -->
+        <style>
+            .noborder{
+                border-width: 0px;
+                padding: 0px;
+                border-collapse: collapse;
+                }
+            .noborder td {
+                border-width: 0px;
+                padding: 0px;
+                border-collapse: collapse;
+                }
+            .noborder td:first-child  {
+                color:red;
+                text-align:right;
+                }
+            .noborder td:last-child  {
+                color:green;
+                }
+            .noborder td:nth-child(2)  {
+                color:blue;
+                }
+        </style>
+    </head>
+    <body cz-shortcut-listen="true">
+        <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="head_foot_note_right">
+                    <img src="Introduction%20au%20web_files/by-nc-sa.png" alt="cc : by nc sa">Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>.
+            </div>
+            <div class="navbar-header">
+                    <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                    <br><h2>Introduction au web</h2>
+            </div>
+
+        </div>
+        </nav>
+    
+        <div class="container act">
+            <p>
+                Le «<i>World Wide Web</i>», plus communément appelé «<i>Web</i>» a été développé 
+                au CERN (Conseil Européen pour la Recherche Nucléaire) par le 
+                Britannique Sir Timothy John Berners-Lee et le Belge Robert Cailliau au 
+                début des années 90.
+            </p>
+            <p>
+                À cette époque les principaux centres de recherche mondiaux étaient 
+                déjà connectés les uns aux autres, mais pour faciliter les échanges 
+                d'information Tim Berners-Lee mit au point le système hypertexte. Le 
+                système hypertexte permet, à partir d'un document, de consulter d'autres
+                documents en cliquant sur des mots clés. Ces mots «cliquables» sont 
+                appelés hyperliens et sont souvent soulignés et en bleu.
+                Ces hyperliens sont plutôt connus aujourd'hui sous le simple terme 
+                de «liens».
+            </p>
+            <figure class="centrer">
+                    <img src="Introduction%20au%20web_files/prem_web.png" alt="première page web">
+                    <figcaption>Première page web, les hyperliens sont soulignés et en bleu.</figcaption>
+            </figure>
+            <p>
+                Cette première page web est toujours consultable à l'adresse suivante : <a href="http://info.cern.ch/hypertext/WWW/TheProject.html" target="_blank">http://info.cern.ch/hypertext/WWW/TheProject.html</a>
+            </p>
+            <p>
+                Tim Berners-Lee développa le premier navigateur web (logiciel 
+                permettant de lire des pages contenant des hypertextes), il l'appela 
+                simplement «WorldWideWeb». Il fallut attendre 1993 et l'arrivée du 
+                navigateur web «NCSA Mosaic» pour que le web commence à devenir 
+                populaire en dehors du petit monde de la recherche.
+            </p>
+            <p>
+                Une chose très importante à bien avoir à l'esprit : 
+beaucoup de 
+                personnes confondent «web» et «internet». Même si le 
+«web» utilise
+                 internet, les deux choses n'ont rien à voir 
+puisqu'«internet» est un
+                «réseau de réseaux» s'appuyant sur le protocole IP alors
+ que le web est
+                une application d’internet qui permet le partage de
+                documents liés entre eux et appelés «pages web» : une 
+page web peut contenir du texte, des images, des
+                programmes, des liens vers d’autres pages web...
+                Le web fonctionne en mode client/serveur au-dessus de
+                l’architecture TCP/IP : l'application est répartie entre
+ le client et le serveur qui dialoguent selon un protocole applicatif 
+spécifique.
+            </p>
+            <figure class="centrer">
+                    <img src="Introduction%20au%20web_files/appli_web.png" alt="application web">
+                    <figcaption>Le web et internet : un exemple.</figcaption>
+            </figure>
+            <p>Le web repose sur 3 concepts :
+                </p><ul>
+                    <li>L’URL (<i>Uniform Ressource Locator</i>) qui permet au client de désigner la page demandée sous la forme d'une adresse répondant aux trois questions suivantes.
+                        <table class="noborder">
+                            <tbody><tr>
+                                <td>Comment ?</td><td>Où ?</td><td>Quoi ?</td>
+                            </tr>
+                            <tr>
+                                <td>http://</td><td>etu.univ-lyon1.fr</td><td>/licence/lifasr2.html</td>
+                            </tr>
+                        </tbody></table>
+                    </li>
+                    <li>HTTP (<i>HyperText Transfer Protocol</i>) : permet de définir le format et la signification des messages échangés entre le client et le serveur (<i>protocole</i>). Ces messages
+                    sont de deux types :
+                        <ul>
+                            <li>requête HTTP, du client vers le serveur, pour demander une page web ;</li>
+                            <li>réponse HTTP : du serveur vers le client, pour répondre au navigateur.</li>
+                        </ul>
+                    </li>
+                    <li>HTML, CSS, PHP, Javascript... : les langages du web.
+                        <ul>
+                            <li>le HTML (<i>HyperText Mark up Language</i>)
+ permet de décrire le contenu d’une page web, interprété par le 
+navigateur web pour afficher la page et demander les objets incorporés ;</li>
+                            <li>le CSS (<i>Cascading Style Sheets</i>) permet de définir les styles de la page (format, couleurs, positions...) ;</li>
+                            <li>le PHP (initialement <i>Personal Home Page</i>, mais aujourd'hui <i>PHP: Hypertext Preprocessor</i>) permet l’exécution d'un programme par le serveur ;</li>
+                            <li>le Javascript permet l’exécution d'un programme par le navigateur.</li>
+                        </ul>
+                    
+                    </li>
+                </ul>
+            <p></p>
+            
+            <p>
+                Par ailleurs on trouve autre chose que le web sur internet, par 
+                exemple, les <i>emails</i> (<i>méls</i> en français) avec le protocole SMTP (<i>Simple Mail Transfer
+                Protocol</i>) et les transferts de fichiers avec le protocole FTP (<i>File 
+                Transfer Protocol</i>).
+            </p>
+        </div>
+        
+        <div>
+            Suite de la leçon : <a href="http://mathag.free.fr/1920_INFO/TP-NSI1/NSI1-1920_TP-5-IHM_Web2_URL.html">la description des URL</a>.
+        </div>
+		
+        <div class="head_foot_note_right">
+                Dernière mise à jour de cette page : 14/01/2020
+        </div>
+
+    
+</body></html>
