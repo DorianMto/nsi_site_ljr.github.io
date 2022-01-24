@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Modèle client-serveur</title>
+        <link rel="stylesheet" href="Mod%C3%A8le%20client-serveur_files/style_TP_NSI1.css">
+        <link rel="stylesheet" href="Mod%C3%A8le%20client-serveur_files/tomorrow-night.css">
+        <script src="Mod%C3%A8le%20client-serveur_files/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>                
+        <!-- Voir le site https://highlightjs.org/usage/-->
+        <!--		
+            <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+        </script>
+        -->
+        <!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+        <!--	
+            <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        -->
+            
+    </head>
+    <body cz-shortcut-listen="true">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="head_foot_note_right">
+                        <img src="Mod%C3%A8le%20client-serveur_files/by-nc-sa.png">Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>.
+                </div>
+                <div class="navbar-header">
+                    <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                    <br><h2>Modèle client-serveur</h2>
+                </div>
+
+            </div>
+        </nav>
+    
+    
+        <div class="container act">
+            <p>
+                Deux ordinateurs en réseau peuvent s'échanger des données. Dans la 
+                plupart des cas ces échanges ne sont pas «symétriques» : en effet un 
+                ordinateur A va souvent se contenter de demander des ressources 
+                (fichiers contenant du texte, photos, vidéos, sons...) à un ordinateur 
+                B. L'ordinateur B va, lui, se contenter de fournir des ressources à tous 
+                les ordinateurs qui lui en feront la demande.
+                On dit alors que l'ordinateur A (celui qui demande des ressources) 
+                est un <strong>client</strong> alors que l'ordinateur B (celui qui fournit les 
+                ressources) est appelé un <strong>serveur</strong>.
+            </p>
+            <p>
+                Lorsqu'on saisit «http://www.google.fr» dans la barre d'adresse d'un navigateur,
+                l'ordinateur cherche à 
+                entrer en communication avec le serveur portant le nom «www.google.fr» 
+                (en fait c'est plus compliqué, pour les puristes nous dirons donc que 
+                la communication va être établie avec le serveur www du domaine 
+                google.fr, mais pour la suite nous pourrons nous contenter de 
+                l'explication «&nbsp;simplifiée&nbsp;»).
+            </p>
+            <p>Une fois la liaison établie, le client et le serveur échangent des informations en dialoguant&nbsp;:</p>
+            <ul>
+                <li>
+                    client&nbsp;: bonjour www.google.fr (ou bonjour www se trouvant 
+                    dans le domaine google.fr), pourrais-tu m'envoyer le fichier index.html ;
+                </li>
+                <li>
+                    serveur&nbsp;: OK client, voici le fichier index.html ;
+                </li>
+                <li>
+                    client&nbsp;: je constate que des images, du code css sont utilisés, peux-tu me les envoyer ;
+                </li>
+                <li>
+                    serveur&nbsp;: OK, les voici.
+                </li>
+            </ul>
+            <p>
+                Évidemment ce dialogue est très imagé, mais il porte tout de même une part de «&nbsp;vérité&nbsp;».</p>
+            <p>
+                Sur internet, ce modèle client-serveur domine assez largement : même 
+                s'il existe des cas où un ordinateur joue tour à tour les rôles de
+                client et de serveur, très souvent, des ordinateurs (les 
+                clients) passeront leur temps à demander des ressources à d'autres 
+                ordinateurs (les serveurs).
+                Par exemple, comme expliqué dans l'exemple ci-dessus on retrouve 
+                cet échange client-serveur à chaque fois que l'on visite une page web. 
+                Il y a de fortes chances pour que votre ordinateur personnel joue quasi 
+                exclusivement le rôle de client (sauf si vous êtes un adepte du «peer to peer»).
+            </p>
+            <p>
+                N'importe quel type d'ordinateur peut jouer le rôle de serveur, mais
+                dans le monde professionnel les serveurs sont des machines spécialisées
+                conçues pour fonctionner 24h sur 24h. Ils peuvent aussi avoir une 
+                grosse capacité de stockage afin de stocker un grand nombre de 
+                ressources (vidéos, sons...).
+            </p>
+            <div class="centrer">
+                <img src="Mod%C3%A8le%20client-serveur_files/serveur.jpg" alt="serveur">
+                <figcaption>serveur</figcaption>
+            </div>
+            <p>
+                Afin d'assurer une continuité de service, dans les sociétés, plusieurs
+                serveurs assurent exactement le même rôle (on parle de redondance). 
+                Vous vous doutez bien que Google ne possède pas qu'un seul serveur, en 
+                effet, en moyenne, chaque seconde, c'est environ 65000 clients qui se 
+                connectent aux serveurs du moteur de recherche de Google.
+                Aucun serveur, même extrêmement performant, ne serait capable de 
+                répondre à toutes ces requêtes.
+                Google, Amazon ou encore Facebook possèdent un très grand nombre de 
+                serveurs afin de satisfaire les demandes des utilisateurs en 
+                permanence. Ces entreprises possèdent d'immenses salles contenant 
+                chacune des centaines voire des milliers de serveurs (ces serveurs sont 
+                rangés dans des armoires appelées «baies serveurs»).
+            </p>
+            <div class="centrer">
+                <img src="Mod%C3%A8le%20client-serveur_files/salle-serveur.jpg" alt="salle-serveur">
+                <figcaption>salle serveur</figcaption>
+            </div>
+            <p>
+                Souvent les serveurs sont spécialisés dans certaines tâches, par 
+                exemple, les serveurs qui envoient aux clients des pages au format HTML 
+                sont appelés «serveurs web».
+            </p>
+            <p>
+                Il y a quelques années, le web était dit 
+                «&nbsp;statique&nbsp;»&nbsp;: le concepteur de site web écrivait son 
+                code HTML et ce code était simplement envoyé par le serveur web au 
+                client. Les personnes qui consultaient le site voyaient toutes 
+                la même page, le web était purement «&nbsp;consultatif&nbsp;».
+            </p>
+            <p>
+                Les choses ont ensuite évolué&nbsp;: les serveurs sont aujourd'hui
+                capables de générer eux-mêmes du code HTML. Les résultats qui 
+                s'affichent aujourd'hui à l'écran dépendent des demandes effectuées par 
+                l'utilisateur du site&nbsp;: le web est devenu dynamique.
+            </p>
+            <p>
+                Différents langages de programmation peuvent être utilisés 
+                «&nbsp;côté serveur&nbsp;» afin de permettre au serveur de générer 
+                lui-même le code HTML à envoyer. Le plus utilisé encore aujourd'hui se 
+                nomme PHP. D'autres langages sont utilisables côté serveur (pour 
+                permettre la génération dynamique de code HTML) : Java, Python...</p>
+            <p>
+                Voici un exemple très simple de code en PHP :
+            </p>
+            <pre><code class="php hljs bash">
+<span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$heure</span> = date(<span class="hljs-string"><span class="hljs-string">"H:i"</span></span>);
+<span class="hljs-built_in"><span class="hljs-keyword">echo</span></span> <span class="hljs-string"><span class="hljs-string">'&lt;h1&gt;Bienvenue sur mon site&lt;/h1&gt;
+&lt;p&gt;Il est '</span></span>.<span class="hljs-variable">$heure</span>.<span class="hljs-string"><span class="hljs-string">'&lt;/p&gt;'</span></span>;
+<span class="hljs-meta">?&gt;</span>
+            </code></pre>
+            <p>
+                Sans entrer dans les détails, si un client se connecte à un 
+                serveur web qui exécute ce code à 18h23, le serveur enverra au client le
+                code HTML ci-dessous :
+            </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Bienvenue sur mon site<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>Il est 18h23<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+            <p>
+                En revanche si un client se connecte à ce même serveur à
+ 9h12, le serveur enverra au client le code HTML ci-dessous :
+            </p>
+            <pre><code class="html hljs xml">
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>Bienvenue sur mon site<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">h1</span></span></span><span class="hljs-tag">&gt;</span></span>
+<span class="hljs-tag"><span class="hljs-tag">&lt;</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>Il est 9h12<span class="hljs-tag"><span class="hljs-tag">&lt;/</span><span class="hljs-title"><span class="hljs-tag"><span class="hljs-name">p</span></span></span><span class="hljs-tag">&gt;</span></span>
+            </code></pre>
+            <p>
+                Comme vous pouvez le constater, le PHP permet de générer dynamiquement des pages
+                HTML. Inutile de préciser que cet exemple est 
+                volontairement très simple, le PHP est capable de générer des pages HTML
+                bien plus complexes.
+            </p>
+        </div>
+        
+            
+        <div>
+            Suite de la leçon : <a href="http://mathag.free.fr/1920_INFO/TP-NSI1/NSI1-1920_TP-5-IHM_Web6_HTTP.html">Protocole HTTP</a>.
+        </div>
+                
+        <div class="head_foot_note_right">
+                Dernière mise à jour de cette page : 29/06/2021
+        </div>
+
+    
+</body></html>
