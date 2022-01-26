@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>URL</title>
+        <link rel="stylesheet" href="URL_fichiers/style_TP_NSI1.css">
+        <link rel="stylesheet" href="URL_fichiers/tomorrow-night.css">
+        <script src="URL_fichiers/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>                
+        <!-- Voir le site https://highlightjs.org/usage/-->
+        <!--		
+            <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+        </script>
+        -->
+        <!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+        <!--	
+            <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        -->
+            
+    </head>
+    <body cz-shortcut-listen="true">
+        <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="head_foot_note_right">
+                    <img src="URL_fichiers/by-nc-sa.png" alt="cc : by nc sa">Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>.
+            </div>
+            <div class="navbar-header">
+                    <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                    <br><h2>URL</h2>
+            </div>
+
+        </div>
+        </nav>
+        
+        <div class="container act">
+            <p>
+                Dans la barre d'adresse d'un navigateur web, pour 
+accéder à un site, on écrit ce que l'on appelle communément son adresse,
+ par exemple : 
+                <code>http://www.ac-grenoble.fr/disciplines/informatiquelycee/index.html</code>. 
+                Nous aurons l'occasion de reparler du <code>http</code> et du <code>www.ac-grenoble.fr</code> 
+                plus tard. La partie <code>/disciplines/informatiquelycee/index.html</code>
+                s'appelle une URL.
+            </p>
+            <p>Une URL (<i>Uniform Resource Locator</i>) permet d'identifier une ressource (par exemple un fichier) sur un réseau.</p>
+            <p>
+                L'URL indique «l'endroit» où se trouve une ressource 
+                sur un ordinateur. Un fichier peut se trouver dans un dossier qui peut 
+                lui-même se trouver dans un autre dossier...
+                On parle d'une structure en arborescence, car elle ressemble à un 
+                arbre à l'envers&nbsp;:
+            </p>
+            <figure class="centrer">
+                    <img src="URL_fichiers/url.jpg" alt="arbrescence">
+                    <figcaption>Structure en arborescence</figcaption>
+            </figure>
+            <p>La base de l'arbre s'appelle la racine (<i>root</i> en anglais) de l'arborescence et se représente par le caractère slash : <code>/</code>.</p>
+            
+            
+            <h3>Chemin absolu ou chemin relatif&nbsp;?</h3>
+            <p>
+                Pour indiquer la position d'un fichier (ou d'un dossier) dans 
+                l'arborescence, il existe 2 méthodes&nbsp;:
+                indiquer un chemin absolu ou indiquer un chemin relatif. Le chemin 
+                absolu doit indiquer «le chemin» depuis la racine.
+                    Par exemple l'URL du fichier <code>fichier3.jpg</code> est : 
+                <code>/dossier2/dossier3/fichier3.jpg</code>.
+            </p>
+            <p>Remarquer qu'on part de la racine <code>/</code> (attention les symboles de séparation sont aussi des <code>/</code>).</p>
+            <p>
+                Imaginons maintenant que le fichier <code>fichier1.css</code> fasse appel au fichier <code>fichier3.jpg</code> (comme un fichier HTML peut
+                faire appel à un fichier CSS). Il est possible d'indiquer le chemin non pas depuis la racine,
+                mais depuis le dossier <code>dossier2</code> qui accueille le <code>fichier1.css</code>, nous parlerons alors de chemin relatif  :
+                <code>dossier3/fichier3.jpg</code>.</p>
+            <p>Remarquer l’absence du / au début du chemin (c'est cela qui nous permettra de distinguer un chemin relatif et un chemin absolu).</p>
+            <br>
+            <p>
+                Imaginons maintenant que nous désirons indiquer le chemin relatif
+                du fichier <code>fichier1.css</code> depuis l'intérieur du dossier <code>dossier4</code>.</p>
+            <p>Comment faire&nbsp;?</p>
+            <p>
+                Il faut «remonter» d'un «niveau» dans l'arborescence pour se retrouver dans le dossier <code>dossier2</code> et ainsi
+                pouvoir repartir vers la bonne «branche». Pour ce faire il faut utiliser 2 points <code>..</code> :
+                <code>../fichier1.css</code>.
+            </p>
+            <p>
+                Il est tout à fait possible de remonter de plusieurs 
+                «crans»&nbsp;: <code>../../</code> depuis le dossier <code>dossier4</code> permet de 
+                «retourner» à la racine.
+            </p>
+            <br><h4>Exercice 1</h4>
+            <p>Soit la structure en arborescence suivante :</p>
+            <div class="centrer">
+                    <img src="URL_fichiers/url.jpg" alt="arbo">
+            </div>
+            <p>
+                Le contenu du fichier <code>fichier7.odp</code> utilise le fichier 
+                <code>fichier5.svg</code>. Donner le chemin relatif qui devra ẽtre renseigné dans 
+                le fichier <code>fichier7.odp</code> afin d'atteindre le fichier <code>fichier5.svg</code>.
+            </p>
+            <p>
+                Donner le chemin absolu permettant d'atteindre le fichier <code>fichier6.html</code>.
+            </p>
+            <hr>
+            <p>
+                Remarque&nbsp;: la façon d'écrire les chemins (avec des slashs (<code>/</code>) 
+                comme séparateurs) est propre aux systèmes dits «UNIX»,
+                par exemple GNU/Linux ou encore Mac OS. Sous Windows, ce n'est pas 
+                le slash qui est utilisé,
+                mais l'antislash (<code>\</code>). Pour ce qui concerne les chemins 
+                réseau (et donc web), c'est le slash qui est utilisé. 
+            </p>
+        </div>
+        
+            
+        <div>
+            Suite de la leçon : <a href="http://mathag.free.fr/1920_INFO/TP-NSI1/NSI1-1920_TP-5-IHM_Web3_HTML-CSS.html">le langage HTML/CSS</a>.
+        </div>
+                
+        <div class="head_foot_note_right">
+                Dernière mise à jour de cette page : 14/01/2022
+        </div>
+
+    
+</body></html>
