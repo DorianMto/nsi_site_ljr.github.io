@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Simulation CPU</title>
+        <link rel="stylesheet" href="Simulation%20CPU_fichiers/style_TP_NSI1.css">
+        <link rel="stylesheet" href="Simulation%20CPU_fichiers/tomorrow-night.css">
+        <script src="Simulation%20CPU_fichiers/highlight.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>                
+               <!-- Voir le site https://highlightjs.org/usage/-->
+        <!--		
+            <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+        </script>
+        -->
+        <!-- The default math delimiters are $$...$$ and \[...\] for displayed mathematics, and \(...\) for in-line mathematics. &laquo;inlineMath..." makes the &laquo;$" accepted...-->
+        <!--	
+            <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        -->
+            
+    </head>
+    <body cz-shortcut-listen="true">
+        <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="head_foot_note_right">
+                <img src="Simulation%20CPU_fichiers/by-nc-sa.png" alt="cc : by nc sa">Cette page est fabriquée à partir d'une page du site <a href="https://pixees.fr/informatiquelycee/">pixees.fr/informatiquelycee/</a>.
+            </div>
+            <div class="navbar-header">
+                <span class="navbar-brand">LPO Jacques Ruffié (Limoux, 11), NSI-1</span>
+                <br><h2>Simulation CPU</h2>
+            </div>
+
+        </div>
+        </nav>
+        
+        <div class="container act">
+            <p>
+                    Afin de mettre en pratique ce que nous avons étudié dans le cours 
+                «Modèle d'architecture de von Neumann», nous allons utiliser un 
+                simulateur développé par Peter L. Higginson. Ce simulateur est basé sur 
+                une architecture de von Neumann. Nous allons trouver dans ce simulateur :
+            </p>
+            <ul>
+                <li>
+                        une RAM ;
+                </li>
+                <li>
+                        un CPU.
+                </li>
+            </ul>
+            <p>
+                Une version en ligne de ce simulateur est disponible ici : <a href="http://www.peterhigginson.co.uk/AQA/" target="_blank">http://www.peterhigginson.co.uk/AQA/</a>.
+            </p>
+            <p>
+                Voici ce que vous devriez obtenir en vous rendant à l'adresse indiquée ci-dessus :
+            </p>
+            <figure class="centrer">
+                <img src="Simulation%20CPU_fichiers/sim_cpu.png" alt="sim_cpu">
+                <figcaption>Simulateur développé par Peter L. Higginson</figcaption>
+            </figure>
+            <p>
+                Il est relativement facile de distinguer les différentes parties du simulateur :
+            </p>
+            <ul>
+                <li>
+                    à droite, on trouve la mémoire vive («main memory») ;
+                </li>
+                <li>
+                    au centre, on trouve le microprocesseur ;
+                </li>
+                <li>
+                    à gauche on trouve la zone d'édition («Assembly Language»), c'est 
+                    dans cette zone que l'on saisit les programmes en assembleur.
+                </li>
+            </ul>
+            <p>
+                Revenons sur les parties RAM et CPU.
+            </p>
+            <h3>La RAM</h3>
+            <p>
+                Par défaut le contenu des différentes cellules de la mémoire est en 
+                base 10 (entier signé), mais d'autres options sont possibles : base 10 
+                (entier non-signé, «unsigned»), base 16 («hex»), base 2 («binary»). On 
+                accède à ces options à l'aide du bouton «OPTIONS» situé en bas dans la 
+                partie gauche du simulateur.
+            </p>
+            <br><h4>Exercice 1</h4>
+            <p>
+                À l'aide du bouton «OPTIONS», passer à un affichage en binaire.
+            </p>
+            <p>
+                Chaque cellule de la mémoire 
+                comporte 32 bits (nous avons vu que classiquement une cellule de RAM 
+                comporte 8 bits). Chaque cellule de la mémoire possède une adresse (de 
+                000 à 199), ces adresses sont codées en base 10.
+            </p>
+            <p>
+                Vous pouvez repasser à un affichage en base 10 (bouton «OPTION»-&gt;«signed»)
+            </p>
+            <hr>
+            <h3>Le CPU</h3>
+            <p>
+                Dans la partie centrale du simulateur, on trouve de haut en bas :
+            </p>
+            <ul>
+                <li>
+                    le bloc «registre» («Registers») : nous avons 13 registres (R0 à 
+                    R12) + 1 registre (PC) qui contient l'adresse mémoire de l'instruction  ;
+                    en court d'exécution
+                </li>
+                <li>
+                    le bloc «unité de commande» («Control Unit») qui contient 
+                    l'instruction machine en cours d'exécution (au format hexadécimal) ;
+                </li>
+                <li>
+                    le bloc «unité arithmétique et logique» («Arithmetic and Logic Unit»).
+                </li>
+            </ul>
+            <p>
+                Nous ne nous intéresserons pas aux autres composants de la partie CPU.
+            </p>
+            <h3>Programmer en assembleur</h3>
+            <p>
+                Comme déjà dit plus haut, la partie de gauche permet de saisir des 
+                programmes en assembleur. L'assembleur du simulateur ressemble
+                à l'assembleur que nous avons étudié dans l'activité intitulée «Architecture de von Neumann».
+                Éventuellement reconsulter le document mais surtout consulter l'aide en ligne en cliquant sur le bouton «INFO». 
+            </p>
+            <br><h4>Exercice 2</h4>
+            <p>
+                Dans la partie «éditeur» («Assembly Language») saisir les lignes de codes suivantes.
+            </p>
+            <pre>                <code class="plaintext hljs sql">
+MOV R0,<span class="hljs-comment">#42</span>
+STR R0,150
+HALT
+                </code>
+            </pre>
+            <p>
+                Une fois la saisie terminée, cliquez sur le bouton «submit». Vous 
+                devriez voir apparaitre des nombres «étranges» dans les cellules 
+                mémoires d'adresses 000, 001 et 002 :
+            </p>
+            <img src="Simulation%20CPU_fichiers/sim_cpu_1.png" alt="simul 1">
+            <p>
+                L'assembleur a fait son travail, il a converti les 3 lignes de notre
+                programme en instructions machines, la première instruction machine est
+                stockée à l'adresse mémoire 000 (elle correspond à «MOV R0,#42» en 
+                assembleur), la deuxième à l'adresse 001 (elle correspond à «STR R0,150»
+                en assembleur) et la troisième à l'adresse 002 (elle correspond à 
+                «HALT» en assembleur)
+                Pour avoir une idée des véritables instructions machines, vous devez
+                repasser à un affichage en binaire ((bouton «OPTION»-&gt;«binary»)). 
+                Vous devriez obtenir ceci :
+            </p>
+            <img src="Simulation%20CPU_fichiers/sim_cpu_2.png" alt="simul 2">
+            <p>
+                Nous pouvons donc maintenant affirmer que :
+            </p>
+            <ul>
+                <li>
+                    l'instruction machine «11100011 10100000 00000000 00101010» correspond au code assembleur «MOV R0,#42» ;
+                </li>
+                <li>
+                    l'instruction machine «11100101 10001111 00000010 01001100» correspond au code assembleur «STR R0,150»; 
+                </li> 
+                <li>
+                    l'instruction machine «11101111 00000000 00000000 00000000» correspond au code assembleur «HALT».
+                </li>
+            </ul>
+            <p>
+                Au passage, pour l'instruction machine 
+                «11100011 10100000 00000000 00101010», vous pouvez remarquer que l'octet
+                le plus à droite, (00101010)<sub>2</sub>, est bien égale à (42)<sub>10</sub> !
+            </p>
+            <p>
+                Repasser à un affichage en base 10 afin de faciliter la lecture des données présentes en mémoire.
+            </p>
+            <hr>
+            <br><h4>Exercice 3</h4>
+            <p>
+                Pour exécuter notre programme, il suffit maintenant de cliquer sur 
+                le bouton «RUN». Vous allez voir le CPU «travailler» en direct grâce à 
+                de petites animations. Si cela va trop vite (ou trop doucement), vous 
+                pouvez régler la vitesse de simulation à l'aide des boutons «&lt;&lt;» 
+                et «&gt;&gt;».
+                Un appui sur le bouton «STOP» met en pause la simulation, si vous 
+                rappuyez une deuxième fois sur ce même bouton «STOP», la simulation 
+                reprend là où elle s'était arrêtée.
+            </p>
+            <p>
+                Une fois la simulation terminée, vous pouvez constater que la 
+                cellule mémoire d'adresse 150, contient bien le nombre 42 (en base 10). 
+                Vous pouvez aussi constater que le registre R0 a bien stocké le nombre 42.
+            </p>
+            <img src="Simulation%20CPU_fichiers/sim_cpu_4.png" alt="simul 4">
+            <img src="Simulation%20CPU_fichiers/sim_cpu_3.png" alt="simul 3">
+            <p>
+                ATTENTION : pour relancer la simulation, il est nécessaire d'appuyer
+                sur le bouton «RESET» afin de remettre les registres R0 à R12 à 0, 
+                ainsi que le registre PC (il faut que l'unité de commande pointe de 
+                nouveau sur l'instruction située à l'adresse mémoire 000). La mémoire 
+                n'est pas modifiée par un appui sur le bouton «RESET»,
+                pour remettre la mémoire à 0, il faut cliquer sur le bouton 
+                «OPTIONS» et choisir «clr memory». Si vous remettez votre mémoire à 0, 
+                il faudra cliquer sur le bouton «ASSEMBLE» avant de pouvoir exécuter de 
+                nouveau votre programme.
+            </p>
+            <hr>
+            <br><h4>Exercice 4</h4>
+            <p>
+                Modifier le programme précédent pour qu'à la fin de l'exécution on 
+                trouve le nombre 54 à l'adresse mémoire 50. On utilisera le registre R1 à
+                la place du registre R0. Tester vos modifications en exécutant la 
+                simulation.
+            </p>
+            <hr>
+            <p>
+                Le simulateur prend en charge les labels.
+            </p>
+            <br><h4>Exercice 5</h4>
+            <p>
+                Saisir et tester le programme suivant :
+            </p>
+            <pre>                <code class="plaintext hljs php">
+MOV R0, <span class="hljs-comment">#4</span>
+STR R0,<span class="hljs-number">30</span>
+MOV R0, <span class="hljs-comment">#8</span>
+STR R0,<span class="hljs-number">75</span>
+LDR R0,<span class="hljs-number">30</span>
+CMP R0, <span class="hljs-comment">#10</span>
+BNE <span class="hljs-keyword">else</span>
+MOV R0, <span class="hljs-comment">#9</span>
+STR R0,<span class="hljs-number">75</span>
+B <span class="hljs-keyword">endif</span>
+<span class="hljs-keyword">else</span>:
+LDR R0,<span class="hljs-number">30</span>
+ADD R0, R0, <span class="hljs-comment">#1</span>
+STR R0,<span class="hljs-number">30</span>
+<span class="hljs-keyword">endif</span>:
+MOV R0, <span class="hljs-comment">#6</span>
+STR R0,<span class="hljs-number">23</span>
+HALT
+                </code>
+            </pre>
+            <hr>
+            <br><h4>Exercice 6</h4>
+            <p>
+                Voici un programme Python :
+            </p>
+            <pre>                <code class="python hljs">
+x=<span class="hljs-number"><span class="hljs-number">0</span></span>
+<span class="hljs-keyword"><span class="hljs-keyword">while</span></span> x&lt;<span class="hljs-number"><span class="hljs-number">3</span></span>:
+    x=x+<span class="hljs-number"><span class="hljs-number">1</span></span>
+                </code>
+            </pre>
+            <p>
+                Écrire et tester un programme en assembleur équivalent au programme ci-dessus.
+            </p>
+            <hr>
+        </div>
+                
+        <div class="head_foot_note_right">
+            Dernière mise à jour de cette page : 05/03/2020
+        </div>
+
+    
+</body></html>
